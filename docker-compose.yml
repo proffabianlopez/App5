@@ -1,0 +1,18 @@
+#version: '3.8'
+services:
+  apache-php:
+    build: Dockerfiles/php-apache/
+    env_file:
+      - .env
+    container_name: php
+    ports:
+      - ${PHP_PORT}:80
+    volumes:
+      - ./www:/var/www/html
+    networks:
+      - network1
+
+networks:
+  network1:
+    external:
+      name: ${RED_NOW}
