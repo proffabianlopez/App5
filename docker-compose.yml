@@ -14,5 +14,5 @@ services:
 
 networks:
   network1:
-    external:
-      name: ${RED_NOW}
+    name: ${RED_NOW}
+    external: true

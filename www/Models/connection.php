@@ -1,5 +1,3 @@
-
-
 <?php
 
 function probarConexion($host, $usuario, $contrasena, $baseDatos) {
@@ -32,10 +30,10 @@ $usuario = getenv('DB_USER');
 $contrasena = getenv('DB_PASSWORD');
 $baseDatos = getenv('DB_NAME');
 
-// var_dump ($host);
-// var_dump ($usuario);
-// var_dump ($contrasena);
-// var_dump ($baseDatos);
+var_dump ($host);
+var_dump ($usuario);
+var_dump ($contrasena);
+var_dump ($baseDatos);
 
 // Llamar a la función para probar la conexión
 $conexionExitosa = probarConexion($host, $usuario, $contrasena, $baseDatos);
