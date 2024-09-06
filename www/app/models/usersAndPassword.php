@@ -3,30 +3,8 @@ require_once 'connection.php';
 
 $conecction = abrirConexion();
 
-function ObtenerUsuarioPorEmailYPass($email, $password){
-     // Preparar la consulta SQL
-     $query = "SELECT * FROM user WHERE email = :email AND password = :password";
-        
-     // Preparar la sentencia
-     $getData = $conecction->prepare($query);
-     
-     // Asignar valores a los parámetros
-     $getData->bindParam(':email', $email);
-     $getData->bindParam(':password', $password);
-     
-     // Ejecutar la consulta
-     $getData->execute();
-     
-     // Obtener los resultados como un array asociativo
-     $resultados = $getData->fetchAll(PDO::FETCH_ASSOC);
-     
-     // Cerrar la conexión
-     cerrarConexion($conexion);
-     
-     // Retornar los resultados
-     return $resultados;
-    
-    /*if ($conecction) {
+function ObtenerUsuarioPorEmailYPass($email, $password)
+    {if ($conecction) {
         // Preparar la consulta SQL
         $query = "SELECT * FROM user WHERE email = :email AND password = :password";
         
@@ -51,7 +29,7 @@ function ObtenerUsuarioPorEmailYPass($email, $password){
     } else {
         echo "No se pudo establecer la conexión a la base de datos.<br>";
         return null;
-    }*/
+    }
 }
 
 
