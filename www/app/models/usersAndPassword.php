@@ -1,28 +1,28 @@
 <?php
 require_once 'connection.php';
 
-$conecction = abrirConexion();
 
-function ObtenerUsuarioPorEmailYPass($email, $password)
-    {if ($conecction) {
+function ObtenerUsuarioPorEmailYPass($email, $password){
+    $conecction = conectar();
+    if ($conecction) {
         // Preparar la consulta SQL
         $query = "SELECT * FROM user WHERE email = :email AND password = :password";
         
         // Preparar la sentencia
-        $getData = $conecction->prepare($query);
+        $stmt = $conecction->prepare($query);
         
         // Asignar valores a los parámetros
-        $getData->bindParam(':email', $email);
-        $getData->bindParam(':password', $password);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
         
         // Ejecutar la consulta
-        $getData->execute();
+        $stmt->execute();
         
         // Obtener los resultados como un array asociativo
-        $resultados = $getData->fetchAll(PDO::FETCH_ASSOC);
+        $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         // Cerrar la conexión
-        cerrarConexion($conexion);
+        cerrarConexion($conecction);
         
         // Retornar los resultados
         return $resultados;
@@ -33,7 +33,7 @@ function ObtenerUsuarioPorEmailYPass($email, $password)
 }
 
 
-$email="angelezequielgomez19@gmail.com";
+/*$email="angelezequielgomez19@gmail.com";
 $password = "12345";
 
 $resultados = obtenerUsuarioPorEmailYPass($email, $password);
@@ -49,4 +49,4 @@ if(!empty($resultados)) {
     }
 } else {
     echo "No se encontraron usuarios con ese email y password.<br>";
-}
+}*/

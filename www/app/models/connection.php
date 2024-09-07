@@ -1,13 +1,17 @@
 <?php
 /*el usuario app5 no tiene los permisos para ejecutar querys, revisarlo ya que el usuario root no debe estar en el codigo, ademas no hardcodear las credenciales*/
 function conectar() {
+    $host=getenv("DB_HOST");
+    $dbname=getenv("DB_NAME");
+    $usuario=getenv("DB_USER");
+    $password=getenv("DB_PASSWORD");
     // PDO("mysql:host=nombre_del_servidor; dbname=nombre_de_DB", "usuario", "contraseña");
-    $link = new PDO("mysql:host=".$_ENV["DB_HOST"]."; dbname=app5", "root", "Salud");
+    $link = new PDO("mysql:host=".$host."; dbname=$dbname", "$usuario","$password");
     $link->exec("set names utf8");
     return $link;
 }
 
-$conexion = conectar(); // Almacenamos el objeto PDO en $conexion
+/*$conexion = conectar(); // Almacenamos el objeto PDO en $conexion
 
 if ($conexion) {
     echo '<pre>'; print_r($conexion); echo '</pre>'; 
@@ -28,8 +32,13 @@ if ($conexion) {
     $stmt = null; // Cierra la conexión
 } else {
     echo "Error al conectar a la base de datos.";
+}*/
+// Función para cerrar la conexión a la base de datos
+function cerrarConexion($conexion) {
+    // Cerrar la conexión
+    $conexion = null;
+    echo "Conexión cerrada";
 }
-
 
 
 
@@ -64,12 +73,7 @@ if ($conexion) {
     }
 }*/
 
-// Función para cerrar la conexión a la base de datos
-/*function cerrarConexion($conexion) {
-    // Cerrar la conexión
-    $conexion = null;
-    echo "Conexión cerrada";
-}
+/*
 
 // Abrir la conexión a la base de datos
 $conexion = cerrarConexion();
