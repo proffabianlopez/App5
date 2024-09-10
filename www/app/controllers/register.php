@@ -8,11 +8,11 @@ $dni = $_POST['dni'];
 $birth_date = $_POST['birth_date'];
 $emil = $_POST['email'];
 $password = $_POST['password'];
-$street = $_POST['street'];
-$number = $_POST['number'];
-$apartment = $_POST['apartment'];
-$floor = $_POST['floor'];
-$id_neighborhood = $_POST['id_neighborhood'];
+//$street = $_POST['street'];
+//$number = $_POST['number'];
+//$apartment = $_POST['apartment'];
+//$floor = $_POST['floor'];
+//$id_neighborhood = $_POST['id_neighborhood'];
 
 
 //echo($name." ".$surname." ".$dni." ".$birth_date." ".$emil." ".$password." ".$street." ".$number." ".$apartment." ".$floor." ".$id_neighborhood);
@@ -44,7 +44,7 @@ try {
         ':email' => $_POST['email'],
         ':password' => password_hash($_POST['password'], PASSWORD_BCRYPT)  // Asegúrate de encriptar las contraseñas
     ]);
-
+/*
     // Insertar en la tabla 'address' usando el ID de 'person'
     $sql_address = "INSERT INTO address (id_person, id_address_type, street, number, apartment, floor, id_neighborhood) VALUES (:id_person, :id_address_type, :street, :number, :apartment, :floor, :id_neighborhood)";
     $stmt_address = $pdo->prepare($sql_address);
@@ -70,7 +70,7 @@ try {
     // Confirmar (commit) la transacción
     $pdo->commit();
     echo "Datos insertados correctamente";
-
+*/
 } catch (Exception $e) {
     // Si ocurre un error, revertir (rollback) la transacción
     $pdo->rollBack();

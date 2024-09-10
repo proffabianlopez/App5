@@ -82,7 +82,37 @@ if($conexion){
                 <div class="form-group">
                     <input type="password" class="form-control" placeholder="Password" required name="password">
                 </div>
+                
                 <div class="form-group">
+                        <div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Acepto los terminos y condiciones </label></div>
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">Registrarme</button>
+
+                <p class="text-muted text-center"><small>¿Ya tiene una cuenta?</small></p>
+                <a class="btn btn-sm btn-white btn-block" href="login.html">Login</a>
+            </form>
+            <p class="m-t"> <small>Gómez Ángel derechos reervados &copy; 2024</small> </p>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+     <script src="js/bootstrap.min.js"></script>
+    <!-- iCheck -->
+    <script src="js/plugins/iCheck/icheck.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+        });
+    </script>
+</body>
+
+<?php
+/* Datos extra en el login que luego el usuario deberá agregar para pedir un turno
+<div class="form-group">
                     <select name="id_address_type" id="address" required>
                         <option value="">--Seleccione su vivienda-</option>
                             <?php foreach ($casas as $casa): ?>
@@ -127,35 +157,5 @@ if($conexion){
                             <?php endforeach; ?>
                     </select>
                 </div>
-                <div class="form-group">
-                        <div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Acepto los terminos y condiciones </label></div>
-                </div>
-                <button type="submit" class="btn btn-primary block full-width m-b">Registrarme</button>
-
-                <p class="text-muted text-center"><small>¿Ya tiene una cuenta?</small></p>
-                <a class="btn btn-sm btn-white btn-block" href="login.html">Login</a>
-            </form>
-            <p class="m-t"> <small>Gómez Ángel derechos reervados &copy; 2024</small> </p>
-        </div>
-    </div>
-
-    <!-- Mainly scripts -->
-    <script src="js/jquery-3.1.1.min.js"></script>
-   
-    <form action="../controllers/register.php" method="POST">
-        <input type="text" name="name" placeholder="Nombre" required>
-        <input type="text" name="surname" placeholder="Apellido" required>
-        <button type="submit">Enviar</button>
-    </form>
- <script src="js/bootstrap.min.js"></script>
-    <!-- iCheck -->
-    <script src="js/plugins/iCheck/icheck.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('.i-checks').iCheck({
-                checkboxClass: 'icheckbox_square-green',
-                radioClass: 'iradio_square-green',
-            });
-        });
-    </script>
-</body>
+*/
+?>
