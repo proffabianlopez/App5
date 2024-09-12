@@ -1,6 +1,5 @@
 <?php
 require_once '../models/connection.php';
-
 //var_dump($_POST);
 $name = $_POST['name'];
 $surname = $_POST['surname'];
@@ -66,11 +65,12 @@ try {
         ':id_contact_type' => $_POST['id_contact_type'],
         ':contact' => $_POST['contact']
     ]);
-
+*/
     // Confirmar (commit) la transacción
     $pdo->commit();
     echo "Datos insertados correctamente";
-*/
+    //header('Location:../views/login.php');
+
 } catch (Exception $e) {
     // Si ocurre un error, revertir (rollback) la transacción
     $pdo->rollBack();
