@@ -1,5 +1,6 @@
 <?php
 require_once '../models/usersAndPassword.php';
+session_start();
 //$email = $_POST["email"];
 //$password = $_POST["password"];
 if ($_SERVER['REQUEST_METHOD'] == "POST") { 
@@ -17,6 +18,8 @@ if (!empty($resultados)) {
     foreach ($resultados as $usuario) {
         $email_sql= $usuario['email'];
         $pass_sql= $usuario['password'];
+        $_SESSION['user'] = $usuario['id'];
+        $_SESSION['rol'] = $usuario['id_rol'];
         //echo($email_sql);
         //echo($pass_sql);
         //echo "Password: " . $usuario['password'] . "<br>";

@@ -1,7 +1,7 @@
 <?php
 require_once '../models/connection.php';
 
-var_dump($_POST);
+//var_dump($_POST);
 $name = $_POST['name'];
 $surname = $_POST['surname'];
 $dni = $_POST['dni'];
