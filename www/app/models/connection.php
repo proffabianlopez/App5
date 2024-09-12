@@ -14,7 +14,7 @@ function conectar() {
 function cerrarConexion($conexion) {
     // Cerrar la conexión
     $conexion = null;
-    echo "Conexión cerrada";
+    //echo "Conexión cerrada";
 }
 
 
