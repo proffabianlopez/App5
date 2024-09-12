@@ -2,18 +2,17 @@
 require_once 'connection.php';
 
 
-function ObtenerUsuarioPorEmailYPass($email, $password){
+function ObtenerUsuarioPorEmailYPass($email){
     $conecction = conectar();
     if ($conecction) {
         // Preparar la consulta SQL
-        $query = "SELECT * FROM user WHERE email = :email AND password = :password";
+        $query = "SELECT * FROM user WHERE email = :email";
         
         // Preparar la sentencia
         $stmt = $conecction->prepare($query);
         
         // Asignar valores a los parámetros
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':password', $password);
         
         // Ejecutar la consulta
         $stmt->execute();
