@@ -24,6 +24,9 @@ if (!empty($resultados)) {
             if($_SESSION['rol'] == 1){
                 header('Location:index.php');
             }
+            elseif ($_SESSION['rol'] == 2) {
+                header("Location:dashboard.php");
+            }
         }
     }
 } else {
