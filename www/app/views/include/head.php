@@ -11,6 +11,6 @@
 <link href="/assets/vendor/select2/select2.min.css" rel="stylesheet" media="screen">
 <link href="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css" rel="stylesheet" media="screen">
 <link href="/assets/vendor/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" media="screen">
-<link rel="stylesheet" href="assets/css/styles.css">
-<link rel="stylesheet" href="assets/css/plugins.css">
-<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
+<link rel="stylesheet" href="/assets/css/styles_head.css">
+<link rel="stylesheet" href="/assets/css/plugins.css">
+<link rel="stylesheet" href="/assets/css/themes/theme-1.css" id="skin_color" />
