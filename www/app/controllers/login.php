@@ -22,10 +22,10 @@ if (!empty($resultados)) {
         if($email == $email_sql && password_verify($password, $pass_sql)){
             //echo("Login exitoso, redirigir al dashboard paciente");
             if($_SESSION['rol'] == 1){
-                header('Location:index.php');
+                header('Location:../views/patient/dashboard.php');
             }
             elseif ($_SESSION['rol'] == 2) {
-                header("Location:dashboard.php");
+                header("Location:../views/admin/dashboard.php");
             }
         }
     }
