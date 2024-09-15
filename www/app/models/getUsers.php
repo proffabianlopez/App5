@@ -2,7 +2,7 @@
 require_once 'connection.php';
 
 
-function ObtenerUsuarioPorEmailYPass($email){
+function ObtenerUsuarioPorEmail($email){
     $conecction = conectar();
     if ($conecction) {
         // Preparar la consulta SQL
@@ -35,7 +35,7 @@ function ObtenerUsuarioPorEmailYPass($email){
 /*$email="angelezequielgomez19@gmail.com";
 $password = "12345";
 
-$resultados = obtenerUsuarioPorEmailYPass($email, $password);
+$resultados = obtenerUsuarioPorEmail($email, $password);
 var_dump($resultados);
 // Mostrar los resultados
 if(!empty($resultados)) {

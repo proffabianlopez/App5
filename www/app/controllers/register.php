@@ -68,8 +68,8 @@ try {
 */
     // Confirmar (commit) la transacción
     $pdo->commit();
-    echo "Datos insertados correctamente";
-    //header('Location:../views/login.php');
+    //echo "Datos insertados correctamente";
+    header('Location:../views/login.php');
 
 } catch (Exception $e) {
     // Si ocurre un error, revertir (rollback) la transacción

@@ -1,5 +1,5 @@
 <?php
-require_once '../models/usersAndPassword.php';
+require_once __DIR__ . '/../models/getUsers.php';
 session_start();
 if ($_SERVER['REQUEST_METHOD'] == "POST") { 
     $email = isset($_POST["email"]) ? $_POST["email"] : null;
@@ -9,8 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 }
 
 
-$resultados = ObtenerUsuarioPorEmailYPass($email);
-
+$resultados = ObtenerUsuarioPorEmail($email);
+//var_dump($resultados);
 // Mostrar los resultados
 if (!empty($resultados)) {
     foreach ($resultados as $usuario) {

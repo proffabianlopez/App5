@@ -1,3 +1,9 @@
+<?php
+session_start();
+$_SESSION['user'];
+$_SESSION['rol'];
+?>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
