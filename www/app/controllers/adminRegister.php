@@ -10,13 +10,14 @@ try {
     $hashed_password = password_hash($password_admin, PASSWORD_BCRYPT);
 
     // Intentar insertar el administrador
-    $sql_insert_admin = "INSERT INTO user (id_person, id_rol, email, password) VALUES (:id_person, :id_rol, :email, :password)";
+    $sql_insert_admin = "INSERT INTO user (id_person, id_rol, email, password, status) VALUES (:id_person, :id_rol, :email, :password, :status)";
     $stmt = $pdo->prepare($sql_insert_admin);
     $stmt->execute([
-        ':id_person' => 1, // Supongamos que el administrador ya tiene un id_person
+        ':id_person' => 13, // Tiene que haber una persona pre-cargada para el admin
         ':id_rol' => 2, // Rol de administrador
         ':email' => $email_admin,
-        ':password' => $hashed_password
+        ':password' => $hashed_password,
+        ':status' => 1 // activarlo desde su creacion
     ]);
 
     echo "Administrador pre-cargado exitosamente.";

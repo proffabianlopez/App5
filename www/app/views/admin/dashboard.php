@@ -1,6 +1,7 @@
 <?php
 include '../../controllers/login.php';
-//session_start();
+session_start();
+var_dump($_SESSION);
 $_SESSION['user'];
 $_SESSION['rol'];
 //error_reporting(0);
