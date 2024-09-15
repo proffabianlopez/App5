@@ -41,18 +41,6 @@
                         </div>
                     </a>
                 </li>
-                <li>
-                    <a href="manage-medhistory.php">
-                        <div class="item-content">
-                            <div class="item-media">
-                                <i class="ti-list"></i>
-                            </div>
-                            <div class="item-inner">
-                                <span class="title">Historia clínica</span>
-                            </div>
-                        </div>
-                    </a>
-                </li>
             </ul>
         </nav>
     </div>

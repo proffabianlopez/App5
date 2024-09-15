@@ -2,13 +2,14 @@
 <html lang="es">
     <head>
         <title>Usuario </title>
-        <?php include('include/head.php'); ?> 
+        
+        <?php include '../include/head.php'; ?> 
     </head>
     <body>
         <div id="app">        
-            <?php include('include/sidebar.php'); ?>
+            <?php include('../include/sidebar_patient.php'); ?>
             <div class="app-content">            
-                <?php include('include/header.php'); ?>
+                <?php include('../include/header.php'); ?>
                 
                 <div class="main-content">
                     <div class="wrap-content container" id="container">
@@ -87,10 +88,10 @@
                 </div>
             </div>
             
-            <?php include('include/footer.php'); ?>
+            <?php include('../include/footer.php'); ?>
             
-            <?php include('include/setting.php'); ?>
+            <?php include('../include/setting.php'); ?>
         </div>
-        <?php include('include/script.php'); ?> 
+        <?php include('../include/script.php'); ?> 
     </body>
 </html>
