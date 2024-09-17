@@ -2,9 +2,9 @@
 include '../../controllers/login.php';
 session_start();
 var_dump($_SESSION);
-$_SESSION['user'];
-$_SESSION['rol'];
-//error_reporting(0);
+//$_SESSION['user'];
+//$_SESSION['rol'];
+error_reporting(0);
 //include('include/config.php');
 //include('include/checklogin.php');
 //check_login();
@@ -26,7 +26,7 @@ $_SESSION['rol'];
                     <section id="page-title">
                         <div class="row">
                             <div class="col-sm-8">
-                                <h1 class="mainTitle">Admin | Vista general</h1>
+                                <h1 class="mainTitle"><?php echo($_SESSION['user']) ?> Admin | Vista general</h1>
                             </div>
                             <ol class="breadcrumb">
                                 <li><span>Admin</span></li>

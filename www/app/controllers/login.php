@@ -4,6 +4,7 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] == "POST") { 
     $email = isset($_POST["email"]) ? $_POST["email"] : null;
     $password = isset($_POST["password"]) ? $_POST['password'] : null;
+    //echo($email);
 } else {
     echo "Método de solicitud no válido. Utilice el método POST.";
 }
