@@ -38,7 +38,7 @@ check_login();
                                             <i class="fa fa-square fa-stack-2x text-primary"></i>
                                             <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i>
                                         </span>
-                                        <h2 class="StepTitle">Manage Usuarios</h2>
+                                        <h2 class="StepTitle">Administrar Usuarios</h2>
                                         <p class="links cl-effect-1">
                                             <a href="manage-users.php">
                                                 <!-- <php
@@ -61,7 +61,7 @@ check_login();
                                             <i class="fa fa-square fa-stack-2x text-primary"></i>
                                             <i class="fa fa-users fa-stack-1x fa-inverse"></i>
                                         </span>
-                                        <h2 class="StepTitle">Manage Doctors</h2>
+                                        <h2 class="StepTitle">Administrar Doctores</h2>
                                         <p class="cl-effect-1">
                                             <a href="manage-doctors.php">
                                                 <!-- <php
@@ -84,7 +84,7 @@ check_login();
                                             <i class="fa fa-square fa-stack-2x text-primary"></i>
                                             <i class="fa fa-terminal fa-stack-1x fa-inverse"></i>
                                         </span>
-                                        <h2 class="StepTitle">Appointments</h2>
+                                        <h2 class="StepTitle">Turnos</h2>
                                         <p class="links cl-effect-1">
                                             <a href="book-appointment.php">
                                                 <a href="appointment-history.php">
@@ -109,7 +109,7 @@ check_login();
                                             <i class="fa fa-square fa-stack-2x text-primary"></i>
                                             <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i>
                                         </span>
-                                        <h2 class="StepTitle">Manage Patients</h2>
+                                        <h2 class="StepTitle">Administrar Pacientes</h2>
                                         <p class="links cl-effect-1">
                                             <a href="manage-patient.php">
                                                 <!-- <php
