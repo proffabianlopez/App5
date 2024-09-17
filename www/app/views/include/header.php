@@ -22,7 +22,7 @@
             </li>
             <li class="dropdown current-user">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="../../../assets/images/images.jpg">
+                    <img src="../../../assets/img/images.jpg">
                     <span class="username">
                         <i class="ti-angle-down"></i></span>
                 </a>

@@ -6,7 +6,7 @@
 </head>
 <body>
     <div id="app">
-        <?php include('../include/sidebar.php'); ?>
+        <?php include('../include/sidebar_patient.php'); ?>
         
         <div class="app-content">
             <?php include('../include/header.php'); ?>
