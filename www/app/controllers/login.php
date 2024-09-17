@@ -1,16 +1,17 @@
 <?php
-require_once '../models/usersAndPassword.php';
+require_once __DIR__ . '/../models/getUsers.php';
 session_start();
 if ($_SERVER['REQUEST_METHOD'] == "POST") { 
     $email = isset($_POST["email"]) ? $_POST["email"] : null;
     $password = isset($_POST["password"]) ? $_POST['password'] : null;
+    //echo($email);
 } else {
     echo "Método de solicitud no válido. Utilice el método POST.";
 }
 
 
-$resultados = ObtenerUsuarioPorEmailYPass($email);
-
+$resultados = ObtenerUsuarioPorEmail($email);
+//var_dump($resultados);
 // Mostrar los resultados
 if (!empty($resultados)) {
     foreach ($resultados as $usuario) {
