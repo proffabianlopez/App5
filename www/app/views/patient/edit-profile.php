@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <title>Usuario | Editar Perfil</title>
-    <?php include('include/head.php'); ?> 
+    <?php include('../include/head.php'); ?>
 </head>
+
 <body>
     <div id="app">
-        <?php include('include/sidebar.php'); ?>
-        
+        <?php include('../include/sidebar_patient.php'); ?>
         <div class="app-content">
-            <?php include('include/header.php'); ?>
-
+            <?php include('../include/header.php'); ?>
             <div class="main-content">
                 <div class="wrap-content container" id="container">
                     <section id="page-title">
@@ -24,7 +24,6 @@
                             </ol>
                         </div>
                     </section>
-
                     <div class="container-fluid container-fullw bg-white">
                         <div class="row">
                             <div class="col-md-12">
@@ -36,35 +35,63 @@
                                                 <h5 class="panel-title">Editar Perfil</h5>
                                             </div>
                                             <div class="panel-body">
-                                                <h4>Perfil de Usuario</h4>
-                                                <p><b>Fecha de Registro del Perfil: </b>Fecha de Registro</p>
-                                                <p><b>Última Actualización del Perfil: </b>Última Fecha de Actualización</p>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h4>Perfil de Usuario</h4>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <h4>Dirección</h4>
+                                                    </div>
+                                                </div>
                                                 <hr />
                                                 <form role="form" name="edit" method="post">
-                                                    <div class="form-group">
-                                                        <label for="fname">Nombre de Usuario</label>
-                                                        <input type="text" name="fname" class="form-control" value="">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="address">Dirección</label>
-                                                        <textarea name="address" class="form-control"></textarea>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="city">Ciudad</label>
-                                                        <input type="text" name="city" class="form-control" required="required" value="">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="gender">Género</label>
-                                                        <select name="gender" class="form-control" required="required">
-                                                            <option value="male">Masculino</option>
-                                                            <option value="female">Femenino</option>
-                                                            <option value="other">Otro</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="uemail">Email de Usuario</label>
-                                                        <input type="email" name="uemail" class="form-control" readonly="readonly" value="">
-                                                        <a href="change-emaild.php">Actualizar tu correo electrónico</a>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="fname">Apellido</label>
+                                                                        <input type="text" name="fname" class="form-control" value="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="fname">Nombre</label>
+                                                                        <input type="text" name="fname" class="form-control" value="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="fname">DNI</label>
+                                                                <input type="number" name="fname" class="form-control" value="">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="date">Fecha de nacimiento</label>
+                                                                <input type="date" name="date" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="fname">Num. Teléfono</label>
+                                                                <input type="text" name="fname" class="form-control" value="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="city">Calle</label>
+                                                                <input type="text" name="city" class="form-control" required="required" value="">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="fname">Barrio</label>
+                                                                <input type="text" name="fname" class="form-control" value="">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="nhome">Número</label>
+                                                                <input type="number" name="nhome" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="floorhome">Piso</label>
+                                                                <input type="number" name="floorhome" class="form-control" value="">
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <button type="submit" name="submit" class="btn btn-o btn-primary">Actualizar</button>
                                                 </form>
@@ -78,10 +105,11 @@
                 </div>
             </div>
 
-            <?php include('include/footer.php'); ?>
-            <?php include('include/setting.php'); ?>
+            <?php include('../include/footer.php'); ?>
+            <?php include('../include/setting.php'); ?>
         </div>
     </div>
-    <?php include('include/script.php'); ?> 
-    </body>
+    <?php include('../include/script.php'); ?>
+</body>
+
 </html>
