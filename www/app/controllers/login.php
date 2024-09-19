@@ -1,19 +1,14 @@
 <?php
-require_once __DIR__ . '/../models/getUsers.php';
 session_start();
+require_once __DIR__ . '/../models/getUsers.php';
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") { 
     $email = isset($_POST["email"]) ? $_POST["email"] : null;
     $password = isset($_POST["password"]) ? $_POST['password'] : null;
-    //echo($email);
-} else {
-    echo "Método de solicitud no válido. Utilice el método POST.";
-}
-
-
-$resultados = ObtenerUsuarioPorEmail($email);
+    $resultados = ObtenerUsuarioPorEmail($email);
 //var_dump($resultados);
 // Mostrar los resultados
-if (!empty($resultados)) {
+    if (!empty($resultados)) {
     foreach ($resultados as $usuario) {
         $email_sql= $usuario['email'];
         $pass_sql= $usuario['password'];
@@ -27,9 +22,16 @@ if (!empty($resultados)) {
             }
             elseif ($_SESSION['rol'] == 2) {
                 header("Location:../views/admin/dashboard.php");
+                break;
             }
         }
+        //session_unset();
     }
 } else {
     echo "No se encontraron usuarios con ese email y password.<br>";
 }
+} else {
+    echo "Método de solicitud no válido. Utilice el método POST.";
+}
+
+

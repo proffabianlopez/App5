@@ -1,3 +1,14 @@
+
+<?php
+error_reporting(0);
+if(!isset($_SESSION)){
+    session_start();
+}
+else{
+    session_unset();
+}
+var_dump($_SESSION);
+?>
 <!DOCTYPE html>
 <html>
 
