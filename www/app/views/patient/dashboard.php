@@ -1,3 +1,10 @@
+<?php
+session_start();
+$_SESSION['user'];
+$_SESSION['rol'];
+var_dump($_SESSION);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>

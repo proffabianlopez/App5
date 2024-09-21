@@ -59,6 +59,10 @@
                                                             <input class="form-control datepicker" name="appdate" required="required" data-date-format="yyyy-mm-dd">
                                                         </div>
 
+                                                        <?php
+                                                        //AJAX para mostrar los horarios disponibles
+                                                        ?>
+
                                                         <div class="form-group">
                                                             <label for="Appointmenttime">hora</label>
                                                             <input class="form-control" name="apptime" id="timepicker1" required="required">
@@ -114,3 +118,6 @@
         </script>
     </body>
 </html>
+<?php
+//ajax para
+?>

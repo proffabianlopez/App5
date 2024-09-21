@@ -34,7 +34,7 @@
                         <a href="change-password.php">Actualizar contraseña</a>
                     </li>
                     <li>
-                        <a href="logout.php">Cerrar Sesión</a>
+                        <a href="../../controllers/logout.php">Cerrar Sesión</a>
                     </li>
                 </ul>
             </li>
