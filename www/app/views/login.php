@@ -7,7 +7,7 @@ if(!isset($_SESSION)){
 else{
     session_unset();
 }
-var_dump($_SESSION);
+//var_dump($_SESSION);
 ?>
 <!DOCTYPE html>
 <html>
