@@ -1,17 +1,14 @@
 <?php
 require_once 'connection.php';
 
-function ObtenerUsuarioPorEmail($email){
+function ObtenerContactos() {
     $conecction = conectar();
     if ($conecction) {
         // Preparar la consulta SQL
-        $query = "SELECT * FROM user WHERE email = :email";
+        $query = "SELECT * FROM contact";
         
         // Preparar la sentencia
         $stmt = $conecction->prepare($query);
-        
-        // Asignar valores a los parámetros
-        $stmt->bindParam(':email', $email);
         
         // Ejecutar la consulta
         $stmt->execute();
@@ -29,3 +26,4 @@ function ObtenerUsuarioPorEmail($email){
         return null;
     }
 }
+?>

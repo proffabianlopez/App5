@@ -10,7 +10,7 @@ if(!isset($_SESSION)){
 else{
     session_start();
 }
-var_dump($_SESSION);
+//var_dump($_SESSION);
 //$_SESSION['user'];
 //$_SESSION['rol'];
 //include('include/config.php');
@@ -39,7 +39,7 @@ if(empty($_SESSION)){
                     <section id="page-title">
                         <div class="row">
                             <div class="col-sm-8">
-                                <h1 class="mainTitle">Admin | Vista general</h1>
+                                <h1 class="mainTitle">Administración | Vista general</h1>
                             </div>
                             <ol class="breadcrumb">
                                 <li><span>Admin</span></li>

@@ -12,7 +12,7 @@
 											<i class="ti-home"></i>
 										</div>
 										<div class="item-inner">
-											<span class="title"> Dashboard </span>
+											<span class="title"> Inicio </span>
 										</div>
 									</div>
 								</a>
@@ -24,7 +24,7 @@
 											<i class="ti-user"></i>
 										</div>
 										<div class="item-inner">
-											<span class="title"> Doctors </span><i class="icon-arrow"></i>
+											<span class="title"> Doctores </span><i class="icon-arrow"></i>
 										</div>
 									</div>
 								</a>
