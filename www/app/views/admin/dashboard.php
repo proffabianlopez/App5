@@ -1,15 +1,27 @@
 <?php
 error_reporting(0);
 include '../../controllers/login.php';
-session_start();
+if(!isset($_SESSION)){
+    echo '<script type="text/javascript">';
+    echo 'window.location.href="../login.php";';
+    echo '</script>';
+    exit();
+}
+else{
+    session_start();
+}
 var_dump($_SESSION);
 //$_SESSION['user'];
 //$_SESSION['rol'];
-//error_reporting(0);
 //include('include/config.php');
 //include('include/checklogin.php');
 //check_login();
-
+if(empty($_SESSION)){
+    echo '<script type="text/javascript">';
+    echo 'window.location.href="../login.php";';
+    echo '</script>';
+    exit();
+}
 ?> 
 <!DOCTYPE html>
 <html lang="es">
