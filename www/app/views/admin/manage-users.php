@@ -135,12 +135,13 @@ $personas= ObtenerPersonas();
                                                             echo "Activo";
                                                         }
                                                     ?></td>
-                                                    <td class="hidden-xs"><?php echo "Código AJAX para activar cuentas o borrarlas"; ?></td>
+                                                    <td class="hidden-xs"><button type="button" id="active">Activar usuario</button></td>
                                                 </tr>
                                             <?php
                                             } ?>
                                         </tbody>
                                     </table>
+                                    <div id="messaje"></div>
                                 </div>
                             </div>
                         </div>
@@ -153,5 +154,6 @@ $personas= ObtenerPersonas();
         <?php include('../include/setting.php'); ?>
         
         <?php include('../include/script.php'); ?> 
+        <script src="../../../assets/js/userActivation.js"></script>
     </body>
 </html>
