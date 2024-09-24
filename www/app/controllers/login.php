@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $pass_sql= $usuario['password'];
         $_SESSION['user'] = $usuario['id'];
         $_SESSION['rol'] = $usuario['id_rol'];
+        $_SESSION['person'] = $usuario['id_person'];
         // logica de ingreso
         if($email == $email_sql && password_verify($password, $pass_sql)){
             //echo("Login exitoso, redirigir al dashboard paciente");

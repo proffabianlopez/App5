@@ -3,7 +3,7 @@
 
 <head>
     <title>Usuario | Editar Perfil</title>
-    <?php include('../include/head.php'); ?>
+    <?php include ('../include/head.php'); ?>
 </head>
 
 <body>
@@ -44,52 +44,32 @@
                                                     </div>
                                                 </div>
                                                 <hr />
-                                                <form role="form" name="edit" method="post">
+                                                <form role="form" name="edit" action="../../controllers/edit-profile-controller.php" method="POST">
                                                     <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="fname">Apellido</label>
-                                                                        <input type="text" name="fname" class="form-control" value="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="fname">Nombre</label>
-                                                                        <input type="text" name="fname" class="form-control" value="">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
                                                             <div class="form-group">
-                                                                <label for="fname">DNI</label>
-                                                                <input type="number" name="fname" class="form-control" value="">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="date">Fecha de nacimiento</label>
-                                                                <input type="date" name="date" class="form-control">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="fname">Num. Teléfono</label>
-                                                                <input type="text" name="fname" class="form-control" value="">
+                                                                <label for="contact">Num. Teléfono</label>
+                                                                <input type="text" name="contact" class="form-control" value="">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="city">Calle</label>
-                                                                <input type="text" name="city" class="form-control" required="required" value="">
+                                                                <label for="street">Calle</label>
+                                                                <input type="text" name="street" class="form-control" required="required" value="">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="fname">Barrio</label>
-                                                                <input type="text" name="fname" class="form-control" value="">
+                                                                <label for="id_neighborhood">Barrio</label>
+                                                                <input type="text" name="id_neighborhood" class="form-control" value="">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="nhome">Número</label>
-                                                                <input type="number" name="nhome" class="form-control">
+                                                                <label for="number">Número</label>
+                                                                <input type="number" name="number" class="form-control">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="floorhome">Piso</label>
-                                                                <input type="number" name="floorhome" class="form-control" value="">
+                                                                <label for="floor">Piso</label>
+                                                                <input type="number" name="floor" class="form-control" value="">
+                                                            </div><div class="form-group">
+                                                                <label for="apartment">Departamento</label>
+                                                                <input type="number" name="apartment" class="form-control" value="">
                                                             </div>
                                                         </div>
                                                     </div>
