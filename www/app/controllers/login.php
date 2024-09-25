@@ -2,7 +2,7 @@
 session_start();
 require_once __DIR__ . '/../models/getUsers.php';
 
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
+if ($_SERVER['REQUEST_METHOD'] == "POST") { 
     $email = isset($_POST["email"]) ? $_POST["email"] : null;
     $password = isset($_POST["password"]) ? $_POST['password'] : null;
     $resultados = ObtenerUsuarioPorEmail($email);
@@ -20,17 +20,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 if($_SESSION['rol'] == 1){
                     header('Location:../views/patient/dashboard.php');
                     exit();
-                }
-                elseif ($_SESSION['rol'] == 2) {
-                    header("Location:../views/admin/dashboard.php");
-                    exit();
-                }
             }
-            //session_unset();
+            elseif ($_SESSION['rol'] == 2) {
+                header("Location:../views/admin/dashboard.php");
+                exit();
+            }
         }
+        //session_unset();
+    }
     } else {
         //logica para un msj con ajax para informar que las credenciales son incorrectas
-    }
+}
 } else {
     //logica para un msj con ajax de que el metodo POST no funciona
 }

@@ -91,7 +91,7 @@ if($conexion){
                 <p class="text-muted text-center"><small>¿Ya tiene una cuenta?</small></p>
                 <a class="btn btn-sm btn-white btn-block" href="login.html">Login</a>
             </form>
-            <p class="m-t"> <small>Gómez Ángel derechos reervados &copy; 2024</small> </p>
+            <p class="m-t"> <small>App5 derechos reservados &copy; 2024</small> </p>
         </div>
     </div>
 
