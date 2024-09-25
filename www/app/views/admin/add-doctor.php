@@ -1,5 +1,22 @@
 <?php
-require_once ''
+error_reporting(0);
+include '../../controllers/login.php';
+if(!isset($_SESSION)){
+    echo '<script type="text/javascript">';
+    echo 'window.location.href="../login.php";';
+    echo '</script>';
+    exit();
+}
+else{
+    session_start();
+}
+//var_dump($_SESSION);
+if(empty($_SESSION)){
+    echo '<script type="text/javascript">';
+    echo 'window.location.href="../login.php";';
+    echo '</script>';
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -38,10 +55,19 @@ require_once ''
                     <input type="number" class="form-control" placeholder="1234" required name="number">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="departamento" required name="apartment">
+                    <input type="text" class="form-control" placeholder="departamento" name="apartment">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="piso" required name="floor">
+                    <input type="text" class="form-control" placeholder="piso" name="floor">
+                </div>
+                <div class="form-group" placeholder="Pediatria" required>
+                    <?php /*traer mediante un select las distintas especialidades*/ ?>
+                </div>
+                <div class="form-group" placeholder="Matricula XXXX" required>
+                <?php /*traer mediante un select las distintas matriculas*/ ?>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="MN XXXXXX" required name="license">
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">Cargar</button>
             </form>
