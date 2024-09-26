@@ -1,7 +1,7 @@
 <?php
 require_once 'connection.php';
 
-function ObtenerContactos() {
+function obtenerContactos() {
     $conecction = conectar();
     if ($conecction) {
         // Preparar la consulta SQL

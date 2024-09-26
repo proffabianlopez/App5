@@ -1,6 +1,8 @@
 <?php
 error_reporting(0);
 include '../../controllers/login.php';
+include '../../models/getSpecialities.php';
+require_once '../../models/getLicenseType.php';
 if(!isset($_SESSION)){
     echo '<script type="text/javascript">';
     echo 'window.location.href="../login.php";';
@@ -17,6 +19,9 @@ if(empty($_SESSION)){
     echo '</script>';
     exit();
 }
+
+$license_types = obtenerTiposDeLicencias();
+$specialities = obtenerEspecialidades();
 ?>
 
 <!DOCTYPE html>
@@ -60,18 +65,44 @@ if(empty($_SESSION)){
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="piso" name="floor">
                 </div>
-                <div class="form-group" placeholder="Pediatria" required>
-                    <?php /*traer mediante un select las distintas especialidades*/ ?>
+                <div class="form-group" required>
+                    <select name="speciality" class="form-control">
+                        <option value="">Seleccione un tipo de especialidad</option>
+                        <?php
+                        // Verificar si se obtuvieron resultados
+                        if (!empty($specialities)) {
+                        // Recorrer los tipos de licencia y generar las opciones
+                            foreach ($specialities as $speciality) {
+                                echo '<option value="' . htmlspecialchars($speciality['id']) . '">' . htmlspecialchars($speciality['speciality']) . '</option>';
+                            }
+                        } else {
+                            echo '<option value="">No hay tipos de especialidades disponibles</option>';
+                        }
+                        ?>
+                    </select>
                 </div>
-                <div class="form-group" placeholder="Matricula XXXX" required>
-                <?php /*traer mediante un select las distintas matriculas*/ ?>
+                <div class="form-group" required>
+                    <select name="license_type" class="form-control">
+                        <option value="">Seleccione un tipo de matrícula</option>
+                        <?php
+                        // Verificar si se obtuvieron resultados
+                        if (!empty($license_types)) {
+                        // Recorrer los tipos de licencia y generar las opciones
+                            foreach ($license_types as $license) {
+                                echo '<option value="' . htmlspecialchars($license['id']) . '">' . htmlspecialchars($license['type']) . '</option>';
+                            }
+                        } else {
+                            echo '<option value="">No hay tipos de matrícula disponibles</option>';
+                        }
+                        ?>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="MN XXXXXX" required name="license">
+                    <input type="text" class="form-control" placeholder="MN XXXXXX" required name="license_number">
                 </div>
-                <button type="submit" class="btn btn-primary block full-width m-b">Cargar</button>
+                <button type="submit" class="btn btn-primary block full-width m-b">Cargar Doctor</button>
             </form>
-            <p class="m-t"> <small>App5 derechos reservados &copy; 2024</small> </p>
+            <p class="m-t"><small>App5 derechos reservados &copy; 2024</small></p>
         </div>
     </div>
 </body>

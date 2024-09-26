@@ -18,13 +18,13 @@ $password = $_POST['password'];
 
 
 try {
-    $pdo=conectar();
+    $conexion=conectar();
     // Iniciar la transacción
-    $pdo->beginTransaction();
+    $conexion->beginTransaction();
 
     // Insertar en la tabla 'person'
     $sql_person = "INSERT INTO person (name, surname, dni, birth_date) VALUES (:name, :surname, :dni, :birth_date)";
-    $stmt_person = $pdo->prepare($sql_person);
+    $stmt_person = $conexion->prepare($sql_person);
     $stmt_person->execute([
         ':name' => $_POST['name'],
         ':surname' => $_POST['surname'],
@@ -33,11 +33,11 @@ try {
     ]);
 
     // Obtener el ID del último registro insertado
-    $id_person = $pdo->lastInsertId();
+    $id_person = $conexion->lastInsertId();
 
     // Insertar en la tabla 'user' usando el ID de 'person'
     $sql_user = "INSERT INTO user (id_person, id_rol, email, password) VALUES (:id_person, 1, :email, :password)";
-    $stmt_user = $pdo->prepare($sql_user);
+    $stmt_user = $conexion->prepare($sql_user);
     $stmt_user->execute([
         ':id_person' => $id_person,
         ':email' => $_POST['email'],
@@ -46,7 +46,7 @@ try {
 /*
     // Insertar en la tabla 'address' usando el ID de 'person'
     $sql_address = "INSERT INTO address (id_person, id_address_type, street, number, apartment, floor, id_neighborhood) VALUES (:id_person, :id_address_type, :street, :number, :apartment, :floor, :id_neighborhood)";
-    $stmt_address = $pdo->prepare($sql_address);
+    $stmt_address = $conexion->prepare($sql_address);
     $stmt_address->execute([
         ':id_person' => $id_person,
         'id_address_type' => $_POST['id_address_type'],
@@ -59,21 +59,22 @@ try {
 
     // Insertar en la tabla 'contact' usando el ID de 'person'
     $sql_contact = "INSERT INTO contact (id_person, id_contact_type, contact, status) VALUES (:id_person, :id_contact_type, :contact, 1)";
-    $stmt_contact = $pdo->prepare($sql_contact);
+    $stmt_contact = $conexion->prepare($sql_contact);
     $stmt_contact->execute([
         ':id_person' => $id_person,
         ':id_contact_type' => $_POST['id_contact_type'],
         ':contact' => $_POST['contact']
     ]);
 */
+    cerrarConexion($conexion);
     // Confirmar (commit) la transacción
-    $pdo->commit();
+    $conexion->commit();
     //echo "Datos insertados correctamente";
     header('Location:../views/login.php');
 
 } catch (Exception $e) {
     // Si ocurre un error, revertir (rollback) la transacción
-    $pdo->rollBack();
+    $conexion->rollBack();
     echo "Error al insertar datos: " . $e->getMessage();
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
 require_once 'connection.php';
-function ObtenerDomicilios() {
+function obtenerDomicilios() {
     $conecction = conectar();
     if ($conecction) {
         // Preparar la consulta SQL

@@ -1,7 +1,7 @@
 <?php
 require_once 'connection.php';
 
-function ObtenerUsuarioPorEmail($email){
+function obtenerUsuarioPorEmail($email){
     $conecction = conectar();
     if ($conecction) {
         // Preparar la consulta SQL

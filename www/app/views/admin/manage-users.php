@@ -21,11 +21,11 @@ if (empty($_SESSION)) {
     exit();
 }
 
-$contactos = ObtenerContactos();
+$contactos = obtenerContactos();
 //var_dump($contactos);
-$address = ObtenerDomicilios();
+$address = obtenerDomicilios();
 //var_dump($address);
-$personas= ObtenerPersonas();
+$personas= obtenerPersonas();
 //var_dump($personas);
 ?>
 

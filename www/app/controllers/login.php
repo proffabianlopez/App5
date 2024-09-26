@@ -5,7 +5,7 @@ require_once __DIR__ . '/../models/getUsers.php';
 if ($_SERVER['REQUEST_METHOD'] == "POST") { 
     $email = isset($_POST["email"]) ? $_POST["email"] : null;
     $password = isset($_POST["password"]) ? $_POST['password'] : null;
-    $resultados = ObtenerUsuarioPorEmail($email);
+    $resultados = obtenerUsuarioPorEmail($email);
     //var_dump($resultados);
     // Mostrar los resultados
     if (!empty($resultados)) {
