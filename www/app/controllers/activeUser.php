@@ -1,45 +1,46 @@
 <?php
-require_once '../models/connection.php'
+require_once '../models/connection.php'; // Falta el punto y coma
 
-// variables con el o los datos necesarios para la actualizacion del estado del usario
-$person_id=$_POST["id_person"]; //lo obtengo desde el js.
-
-// Conectamos a la base de datos
-$conexion = conectar();
+// Verificar si la solicitud es POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Conectamos a la base de datos
+    $conexion = conectar();
+    // Obtener el ID enviado desde la solicitud POST
+    $userId = $_POST['id'];
     
-if ($conexion) {
-    try {
-        // Iniciamos la transacción
-        $conexion->beginTransaction();
-         
-        // Preparamos la consulta SQL
-        $query = "UPDATE user 
-                SET status = 1
-                WHERE id_person = :person_id";
-         
-        $stmt = $conexion->prepare($query);
-         
-        // Asignamos los valores a los parámetros
-        $stmt->bindParam(':person_id', $person_id, PDO::PARAM_INT);
-         
-        // Ejecutamos la consulta
-        if ($stmt->execute()) {
-            // Si la consulta fue exitosa, confirmamos la transacción
-            $conexion->commit();
-            echo "El estado del usuario ha sido actualizado correctamente.";
-        } else {
-            // Si algo falla, revertimos la transacción
-            $conexion->rollBack();
-            echo "Error al actualizar el estado del usuario.";
-        }
-    } catch (PDOException $e) {
-        // En caso de error, se revierte la transacción y mostramos el error
-        $conexion->rollBack();
-        echo "Error en la consulta: " . $e->getMessage();
-    }
+    if ($conexion) {
+        try {
+            // Iniciar la transacción
+            $conexion->beginTransaction();
 
-    // Cerramos la conexión
-    cerrarConexion($conexion);
-} else {
-    echo "No se pudo establecer la conexión a la base de datos.";
+            // Validar que el ID no esté vacío
+            if (!empty($userId)) {
+                // Actualizar la tabla `user`
+                $query1 = "UPDATE user SET status = 1 WHERE id_person = ?";
+                $stmt1 = $conexion->prepare($query1);
+                $stmt1->execute([$userId]); 
+
+                // Actualizar la tabla `person`
+                $query2 = "UPDATE person SET status = 1 WHERE id = ?";
+                $stmt2 = $conexion->prepare($query2);
+                $stmt2->execute([$userId]);
+                // Confirmar la transacción
+                $conexion->commit();
+
+                echo "Actualización exitosa en ambas tablas.";
+            } else {
+                echo "ID de usuario no válido.";
+            }
+        } catch (PDOException $e) {
+            // En caso de error, revertir la transacción y mostrar el error
+            $conexion->rollBack();
+            echo "Error en la consulta: " . $e->getMessage();
+        }
+
+        // Cerrar la conexión
+        cerrarConexion($conexion);
+    } else {
+        echo "No se pudo establecer la conexión a la base de datos.";
+    }
 }
+?>

@@ -128,14 +128,11 @@ $personas= obtenerPersonas();
                                                     <td class="hidden-xs"><?php echo $row['dni']; ?></td>
                                                     <td class="hidden-xs"><?php echo $row['birth_date']; ?></td>
                                                     <td class="hidden-xs"><?php
-                                                        if($row['status'] == 2){
-                                                            echo "Inactivo";
-                                                        }
-                                                        else{
-                                                            echo "Activo";
-                                                        }
+                                                        echo $row['status'];
                                                     ?></td>
-                                                    <td class="hidden-xs"><button type="button" id="active">Activar usuario</button></td>
+                                                    <td class="hidden-xs">
+                                                        <button type="button" class="btn-activate" data-id="<?php echo $row['id']; ?>">Activar usuario</button>
+                                                    </td>
                                                 </tr>
                                             <?php
                                             } ?>
@@ -154,6 +151,6 @@ $personas= obtenerPersonas();
         <?php include('../include/setting.php'); ?>
         
         <?php include('../include/script.php'); ?> 
-        <script src="../../../assets/js/userActivation.js"></script>
+        <script src="../../../assets/js/activeUser.js"></script>
     </body>
 </html>
