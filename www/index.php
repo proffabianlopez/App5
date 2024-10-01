@@ -6,8 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <script>
-        window.location("www/app/views/login.php");
-    </script>    
+    <?php header("www/app/views/login.php") ?>
 </body>
 </html>
