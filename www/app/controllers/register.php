@@ -36,7 +36,7 @@ try {
     $id_person = $conexion->lastInsertId();
 
     // Insertar en la tabla 'user' usando el ID de 'person'
-    $sql_user = "INSERT INTO user (id_person, id_rol, email, password) VALUES (:id_person, 1, :email, :password)";
+    $sql_user = "INSERT INTO user (id_person, id_rol, email, password) VALUES (:id_person, 2, :email, :password)";
     $stmt_user = $conexion->prepare($sql_user);
     $stmt_user->execute([
         ':id_person' => $id_person,
