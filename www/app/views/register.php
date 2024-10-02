@@ -1,37 +1,6 @@
 <?php
-require_once '../models/connection.php';
-$conexion = conectar();
-if($conexion){
-    // Consulta SQL para obtener los barrios
-    $sql = "SELECT id, name FROM neighborhood";
+//require_once '../models/connection.php';
 
-    // Preparar y ejecutar la consulta
-    $stmt = $conexion->prepare($sql);
-    $stmt->execute();
-
-    // Obtener todos los resultados
-    $barrios = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    // Consulta SQL para obtener los tipos de casas
-    $sql2 = "SELECT id, type FROM address_type";
-
-    // Preparar y ejecutar la consulta
-    $stmt2 = $conexion->prepare($sql2);
-    $stmt2->execute();
-    
-    // Obtener todos los resultados
-    $casas = $stmt2->fetchAll(PDO::FETCH_ASSOC);
-
-    // Consulta SQL para obtener los tipos de casas
-    $sql3 = "SELECT id, type FROM contact_type";
-
-    // Preparar y ejecutar la consulta
-    $stmt3 = $conexion->prepare($sql3);
-    $stmt3->execute();
-        
-    // Obtener todos los resultados
-    $contactos = $stmt3->fetchAll(PDO::FETCH_ASSOC);
-    cerrarConexion($conexion);
-}
 ?>
 
 <!DOCTYPE html>
