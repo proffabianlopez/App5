@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Seleccionar todos los botones con la clase 'btn-activate'
-    var activateButtons = document.querySelectorAll('.btn-activate');
+    let activateButtons = document.querySelectorAll('.btn-activate');
 
     // Añadir un evento click a cada botón
     activateButtons.forEach(function(button) {
         button.addEventListener('click', function() {
             // Obtener el ID del usuario desde el atributo data-id
-            var userId = this.getAttribute('data-id');
+            let userId = this.getAttribute('data-id');
 
             // Crear una solicitud AJAX usando fetch
-            fetch('/app/controllers/activeUser.php', {  // Cambiar la ruta aquí a 'activeUser.php'
+            fetch('/app/controllers/activeUser.php', {  
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded', // Tipo de datos que estamos enviando
@@ -18,12 +18,10 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(response => response.text())
             .then(data => {
-                // Mostrar el mensaje del servidor
-                document.getElementById('messaje').innerHTML = '<div class="alert alert-success">' + data + '</div>';
+                document.getElementById('messaje').innerText = data;
             })
             .catch(error => {
-                // Manejar cualquier error en la solicitud
-                document.getElementById('messaje').innerHTML = '<div class="alert alert-danger">Error al activar el usuario.</div>';
+                document.getElementById('messaje').innerText = 'Error al activar el usuario.';
             });
         });
     });

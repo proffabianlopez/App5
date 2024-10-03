@@ -1,6 +1,6 @@
 <?php
-include '../../models/connection.php';
 include '../../controllers/login.php'; // para usar la sesion
+include '../../models/getSpecialist.php'; // tengo al doctor, con su licencia y la especialidad
 
 if(empty($_SESSION)){
     echo '<script type="text/javascript">';
@@ -9,11 +9,8 @@ if(empty($_SESSION)){
     exit();
 }
 
-$conexion = conectar();
-if($conexion){
-    $query = "SELECT * FROM specialist_license_specialty";
-    $query= "SELECT * FROM specialisties"; 
-}
+$doctores = obtenerEspecialistasYLicencias();
+//var_dump($doctores);
 
 ?>
 <!DOCTYPE html>
@@ -24,22 +21,45 @@ if($conexion){
     <title>Administración de doctores</title>
 </head>
 <body>
-    <form action="../../controllers/Manage-doctors.php" method="post">
-        <select name="id_especialidad" id="">
-            <option value="">
-                <?php echo "codigo php para generear una lista de options con los nombres de las especialidades y enviar su id" ?>
-            </option>
+    <form action="../../controllers/manage-doctors.php" method="post">
+        <select name="id_doctor" required>
+            <option value="">Seleccione un doctor</option>
+            <?php
+                if (!empty($doctores)) {
+                    foreach ($doctores as $doctor) {
+                        echo '<option value="' . htmlspecialchars($doctor['id']) . '">' . htmlspecialchars($doctor['name']) . '</option>';
+                    }
+                } else {
+                    echo '<option value="">No hay doctores disponibles</option>';
+                }
+            ?>
         </select>
-        <select name="id_doctor" id="">
-            <option>
-                <?php echo "codigo php para generear una lista de options con los nombres de los doctores y enviar su id" ?>
-            </option>
-        </select>
+        <br>
+        <label for="text">Ingrese la duracion del turno (minutos)</label>
+        <input type="number" name="duracion_del_turno" required>
+        <br>
         <?php /*codigo php para elegir los dias disponibles*/ ?>
-        <input type="checkbox" name="id_dia" value="id-del-dia">
+        <label for="text">Seleccione los dias laborables</label>
+        <input type="checkbox" name="id_dia[]" value="1">
         <label for="">Lunes</label>
-        <input type="time" name="desde">
-        <input type="time" name="hasta">
+        <input type="checkbox" name="id_dia[]" value="2">
+        <label for="">Martes</label>
+        <input type="checkbox" name="id_dia[]" value="3">
+        <label for="">Miercoles</label>
+        <input type="checkbox" name="id_dia[]" value="4">
+        <label for="">Jueves</label>
+        <input type="checkbox" name="id_dia[]" value="5">
+        <label for="">Viernes</label>
+        <input type="checkbox" name="id_dia[]" value="6">
+        <label for="">Sabado</label>
+        <input type="checkbox" name="id_dia[]" value="7">
+        <label for="">Domingo</label>
+        <br>
+        <label for="text">Ingrese la franja horaria de trabajo</label>
+        <input type="time" name="desde" required>
+        <input type="time" name="hasta" required>
+        <br>
+        <button type="submit">Cargar Disponibilidad</button>
     </form>
 </body>
 </html>

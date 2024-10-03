@@ -1,11 +1,9 @@
 <?php
-require_once '../models/connection.php'; // Falta el punto y coma
+require_once '../models/connection.php';
 
-// Verificar si la solicitud es POST
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Conectamos a la base de datos
     $conexion = conectar();
-    // Obtener el ID enviado desde la solicitud POST
     $userId = $_POST['id'];
     
     if ($conexion) {
@@ -27,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Confirmar la transacción
                 $conexion->commit();
 
-                echo "Actualización exitosa en ambas tablas.";
+                echo "Actualización exitosa del usuario.";
             } else {
                 echo "ID de usuario no válido.";
             }
