@@ -63,7 +63,22 @@ if(empty($_SESSION)){
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="col-sm-4">
+                                <div class="panel panel-white no-radius text-center">
+                                    <div class="panel-body">
+                                        <span class="fa-stack fa-2x">
+                                            <i class="fa fa-square fa-stack-2x text-primary"></i>
+                                            <i class="fa fa-users fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                        <h2 class="StepTitle">Administrar Usuarios</h2>
+                                        <p class="cl-effect-1">
+                                            <a href="manage-users.php">
+                                                Lista de usuarios
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-sm-4">
                                 <div class="panel panel-white no-radius text-center">
                                     <div class="panel-body">
@@ -74,15 +89,7 @@ if(empty($_SESSION)){
                                         <h2 class="StepTitle">Turnos</h2>
                                         <p class="links cl-effect-1">
                                             <a href="book-appointment.php">
-                                                <a href="appointment-history.php">
-                                                    <!-- <php
-                                                    $sql = mysqli_query($con, "SELECT * FROM appointment");
-                                                    $num_rows2 = mysqli_num_rows($sql);
-                                                    {
-                                                    ?>
-                                                        Total Appointments: <php echo htmlentities($num_rows2); }
-                                                    ?> -->
-                                                </a>
+                                                
                                             </a>
                                         </p>
                                     </div>
