@@ -81,7 +81,13 @@ if(empty($_SESSION)){
                                         </span>
                                         <h2 class="StepTitle">Administrar Doctores</h2>
                                         <p class="cl-effect-1">
+<<<<<<< HEAD
                                             <a href="manage-doctors.php">Administrar Doctores</a>
+=======
+                                            <a href="manage-doctors.php">
+                                                Disponibilidad de doctores
+                                            </a>
+>>>>>>> 2e67abb7ae4a6d1b749cadef98993af967acb9c5
                                         </p>
                                     </div>
                                 </div>

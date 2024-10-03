@@ -26,7 +26,7 @@ if($conexion){
 <body>
     <form action="../../controllers/Manage-doctors.php" method="post">
         <select name="id_especialidad" id="">
-            <option>
+            <option value="">
                 <?php echo "codigo php para generear una lista de options con los nombres de las especialidades y enviar su id" ?>
             </option>
         </select>
