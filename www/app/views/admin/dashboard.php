@@ -82,13 +82,7 @@ if(empty($_SESSION)){
                                         <h2 class="StepTitle">Administrar Doctores</h2>
                                         <p class="cl-effect-1">
                                             <a href="manage-doctors.php">
-                                                <!-- <php
-                                                $result1 = mysqli_query($con, "SELECT * FROM doctors");
-                                                $num_rows1 = mysqli_num_rows($result1);
-                                                {
-                                                ?>
-                                                    Total Doctors: <php echo htmlentities($num_rows1); }
-                                                ?> -->
+                                                Disponibilidad de doctores
                                             </a>
                                         </p>
                                     </div>
