@@ -17,11 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             // logica de ingreso
             if($email == $email_sql && password_verify($password, $pass_sql)){
                 //echo("Login exitoso, redirigir al dashboard paciente");
-                if($_SESSION['rol'] == 1){
+                if($_SESSION['rol'] == 2){
                     header('Location:../views/patient/dashboard.php');
                     exit();
             }
-            elseif ($_SESSION['rol'] == 2) {
+            elseif ($_SESSION['rol'] == 1) {
                 header("Location:../views/admin/dashboard.php");
                 exit();
             }

@@ -14,7 +14,7 @@ try {
     $stmt = $pdo->prepare($sql_insert_admin);
     $stmt->execute([
         ':id_person' => 1, // Tiene que haber una persona pre-cargada para el admin
-        ':id_rol' => 2, // Rol de administrador
+        ':id_rol' => 1, // Rol de administrador
         ':email' => $email_admin,
         ':password' => $hashed_password,
         ':status' => 1 // activarlo desde su creacion
