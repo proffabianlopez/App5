@@ -40,7 +40,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="Manage-doctors.php">
+										<a href="manage-doctors.php">
 											<span class="title"> Administrar Doctores </span>
 										</a>
 									</li>

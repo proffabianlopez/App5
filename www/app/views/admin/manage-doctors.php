@@ -1,6 +1,7 @@
 <?php
 include '../../controllers/login.php'; // para usar la sesion
 include '../../models/getSpecialist.php'; // tengo al doctor, con su licencia y la especialidad
+include '../../models/getServiceDays.php';
 
 if(empty($_SESSION)){
     echo '<script type="text/javascript">';
@@ -11,6 +12,27 @@ if(empty($_SESSION)){
 
 $doctores = obtenerEspecialistasYLicencias();
 //var_dump($doctores);
+$dias = obtenerDias();
+//var_dump($dias);
+
+$dias_semana = [
+    1 => "Lunes",
+    2 => "Martes",
+    3 => "Miércoles",
+    4 => "Jueves",
+    5 => "Viernes",
+    6 => "Sábado",
+    7 => "Domingo"
+];
+$array_dias = [];
+foreach ($dias as $dia) {
+    $id = $dia['id'];
+    if (isset($dias_semana[$id])) {
+        $array_dias[] = $dias_semana[$id];
+    }
+}
+
+//print_r($array_dias);
 
 ?>
 <!DOCTYPE html>
@@ -38,22 +60,16 @@ $doctores = obtenerEspecialistasYLicencias();
         <label for="text">Ingrese la duracion del turno (minutos)</label>
         <input type="number" name="duracion_del_turno" required>
         <br>
-        <?php /*codigo php para elegir los dias disponibles*/ ?>
-        <label for="text">Seleccione los dias laborables</label>
-        <input type="checkbox" name="id_dia[]" value="1">
-        <label for="">Lunes</label>
-        <input type="checkbox" name="id_dia[]" value="2">
-        <label for="">Martes</label>
-        <input type="checkbox" name="id_dia[]" value="3">
-        <label for="">Miercoles</label>
-        <input type="checkbox" name="id_dia[]" value="4">
-        <label for="">Jueves</label>
-        <input type="checkbox" name="id_dia[]" value="5">
-        <label for="">Viernes</label>
-        <input type="checkbox" name="id_dia[]" value="6">
-        <label for="">Sabado</label>
-        <input type="checkbox" name="id_dia[]" value="7">
-        <label for="">Domingo</label>
+        <select name="dia" value="">
+            <option value="">Seleccione un dia de la semana</option>
+            <?php
+            // Mostrar los días de la semana en un dropdown
+            foreach ($dias_semana as $id => $dia) {
+                echo "<option value='$id'>$dia</option>";
+            }
+            ?>
+        </select>
+        </select>
         <br>
         <label for="text">Ingrese la franja horaria de trabajo</label>
         <input type="time" name="desde" required>

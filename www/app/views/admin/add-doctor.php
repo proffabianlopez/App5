@@ -48,6 +48,7 @@ $specialities = obtenerEspecialidades();
                     <input type="text" class="form-control" placeholder="Apellido" required name="surname">
                 </div>
                 <div class="form-group">
+                    <label for="text">Realza consulta online?</label>
                     <select name="onlineConsultation">
                         <option value="1">Si</option>
                         <option value="0">No</option>
