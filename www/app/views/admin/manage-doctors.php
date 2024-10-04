@@ -10,7 +10,7 @@ if(empty($_SESSION)){
     exit();
 }
 
-$doctores = obtenerEspecialistasYLicencias();
+$doctores = obtenerEspecialistas();
 //var_dump($doctores);
 $dias = obtenerDias();
 //var_dump($dias);
