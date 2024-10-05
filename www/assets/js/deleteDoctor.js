@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Seleccionar todos los botones con la clase 'btn-activate'
-    let activateButtons = document.querySelectorAll('.btn-activate');
+    let deleteButtons = document.querySelectorAll('.btn-delete');
 
     // Añadir un evento click a cada botón
-    activateButtons.forEach(function(button) {
+    deleteButtons.forEach(function(button) {
         button.addEventListener('click', function() {
             // Obtener el ID del usuario desde el atributo data-id
             let doctorId = this.getAttribute('data-id');
 
             // Crear una solicitud AJAX usando fetch
-            fetch('/app/controllers/activeDoctor.php', {  
+            fetch('/app/controllers/deleteDoctor.php', {  
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded', // Tipo de datos que estamos enviando
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('messaje').innerText = data;
             })
             .catch(error => {
-                document.getElementById('messaje').innerText = 'Error al activar el doctor.';
+                document.getElementById('messaje').innerText = 'Error al borrar el doctor.';
             });
         });
     });

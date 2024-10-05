@@ -14,13 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Validar que el ID no esté vacío
             if (!empty($doctorId)) {
                 // Actualizar la tabla `specialist`
-                $query1 = "UPDATE specialist SET status = 1 WHERE id = ?";
-                $stmt1 = $conexion->prepare($query1);
-                $stmt1->execute([$doctorId]);
+                $query = "UPDATE specialist SET status = 0 WHERE id = ?";
+                $stmt = $conexion->prepare($query);
+                $stmt->execute([$doctorId]);
                 // Confirmar la transacción
                 $conexion->commit();
 
-                echo "Activación exitosa del doctor.";
+                echo "Eliminación exitosa del doctor.";
             } else {
                 echo "ID de usuario no válido.";
             }

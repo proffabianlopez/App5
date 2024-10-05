@@ -19,6 +19,11 @@ if (empty($_SESSION)) {
 
 $doctores = obtenerEspecialistas();
 //var_dump($doctores);
+foreach($doctores as $doctor){
+    if($doctor['status'] == 0){
+        //codigo para evitar mostrarlo
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -66,6 +71,9 @@ $doctores = obtenerEspecialistas();
                                         <tbody>
                                             <?php
                                             foreach ($doctores as $row) {
+                                                if($row['status'] == 0){
+                                                    continue; // evitamos mostrar los doctores borrados
+                                                }
                                             ?>
                                                 <tr class="center">
                                                     <td class="hidden-xs"><?php echo $row['name']; ?></td>
@@ -93,7 +101,8 @@ $doctores = obtenerEspecialistas();
                                                     ?></td>
                                                     <td class="hidden-xs">
                                                         <button type="button" class="btn-activate" data-id="<?php echo $row['id']; ?>">Activar doctor</button>
-                                                    </td>
+                                                        <button type="button" class="btn-delete" data-id="<?php echo $row['id']; ?>">Borrar doctor</button>
+                                                        <button type="button" class="btn-modificar" onclick="window.location.href='../../controllers/editDoctor.php?id=<?php echo $row['id']; ?>'">Modificar Doctor</button>
                                                 </tr>
                                             <?php
                                             } ?>
@@ -113,5 +122,6 @@ $doctores = obtenerEspecialistas();
         
         <?php include('../include/script.php'); ?> 
         <script src="../../../assets/js/activeDoctor.js"></script>
+        <script src="../../../assets/js/deleteDoctor.js"></script>
     </body>
 </html>
