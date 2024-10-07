@@ -29,6 +29,9 @@ $doctores = obtenerEspecialistas();
 $dias = obtenerDias();
 //var_dump($dias);
 
+// Agregar funcion para traer las furaciones de los turnos y las franjas horarias
+// poner las opciones en un select
+
 $dias_semana = [
     1 => "Lunes",
     2 => "Martes",
@@ -59,7 +62,7 @@ foreach ($dias as $dia) {
 <body>
     <form action="../../controllers/manage-doctors.php" method="post">
         <select name="id_doctor" required>
-            <option value="">Seleccione un doctor</option>
+            <option value="">Seleccione una duracion de turno</option>
             <?php
                 if (!empty($doctores)) {
                     foreach ($doctores as $doctor) {

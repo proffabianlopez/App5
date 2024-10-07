@@ -44,6 +44,16 @@
 											<span class="title"> Administrar Doctores </span>
 										</a>
 									</li>
+									<li>
+										<a href="addServiceHours.php">
+											<span class="title"> Agregar horarios de atención </span>
+										</a>
+									</li>
+									<li>
+										<a href="addAppointmentDuration.php">
+											<span class="title"> Agregar duración del turno </span>
+										</a>
+									</li>
 									
 								</ul>
 								</li>

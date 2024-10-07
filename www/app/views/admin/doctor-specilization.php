@@ -1,4 +1,4 @@
-<!-- <php
+<?php
 error_reporting(0);
 include '../../controllers/login.php';
 if(!isset($_SESSION)){
@@ -11,18 +11,13 @@ else{
     session_start();
 }
 //var_dump($_SESSION);
-//$_SESSION['user'];
-//$_SESSION['rol'];
-//include('include/config.php');
-//include('include/checklogin.php');
-//check_login();
 if(empty($_SESSION)){
     echo '<script type="text/javascript">';
     echo 'window.location.href="../login.php";';
     echo '</script>';
     exit();
 }
-?>  -->
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
