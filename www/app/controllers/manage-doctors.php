@@ -1,6 +1,6 @@
 <?php
 $id_doctor = $_POST['id_doctor'];
-$duracion_del_turno = $_POST['duracion_del_turno'];
+$duracion_del_turno = $_POST['duracion_turno'];
 
 if (isset($_POST['dia'])) {
     $id_dia = $_POST['dia'];
@@ -21,10 +21,10 @@ if (isset($_POST['dia'])) {
     echo "Has seleccionado el día: $dia_seleccionado con ID: $id_dia";
 }
 
-$desde = $_POST['desde'];
-$hasta = $_POST['hasta'];
+$duracion_del_turno = $_POST['duracion_turno'];
+$horario_atencion = $_POST['horario_atencion'];
 
-echo $id_doctor, " ", $duracion_del_turno, " ", $desde, " ", $hasta, " ";
+echo $id_doctor, " ", $duracion_del_turno, " ", $duracion_del_turno, " ", $horario_atencion, " ";
 /*foreach($id_dia as $dia){
     echo $dia;
 }*/

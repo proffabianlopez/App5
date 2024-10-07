@@ -1,8 +1,9 @@
 <?php
 include '../../controllers/login.php'; // para usar la sesion
-include '../../models/getSpecialist.php'; // tengo al doctor, con su licencia y la especialidad
 include '../../models/getServiceDays.php';
-require_once '../models/getSpecialistById.php';
+require_once '../../models/getSpecialistById.php';
+require_once '../../models/getAppointmentDuration.php';
+require_once '../../models/getServiceHours.php';
 
 if(empty($_SESSION)){
     echo '<script type="text/javascript">';
@@ -19,18 +20,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // ejemplo de como obtener cada campo del doctor con su id
     // usar mas funciones en caso de querer actualizar más cosas
     foreach($doctors as $doctor){
-        echo $doctor['name'];
+        $doctorNombre = $doctor['name'];
     }
 }
 
-
-$doctores = obtenerEspecialistas();
-//var_dump($doctores);
 $dias = obtenerDias();
 //var_dump($dias);
-
-// Agregar funcion para traer las furaciones de los turnos y las franjas horarias
-// poner las opciones en un select
+$duracion_turnos = obtenerDuracionDelTurno();
+//var_dump($duracion_turnos);
+$horarios_de_servicio = obtenerHorariosDeServicio();
+//var_dump($horarios_de_servicio);
 
 $dias_semana = [
     1 => "Lunes",
@@ -55,44 +54,106 @@ foreach ($dias as $dia) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administración de doctores</title>
+    <title> Admin | Administración del doctor</title>
+	<?php include ('../include/head.php');?> 
 </head>
+
 <body>
-    <form action="../../controllers/manage-doctors.php" method="post">
-        <select name="id_doctor" required>
-            <option value="">Seleccione una duracion de turno</option>
-            <?php
-                if (!empty($doctores)) {
-                    foreach ($doctores as $doctor) {
-                        echo '<option value="' . htmlspecialchars($doctor['id']) . '">' . htmlspecialchars($doctor['name']) . '</option>';
-                    }
-                } else {
-                    echo '<option value="">No hay doctores disponibles</option>';
-                }
-            ?>
-        </select>
-        <br>
-        <label for="text">Ingrese la duracion del turno (minutos)</label>
-        <input type="number" name="duracion_del_turno" required>
-        <br>
-        <select name="dia" value="">
-            <option value="">Seleccione un dia de la semana</option>
-            <?php
-            // Mostrar los días de la semana en un dropdown
-            foreach ($dias_semana as $id => $dia) {
-                echo "<option value='$id'>$dia</option>";
-            }
-            ?>
-        </select>
-        </select>
-        <br>
-        <label for="text">Ingrese la franja horaria de trabajo</label>
-        <input type="time" name="desde" required>
-        <input type="time" name="hasta" required>
-        <br>
-        <button type="submit">Cargar Disponibilidad</button>
-    </form>
+    <div id="app">
+        <?php include('../include/sidebar_admin.php'); ?>
+        <div class="app-content">
+            <?php include('../include/header.php'); ?>
+            <div class="main-content">
+                <div class="wrap-content container" id="container">
+                    <section id="page-title">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <h1 class="mainTitle">Administrador | Administración del doctor</h1>
+                            </div>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <span>Admin</span>
+                                </li>
+                                <li class="active">
+                                    <span>Administración del doctor</span>
+                                </li>
+                            </ol>
+                        </div>
+                    </section>
+
+                    <div class="container-fluid container-fullw bg-white">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row margin-top-30">
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="panel panel-white">
+                                            <div class="panel-heading">
+                                                <h5 class="panel-title">Dia laboral de <?php echo $doctorNombre; ?></h5>
+                                            </div>
+                                            <div class="panel-body">
+                                                <form role="form" name="dcotorspcl" method="POST" action="../../controllers/manage-doctors.php">
+                                                    <!-- Campo oculto para enviar el ID del doctor -->
+                                                    <input type="hidden" name="id_doctor" value="<?php echo htmlspecialchars($doctorId); ?>">
+                                                    <div class="form-group">
+                                                        <select name="duracion_turno" required>
+                                                            <option value="">Seleccione una duracion de turno</option>
+                                                            <?php
+                                                                if (!empty($duracion_turnos)) {
+                                                                    foreach ($duracion_turnos as $turno) {
+                                                                        echo '<option value="' . htmlspecialchars($turno['id']) . '">' . htmlspecialchars($turno['appointment_duration']) . '</option>';
+                                                                    }
+                                                                } else {
+                                                                    echo '<option value="">No hay doctores disponibles</option>';
+                                                                }
+                                                            ?>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <select name="dia" value="">
+                                                            <option value="">Seleccione un dia de la semana</option>
+                                                            <?php
+                                                            // Mostrar los días de la semana en un dropdown
+                                                            foreach ($dias_semana as $id => $dia) {
+                                                                echo "<option value='$id'>$dia</option>";
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <select name="horario_atencion" value="">
+                                                            <option value="">Seleccione una franja horaria</option>
+                                                            <?php
+                                                                if (!empty($horarios_de_servicio)) {
+                                                                    foreach ($horarios_de_servicio as $horario) {
+                                                                        echo '<option value="' . htmlspecialchars($horario['id']) . '">' . htmlspecialchars($horario['start_time'])." - ". $horario['end_time'] . '</option>';
+                                                                    }
+                                                                } else {
+                                                                    echo '<option value="">No hay doctores disponibles</option>';
+                                                                }
+                                                            ?>
+                                                        </select>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-o btn-primary">Agregar</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12">
+                                <div class="panel panel-white"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <?php include('../include/footer.php'); ?>
+        <?php include('../include/setting.php'); ?>
+    </div>
+
+    <?php include('../include/script.php'); ?> 
 </body>
 </html>
