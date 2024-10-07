@@ -76,9 +76,12 @@ $personas= obtenerPersonas();
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $person = ObtenerPersonas();
-                                            foreach ($person as $row) {
+                                            foreach ($personas as $row) {
+                                                if($row['status'] == 0){
+                                                    continue; // evitamos mostrar los doctores borrados
+                                                }
                                             ?>
+                                            
                                                 <tr class="center">
                                                     <td class="hidden-xs"><?php echo $row['name']; ?></td>
                                                     <td class="hidden-xs"><?php echo $row['surname']; ?></td>
@@ -127,11 +130,19 @@ $personas= obtenerPersonas();
                                                     ?></td>
                                                     <td class="hidden-xs"><?php echo $row['dni']; ?></td>
                                                     <td class="hidden-xs"><?php echo $row['birth_date']; ?></td>
-                                                    <td class="hidden-xs"><?php
-                                                        echo $row['status'];
-                                                    ?></td>
+                                                    <td class="hidden-xs">
+                                                    <?php
+                                                        if($row['status'] == 1){
+                                                            echo 'Activo';
+                                                        }
+                                                        else{
+                                                            echo 'Inactivo';
+                                                        }
+                                                    ?>
+                                                    </td>
                                                     <td class="hidden-xs">
                                                         <button type="button" class="btn-activate" data-id="<?php echo $row['id']; ?>">Activar usuario</button>
+                                                        <button type="button" class="btn-delete" data-id="<?php echo $row['id']; ?>">Borrar usuario</button>
                                                     </td>
                                                 </tr>
                                             <?php
@@ -152,5 +163,6 @@ $personas= obtenerPersonas();
         
         <?php include('../include/script.php'); ?> 
         <script src="../../../assets/js/activeUser.js"></script>
+        <script src="../../../assets/js/deleteUser.js"></script>
     </body>
 </html>
