@@ -112,7 +112,6 @@ var_dump($_SESSION);
             </div>
             
             <?php include('../include/footer.php'); ?>
-            
             <?php include('../include/setting.php'); ?>
         </div>
         <?php include('../include/script.php'); ?> 

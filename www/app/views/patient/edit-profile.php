@@ -1,9 +1,37 @@
+<?php
+error_reporting(0);
+include '../../controllers/login.php';
+
+if (!isset($_SESSION)) {
+    echo '<script type="text/javascript">';
+    echo 'window.location.href="../login.php";';
+    echo '</script>';
+    exit();
+} else {
+    session_start();
+}
+
+//var_dump($_SESSION);
+//$_SESSION['user'];
+//$_SESSION['rol'];
+//include('include/config.php');
+//include('include/checklogin.php');
+//check_login();
+
+if (empty($_SESSION)) {
+    echo '<script type="text/javascript">';
+    echo 'window.location.href="../login.php";';
+    echo '</script>';
+    exit();
+}
+?> 
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <title>Usuario | Editar Perfil</title>
-    <?php include ('../include/head.php'); ?>
+    <?php include('../include/head.php'); ?>
 </head>
 
 <body>
@@ -32,49 +60,49 @@
                                     <div class="col-lg-8 col-md-12">
                                         <div class="panel panel-white">
                                             <div class="panel-heading">
-                                                <h5 class="panel-title">Editar Perfil</h5>
+                                                <h5 class="panel-title">Editar perfil de usuario</h5>
                                             </div>
                                             <div class="panel-body">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <h4>Perfil de Usuario</h4>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <h4>Dirección</h4>
-                                                    </div>
-                                                </div>
-                                                <hr />
-                                                <form role="form" name="edit" action="../../controllers/edit-profile-controller.php" method="POST">
-                                                    <div class="row">
-                                                            <div class="form-group">
-                                                                <label for="contact">Num. Teléfono</label>
-                                                                <input type="text" name="contact" class="form-control" value="">
+                                                <form role="form" name="edit" action="../../controllers/editProfileController.php" method="POST">
+                                                    <input type="hidden" name="id_person" value="<?php echo $_SESSION['user_id']; ?>">
+                                                    <div class="form-group">
+                                                        <label for="street">Calle</label>
+                                                        <div class="row">
+                                                            <div class="col-md-8">
+                                                                <input type="text" name="street" class="form-control" required="required" placeholder="calle" value="">
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="street">Calle</label>
-                                                                <input type="text" name="street" class="form-control" required="required" value="">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="id_neighborhood">Barrio</label>
-                                                                <input type="text" name="id_neighborhood" class="form-control" value="">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="number">Número</label>
-                                                                <input type="number" name="number" class="form-control">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="floor">Piso</label>
-                                                                <input type="number" name="floor" class="form-control" value="">
-                                                            </div><div class="form-group">
-                                                                <label for="apartment">Departamento</label>
-                                                                <input type="number" name="apartment" class="form-control" value="">
+                                                            <div class="col-md-4">
+                                                                <input type="text" name="number" class="form-control" required="required" placeholder="Número" oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="5">
                                                             </div>
                                                         </div>
                                                     </div>
+
+                                                    <div class="form-group">
+                                                        <label for="id_neighborhood">Barrio</label>
+                                                        <input type="text" name="id_neighborhood" class="form-control" value="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="floor">Piso</label>
+                                                        <input type="number" name="floor" class="form-control" value="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="apartment">Departamento</label>
+                                                        <input type="number" name="apartment" class="form-control" value="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="contact">Número de Teléfono</label>
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <input type="text" name="id_contact_type" class="form-control" placeholder="Código de área" oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="3">
+                                                            </div>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="contact" class="form-control" placeholder="Número de teléfono" oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="10">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                     <button type="submit" name="submit" class="btn btn-o btn-primary">Actualizar</button>
-                                                </form>
+                                                </form>                                                
                                             </div>
                                         </div>
                                     </div>
