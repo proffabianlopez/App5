@@ -102,7 +102,7 @@ foreach($doctores as $doctor){
                                                     <td class="hidden-xs">
                                                         <button type="button" class="btn-activate" data-id="<?php echo $row['id']; ?>">Activar doctor</button>
                                                         <button type="button" class="btn-delete" data-id="<?php echo $row['id']; ?>">Borrar doctor</button>
-                                                        <button type="button" class="btn-modificar" onclick="window.location.href='../../controllers/editDoctor.php?id=<?php echo $row['id']; ?>'">Modificar Doctor</button>
+                                                        <button type="button" class="btn-modificar" onclick="window.location.href='../../controllers/manage-doctors.php?id=<?php echo $row['id']; ?>'">Modificar Doctor</button>
                                                 </tr>
                                             <?php
                                             } ?>

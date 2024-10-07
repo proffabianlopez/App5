@@ -2,6 +2,7 @@
 include '../../controllers/login.php'; // para usar la sesion
 include '../../models/getSpecialist.php'; // tengo al doctor, con su licencia y la especialidad
 include '../../models/getServiceDays.php';
+require_once '../models/getSpecialistById.php';
 
 if(empty($_SESSION)){
     echo '<script type="text/javascript">';
@@ -9,6 +10,19 @@ if(empty($_SESSION)){
     echo '</script>';
     exit();
 }
+
+
+//aqui ya puedo modificar cada doctor, los valores que yo desee.
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $doctorId = $_GET['id'];
+    $doctors = obtenerEspecialistaPorId($doctorId);
+    // ejemplo de como obtener cada campo del doctor con su id
+    // usar mas funciones en caso de querer actualizar más cosas
+    foreach($doctors as $doctor){
+        echo $doctor['name'];
+    }
+}
+
 
 $doctores = obtenerEspecialistas();
 //var_dump($doctores);

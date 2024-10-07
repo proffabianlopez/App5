@@ -75,7 +75,7 @@ if ($conexion) {
             // Si la consulta fue exitosa, confirmamos la transacción
             $conexion->commit();
             //echo "Datos insertasdos correctamente.";
-            header('Location:../views/admin/dashboard.php');
+            header('Location:../views/admin/doctorList.php');
         } else{
             // Si algo falla, revertimos la transacción
             $conexion->rollBack();
