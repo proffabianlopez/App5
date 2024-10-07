@@ -103,7 +103,7 @@ foreach ($dias as $dia) {
                                                                         echo '<option value="' . htmlspecialchars($turno['id']) . '">' . htmlspecialchars($turno['appointment_duration']) . '</option>';
                                                                     }
                                                                 } else {
-                                                                    echo '<option value="">No hay doctores disponibles</option>';
+                                                                    echo '<option value="">No hay duración de turnos cargados</option>';
                                                                 }
                                                             ?>
                                                         </select>
@@ -128,7 +128,7 @@ foreach ($dias as $dia) {
                                                                         echo '<option value="' . htmlspecialchars($horario['id']) . '">' . htmlspecialchars($horario['start_time'])." - ". $horario['end_time'] . '</option>';
                                                                     }
                                                                 } else {
-                                                                    echo '<option value="">No hay doctores disponibles</option>';
+                                                                    echo '<option value="">No hay horarios cargados</option>';
                                                                 }
                                                             ?>
                                                         </select>
