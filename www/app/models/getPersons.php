@@ -1,17 +1,14 @@
 <?php
 require_once 'connection.php';
 
-function obtenerUsuarioPorEmail($email){
+function obtenerPersonas() {
     $conecction = conectar();
     if ($conecction) {
         // Preparar la consulta SQL
-        $query = "SELECT * FROM user WHERE email = :email";
+        $query = "SELECT p.* FROM person p JOIN user u ON p.id = u.id_person WHERE u.id_rol = 1";
         
         // Preparar la sentencia
         $stmt = $conecction->prepare($query);
-        
-        // Asignar valores a los parámetros
-        $stmt->bindParam(':email', $email);
         
         // Ejecutar la consulta
         $stmt->execute();

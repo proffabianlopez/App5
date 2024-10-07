@@ -1,15 +1,27 @@
 <?php
 error_reporting(0);
 include '../../controllers/login.php';
-session_start();
-var_dump($_SESSION);
+if(!isset($_SESSION)){
+    echo '<script type="text/javascript">';
+    echo 'window.location.href="../login.php";';
+    echo '</script>';
+    exit();
+}
+else{
+    session_start();
+}
+//var_dump($_SESSION);
 //$_SESSION['user'];
 //$_SESSION['rol'];
-//error_reporting(0);
 //include('include/config.php');
 //include('include/checklogin.php');
 //check_login();
-
+if(empty($_SESSION)){
+    echo '<script type="text/javascript">';
+    echo 'window.location.href="../login.php";';
+    echo '</script>';
+    exit();
+}
 ?> 
 <!DOCTYPE html>
 <html lang="es">
@@ -27,7 +39,7 @@ var_dump($_SESSION);
                     <section id="page-title">
                         <div class="row">
                             <div class="col-sm-8">
-                                <h1 class="mainTitle">Admin | Vista general</h1>
+                                <h1 class="mainTitle">Administración | Vista general</h1>
                             </div>
                             <ol class="breadcrumb">
                                 <li><span>Admin</span></li>
@@ -35,31 +47,6 @@ var_dump($_SESSION);
                             </ol>
                         </div>
                     </section>
-                    <div class="container-fluid container-fullw bg-white">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="panel panel-white no-radius text-center">
-                                    <div class="panel-body">
-                                        <span class="fa-stack fa-2x">
-                                            <i class="fa fa-square fa-stack-2x text-primary"></i>
-                                            <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                        <h2 class="StepTitle">Administrar Usuarios</h2>
-                                        <p class="links cl-effect-1">
-                                            <a href="manage-users.php">lista de usuarios
-                                                <!-- <php
-                                                $result = mysqli_query($con, "SELECT * FROM users");
-                                                $num_rows = mysqli_num_rows($result);
-                                                {
-                                                ?>
-                                                    Total Usuarios: <php echo htmlentities($num_rows); }
-                                                ?> -->
-                                            </a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="col-sm-4">
                                 <div class="panel panel-white no-radius text-center">
                                     <div class="panel-body">
@@ -69,20 +56,29 @@ var_dump($_SESSION);
                                         </span>
                                         <h2 class="StepTitle">Administrar Doctores</h2>
                                         <p class="cl-effect-1">
-                                            <a href="manage-doctors.php">
-                                                <!-- <php
-                                                $result1 = mysqli_query($con, "SELECT * FROM doctors");
-                                                $num_rows1 = mysqli_num_rows($result1);
-                                                {
-                                                ?>
-                                                    Total Doctors: <php echo htmlentities($num_rows1); }
-                                                ?> -->
+                                            <a href="doctorsList.php">
+                                                Lista de doctores
                                             </a>
                                         </p>
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="col-sm-4">
+                                <div class="panel panel-white no-radius text-center">
+                                    <div class="panel-body">
+                                        <span class="fa-stack fa-2x">
+                                            <i class="fa fa-square fa-stack-2x text-primary"></i>
+                                            <i class="fa fa-users fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                        <h2 class="StepTitle">Administrar Usuarios</h2>
+                                        <p class="cl-effect-1">
+                                            <a href="manage-users.php">
+                                                Lista de usuarios
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-sm-4">
                                 <div class="panel panel-white no-radius text-center">
                                     <div class="panel-body">
@@ -93,67 +89,12 @@ var_dump($_SESSION);
                                         <h2 class="StepTitle">Turnos</h2>
                                         <p class="links cl-effect-1">
                                             <a href="book-appointment.php">
-                                                <a href="appointment-history.php">
-                                                    <!-- <php
-                                                    $sql = mysqli_query($con, "SELECT * FROM appointment");
-                                                    $num_rows2 = mysqli_num_rows($sql);
-                                                    {
-                                                    ?>
-                                                        Total Appointments: <php echo htmlentities($num_rows2); }
-                                                    ?> -->
-                                                </a>
+                                                
                                             </a>
                                         </p>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-sm-4">
-                                <div class="panel panel-white no-radius text-center">
-                                    <div class="panel-body">
-                                        <span class="fa-stack fa-2x">
-                                            <i class="fa fa-square fa-stack-2x text-primary"></i>
-                                            <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                        <h2 class="StepTitle">Administrar Pacientes</h2>
-                                        <p class="links cl-effect-1">
-                                            <a href="manage-patient.php">
-                                                <!-- <php
-                                                $result = mysqli_query($con, "SELECT * FROM tblpatient");
-                                                $num_rows = mysqli_num_rows($result);
-                                                {
-                                                ?>
-                                                    Total Patients: <php echo htmlentities($num_rows); }
-                                                ?> -->
-                                            </a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4">
-                                <div class="panel panel-white no-radius text-center">
-                                    <div class="panel-body">
-                                        <span class="fa-stack fa-2x">
-                                            <i class="ti-files fa-1x text-primary"></i>
-                                            <i class="fa fa-terminal fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                        <h2 class="StepTitle">New Queries</h2>
-                                        <p class="links cl-effect-1">
-                                            <a href="book-appointment.php">
-                                                <a href="unread-queries.php">
-                                                    <!-- <php
-                                                    $sql = mysqli_query($con, "SELECT * FROM tblcontactus where IsRead is null");
-                                                    $num_rows22 = mysqli_num_rows($sql);
-                                                    ?>
-                                                    Total New Queries: <php echo htmlentities($num_rows22); ?> -->
-                                                </a>
-                                            </a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>

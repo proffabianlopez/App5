@@ -1,7 +1,23 @@
 <?php
-session_start();
-$_SESSION['user'];
-$_SESSION['rol'];
+error_reporting(0);
+include '../../controllers/login.php';
+if(!isset($_SESSION)){
+    echo '<script type="text/javascript">';
+    echo 'window.location.href="../login.php";';
+    echo '</script>';
+    exit();
+}
+else{
+    session_start();
+}
+if(empty($_SESSION)){
+    echo '<script type="text/javascript">';
+    echo 'window.location.href="../login.php";';
+    echo '</script>';
+    exit();
+}
+//$_SESSION['user'];
+//$_SESSION['rol'];
 var_dump($_SESSION);
 ?>
 

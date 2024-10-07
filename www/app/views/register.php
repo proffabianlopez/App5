@@ -1,37 +1,6 @@
 <?php
-require_once '../models/connection.php';
-$conexion = conectar();
-if($conexion){
-    // Consulta SQL para obtener los barrios
-    $sql = "SELECT id, name FROM neighborhood";
+//require_once '../models/connection.php';
 
-    // Preparar y ejecutar la consulta
-    $stmt = $conexion->prepare($sql);
-    $stmt->execute();
-
-    // Obtener todos los resultados
-    $barrios = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    // Consulta SQL para obtener los tipos de casas
-    $sql2 = "SELECT id, type FROM address_type";
-
-    // Preparar y ejecutar la consulta
-    $stmt2 = $conexion->prepare($sql2);
-    $stmt2->execute();
-    
-    // Obtener todos los resultados
-    $casas = $stmt2->fetchAll(PDO::FETCH_ASSOC);
-
-    // Consulta SQL para obtener los tipos de casas
-    $sql3 = "SELECT id, type FROM contact_type";
-
-    // Preparar y ejecutar la consulta
-    $stmt3 = $conexion->prepare($sql3);
-    $stmt3->execute();
-        
-    // Obtener todos los resultados
-    $contactos = $stmt3->fetchAll(PDO::FETCH_ASSOC);
-    cerrarConexion($conexion);
-}
 ?>
 
 <!DOCTYPE html>
@@ -89,9 +58,9 @@ if($conexion){
                 <button type="submit" class="btn btn-primary block full-width m-b">Registrarme</button>
 
                 <p class="text-muted text-center"><small>¿Ya tiene una cuenta?</small></p>
-                <a class="btn btn-sm btn-white btn-block" href="login.html">Login</a>
+                <a class="btn btn-sm btn-white btn-block" href="login.php">Login</a>
             </form>
-            <p class="m-t"> <small>Gómez Ángel derechos reervados &copy; 2024</small> </p>
+            <p class="m-t"> <small>App5 derechos reservados &copy; 2024</small> </p>
         </div>
     </div>
 

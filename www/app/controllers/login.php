@@ -5,9 +5,9 @@ require_once __DIR__ . '/../models/getUsers.php';
 if ($_SERVER['REQUEST_METHOD'] == "POST") { 
     $email = isset($_POST["email"]) ? $_POST["email"] : null;
     $password = isset($_POST["password"]) ? $_POST['password'] : null;
-    $resultados = ObtenerUsuarioPorEmail($email);
-//var_dump($resultados);
-// Mostrar los resultados
+    $resultados = obtenerUsuarioPorEmail($email);
+    //var_dump($resultados);
+    // Mostrar los resultados
     if (!empty($resultados)) {
     foreach ($resultados as $usuario) {
         $email_sql= $usuario['email'];
@@ -23,16 +23,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             }
             elseif ($_SESSION['rol'] == 2) {
                 header("Location:../views/admin/dashboard.php");
-                break;
+                exit();
             }
         }
         //session_unset();
     }
-} else {
-    echo "No se encontraron usuarios con ese email y password.<br>";
+    } else {
+        //logica para un msj con ajax para informar que las credenciales son incorrectas
 }
 } else {
-    echo "Método de solicitud no válido. Utilice el método POST.";
+    //logica para un msj con ajax de que el metodo POST no funciona
 }
 
 

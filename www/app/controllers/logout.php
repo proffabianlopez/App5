@@ -1,7 +1,12 @@
 <?php
+//session_unset();
+session_start();
+if (!isset($_SESSION['id'])) {
+	session_destroy();
+	unset($_SESSION['rol']);
+	unset($_SESSION['user']);
+}
 
-
-session_unset();
 
 header("Location:../views/login.php");
 

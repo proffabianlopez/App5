@@ -6,7 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    Hola Mundo!
-    
+    <?php
+    echo "redireccionando";
+    echo '<script type="text/javascript">';
+    echo 'window.location.href="/app/views/login.php";';
+    echo '</script>';
+    exit();
+    ?>
 </body>
 </html>
