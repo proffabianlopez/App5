@@ -18,7 +18,7 @@ if(empty($_SESSION)){
 }
 //$_SESSION['user'];
 //$_SESSION['rol'];
-var_dump($_SESSION);
+//var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>

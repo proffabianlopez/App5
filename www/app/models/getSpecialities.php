@@ -1,7 +1,8 @@
 <?php
 require_once 'connection.php';
+
 function obtenerEspecialidades() {
-    $conecction = conectar();
+$conecction = conectar();
     if ($conecction) {
         // Preparar la consulta SQL
         $query = "SELECT * FROM specialisties";

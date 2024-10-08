@@ -1,6 +1,9 @@
 <?php
 error_reporting(0);
 include '../../controllers/login.php';
+include '../../models/getNeighborhood.php';
+include '../../models/getContactsType.php';
+include '../../models/getAddressType.php';
 
 if (!isset($_SESSION)) {
     echo '<script type="text/javascript">';
@@ -24,6 +27,12 @@ if (empty($_SESSION)) {
     echo '</script>';
     exit();
 }
+
+$barrios = obtenerBarrio();
+$tiposDeContactos = obtenerTiposDeContactos();
+//var_dump($tiposDeContactos);
+$tiposDeDomicilios = obtenerTiposDeDomicilios();
+//var_dump($tiposDeDomicilios);
 ?> 
 
 <!DOCTYPE html>
@@ -64,39 +73,83 @@ if (empty($_SESSION)) {
                                             </div>
                                             <div class="panel-body">
                                                 <form role="form" name="edit" action="../../controllers/editProfileController.php" method="POST">
-                                                    <input type="hidden" name="id_person" value="<?php echo $_SESSION['user_id']; ?>">
                                                     <div class="form-group">
                                                         <label for="street">Calle</label>
                                                         <div class="row">
                                                             <div class="col-md-8">
-                                                                <input type="text" name="street" class="form-control" required="required" placeholder="calle" value="">
+                                                                <input type="text" name="street" class="form-control" required placeholder="Calle">
                                                             </div>
                                                             <div class="col-md-4">
-                                                                <input type="text" name="number" class="form-control" required="required" placeholder="Número" oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="5">
+                                                                <input type="text" name="number" class="form-control" required placeholder="Número">
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label for="id_neighborhood">Barrio</label>
-                                                        <input type="text" name="id_neighborhood" class="form-control" value="">
+                                                        <select name="id_neighborhood" class="form-control">
+                                                            <option value="">Seleccione un tipo barrio</option>
+                                                            <?php
+                                                            // Verificar si se obtuvieron resultados
+                                                            if (!empty($barrios)) {
+                                                            // Recorrer los tipos de licencia y generar las opciones
+                                                                foreach ($barrios as $barrio) {
+                                                                    echo '<option value="' . $barrio['id'] . '">' . $barrio['name'] . '</option>';
+                                                                }
+                                                            } else {
+                                                                echo '<option value="">No hay barrios disponibles</option>';
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="id_address_type">Tipo de domicilio</label>
+                                                        <select name="id_address_type" class="form-control">
+                                                            <option value="">Seleccione un tipo de domicilio</option>
+                                                            <?php
+                                                            // Verificar si se obtuvieron resultados
+                                                            if (!empty($tiposDeDomicilios)) {
+                                                            // Recorrer los tipos de licencia y generar las opciones
+                                                                foreach ($tiposDeDomicilios as $domicilio) {
+                                                                    echo '<option value="' . $domicilio['id'] . '">' . $domicilio['type'] . '</option>';
+                                                                }
+                                                            } else {
+                                                                echo '<option value="">No hay barrios disponibles</option>';
+                                                            }
+                                                            ?>
+                                                        </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="floor">Piso</label>
-                                                        <input type="number" name="floor" class="form-control" value="">
+                                                        <input type="text" name="floor" class="form-control" value="">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="apartment">Departamento</label>
-                                                        <input type="number" name="apartment" class="form-control" value="">
+                                                        <input type="text" name="apartment" class="form-control" value="">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="contact_type">Tipo de contacto</label>
+                                                        <select name="id_contact_type" class="form-control">
+                                                            <option value="">Seleccione un tipo de contacto</option>
+                                                            <?php
+                                                            // Verificar si se obtuvieron resultados
+                                                            if (!empty($tiposDeContactos)) {
+                                                            // Recorrer los tipos de licencia y generar las opciones
+                                                                foreach ($tiposDeContactos as $contacto) {
+                                                                    echo '<option value="' . $contacto['id'] . '">' . $contacto['type'] . '</option>';
+                                                                }
+                                                            } else {
+                                                                echo '<option value="">No hay tipos de contactos disponibles</option>';
+                                                            }
+                                                            ?>
+                                                        </select>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="contact">Número de Teléfono</label>
+                                                        <label for="contact">Ingrese su contacto</label>
                                                         <div class="row">
-                                                            <div class="col-md-3">
-                                                                <input type="text" name="id_contact_type" class="form-control" placeholder="Código de área" oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="3">
-                                                            </div>
                                                             <div class="col-md-9">
-                                                                <input type="text" name="contact" class="form-control" placeholder="Número de teléfono" oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="10">
+                                                                <input type="text" name="contact" class="form-control" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -112,10 +165,9 @@ if (empty($_SESSION)) {
                     </div>
                 </div>
             </div>
-
-            <?php include('../include/footer.php'); ?>
-            <?php include('../include/setting.php'); ?>
         </div>
+        <?php include('../include/footer.php'); ?>
+        <?php include('../include/setting.php'); ?>
     </div>
     <?php include('../include/script.php'); ?>
 </body>
