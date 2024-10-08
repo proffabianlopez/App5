@@ -5,6 +5,8 @@ function updateContact($contact, $id_contact_type, $id_person){
     $connection = conectar();
     if($connection){
         try {
+            // Iniciamos la transacción
+            $connection->beginTransaction();
             // Preparamos la consulta SQL para actualizar en la tabla 'contact'
             $queryContact = "UPDATE contact SET contact = :contact, id_contact_type = :id_contact_type WHERE id_person = :id_person";
     
@@ -27,7 +29,7 @@ function updateContact($contact, $id_contact_type, $id_person){
                 $connection->rollBack();
                 echo "Error al actualizar los datos de contacto.";
             }
-            cerrarconneConexion($connection);
+            cerrarConexion($connection);
         } catch (PDOException $e) {
             // En caso de error, deshacemos la transacción y mostramos el error
             $connection->rollBack();
