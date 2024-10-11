@@ -1,6 +1,27 @@
 <?php
+session_start();
 require_once '../models/connection.php';
 require_once 'login.php';
+if (isset( $_SESSION)) {
+    if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '1') {
+        // var_dump($_SESSION['rol']);
+        // exit;
+        // ob_start();
+        
+            echo '<script type="text/javascript">';
+            echo 'window.location.href="../login.php";';
+            echo '</script>';
+            exit();
+    } 
+    // else {
+    //     $useremail = $_SESSION["email"];
+    // }
+} else {
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="../login.php";';
+        echo '</script>';
+        exit();
+}
 
 $street = $_POST['street'];
 $number = $_POST['number'];

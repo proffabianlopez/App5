@@ -1,28 +1,23 @@
 <?php
-error_reporting(0);
+session_start();
 include '../../controllers/login.php';
-
-if (!isset($_SESSION)) {
-    echo '<script type="text/javascript">';
-    echo 'window.location.href="../login.php";';
-    echo '</script>';
-    exit();
+session_start();
+if (isset( $_SESSION)) {
+    if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '2') {
+        // var_dump($_SESSION['rol']);
+        // exit;
+        // ob_start();
+        
+            echo '<script type="text/javascript">';
+            echo 'window.location.href="../login.php";';
+            echo '</script>';
+            exit();
+    } 
 } else {
-    session_start();
-}
-
-//var_dump($_SESSION);
-//$_SESSION['user'];
-//$_SESSION['rol'];
-//include('include/config.php');
-//include('include/checklogin.php');
-//check_login();
-
-if (empty($_SESSION)) {
-    echo '<script type="text/javascript">';
-    echo 'window.location.href="../login.php";';
-    echo '</script>';
-    exit();
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="../login.php";';
+        echo '</script>';
+        exit();
 }
 ?> 
 

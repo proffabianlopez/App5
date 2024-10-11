@@ -1,20 +1,24 @@
 <?php
+session_start();
 include '../../models/connection.php';
 include '../../controllers/login.php';
-require_once '../../models/getSpecialist.php';
-if (!isset($_SESSION)) {
-    echo "redireccionando";
-    echo '<script type="text/javascript">';
-    echo 'window.location.href="../login.php";';
-    echo '</script>';
-    exit();
-}
-//var_dump($_SESSION);
-if (empty($_SESSION)) {
-    echo '<script type="text/javascript">';
-    echo 'window.location.href="../login.php";';
-    echo '</script>';
-    exit();
+
+if (isset( $_SESSION)) {
+    if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '2') {
+        // var_dump($_SESSION['rol']);
+        // exit;
+        // ob_start();
+        
+            echo '<script type="text/javascript">';
+            echo 'window.location.href="../login.php";';
+            echo '</script>';
+            exit();
+    } 
+} else {
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="../login.php";';
+        echo '</script>';
+        exit();
 }
 
 $doctores = obtenerEspecialistas();

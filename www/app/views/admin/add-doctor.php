@@ -1,23 +1,22 @@
 <?php
-error_reporting(0);
-include '../../controllers/login.php';
 include '../../models/getSpecialities.php';
-require_once '../../models/getLicenseType.php';
-if(!isset($_SESSION)){
-    echo '<script type="text/javascript">';
-    echo 'window.location.href="../login.php";';
-    echo '</script>';
-    exit();
-}
-else{
-    session_start();
-}
-//var_dump($_SESSION);
-if(empty($_SESSION)){
-    echo '<script type="text/javascript">';
-    echo 'window.location.href="../login.php";';
-    echo '</script>';
-    exit();
+session_start();
+if (isset( $_SESSION)) {
+    if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '2') {
+        // var_dump($_SESSION['rol']);
+        // exit;
+        // ob_start();
+        
+            echo '<script type="text/javascript">';
+            echo 'window.location.href="../login.php";';
+            echo '</script>';
+            exit();
+    } 
+} else {
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="../login.php";';
+        echo '</script>';
+        exit();
 }
 
 $license_types = obtenerTiposDeLicencias();
