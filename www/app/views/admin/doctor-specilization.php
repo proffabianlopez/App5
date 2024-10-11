@@ -102,58 +102,11 @@ $especialidades = obtenerEspecialidades();
                                                     foreach ($especialidad as $row) {
                                                     ?>
                                                         <tr class="center">
-                                                            <td class="hidden-xs"><?php echo $row['name']; ?></td>
-                                                            <td class="hidden-xs"><?php echo $row['surname']; ?></td>
-                                                            <td class="hidden-xs"><?php
-                                                            foreach($contactos as $contact){
-                                                                if($contact['id_person'] == $row['id']){
-                                                                    echo $contact['contact'];
-                                                                }
-                                                            }
-                                                            ?></td>
-                                                            <td class="hidden-xs"><?php
-                                                                foreach($address as $domicilio){
-                                                                    if($domicilio['id_person'] == $row['id']){
-                                                                        echo $domicilio['street'];
-                                                                    }
-                                                                }
-                                                            ?></td>
-                                                            <td class="hidden-xs"><?php
-                                                                foreach($address as $domicilio){
-                                                                    if($domicilio['id_person'] == $row['id']){
-                                                                        echo $domicilio['number'];
-                                                                    }
-                                                                }
-                                                            ?></td>
-                                                            <td class="hidden-xs"><?php
-                                                                foreach($address as $domicilio){
-                                                                    if($domicilio['id_person'] == $row['id']){
-                                                                        echo $domicilio['apartment'];
-                                                                    }
-                                                                }
-                                                            ?></td>
-                                                            <td class="hidden-xs"><?php
-                                                                foreach($address as $domicilio){
-                                                                    if($domicilio['id_person'] == $row['id']){
-                                                                        echo $domicilio['floor'];
-                                                                    }
-                                                                }
-                                                            ?></td>
-                                                            <td class="hidden-xs"><?php
-                                                                foreach($address as $domicilio){
-                                                                    if($domicilio['id_person'] == $row['id']){
-                                                                        $barrio = ObtenerBarrio($domicilio['id_neighborhood']);
-                                                                        echo $barrio['name'];
-                                                                    }
-                                                                }
-                                                            ?></td>
-                                                            <td class="hidden-xs"><?php echo $row['dni']; ?></td>
-                                                            <td class="hidden-xs"><?php echo $row['birth_date']; ?></td>
-                                                            <td class="hidden-xs"><?php
-                                                                echo $row['status'];
-                                                            ?></td>
-                                                            <td class="hidden-xs">
-                                                                <button type="button" class="btn-activate" data-id="<?php echo $row['id']; ?>">Activar usuario</button>
+
+                                                            <td class="hidden-xs"><?php echo $row['speciality']; ?></td>
+
+                                                               <button type="button" class="btn-activate" data-id="<?php echo $row['id']; ?>">Activar usuario</button>
+
                                                             </td>
                                                         </tr>
                                                     <?php
