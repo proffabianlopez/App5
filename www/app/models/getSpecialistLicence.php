@@ -1,11 +1,10 @@
 <?php
 require_once 'connection.php';
-
-function obtenerBarrio(){
-$conecction = conectar();
+function obtenerLicenciasDeEspecialistas() {
+    $conecction = conectar();
     if ($conecction) {
         // Preparar la consulta SQL
-        $query = "SELECT * FROM neighborhood";
+        $query = "SELECT * FROM license_specialist";
         
         // Preparar la sentencia
         $stmt = $conecction->prepare($query);

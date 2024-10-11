@@ -25,6 +25,7 @@ if (isset( $_SESSION)) {
         echo '</script>';
         exit();
 }
+
 $specialities = obtenerEspecialidades();
 $appointmentDuration = obtenerDuracionDelTurno();
 $serviceDays = obtenerDias();

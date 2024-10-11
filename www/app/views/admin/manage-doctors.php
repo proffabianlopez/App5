@@ -1,4 +1,23 @@
 <?php
+session_start();
+if (isset( $_SESSION)) {
+    if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '2') {
+        // var_dump($_SESSION['rol']);
+        // exit;
+        // ob_start();
+        
+            echo '<script type="text/javascript">';
+            echo 'window.location.href="../login.php";';
+            echo '</script>';
+            exit();
+    } 
+} else {
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="../login.php";';
+        echo '</script>';
+        exit();
+}
+
 include '../../controllers/login.php'; // para usar la sesion
 include '../../models/getServiceDays.php';
 require_once '../../models/getSpecialistById.php';

@@ -102,7 +102,11 @@ $especialidades = obtenerEspecialidades();
                                                     foreach ($especialidad as $row) {
                                                     ?>
                                                         <tr class="center">
+
                                                             <td class="hidden-xs"><?php echo $row['speciality']; ?></td>
+
+                                                               <button type="button" class="btn-activate" data-id="<?php echo $row['id']; ?>">Activar usuario</button>
+
                                                             </td>
                                                         </tr>
                                                     <?php

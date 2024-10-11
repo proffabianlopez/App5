@@ -1,3 +1,38 @@
+<?php
+session_start();
+
+include '../../models/getSpecialities.php';
+include '../../models/getAppointmentDuration.php';
+include '../../models/getServiceDays.php';
+include '../../models/getServiceHours.php';
+include '../../models/getSpecialist.php';
+include '../../models/getSpecialistById.php';
+
+if (isset( $_SESSION)) {
+    if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '1') {
+        // var_dump($_SESSION['rol']);
+        // exit;
+        // ob_start();
+        
+            echo '<script type="text/javascript">';
+            echo 'window.location.href="../login.php";';
+            echo '</script>';
+            exit();
+    } 
+} else {
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="../login.php";';
+        echo '</script>';
+        exit();
+}
+$specialities = obtenerEspecialidades();
+$appointmentDuration = obtenerDuracionDelTurno();
+$serviceDays = obtenerDias();
+$serviceHours = obtenerHorariosDeServicio();
+$specialist= obtenerEspecialistas();
+// $idspecialist =obtenerEspecialistaPorId();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -36,8 +71,20 @@
                                                     <form role="form" name="book" method="post">
                                                         <div class="form-group">
                                                             <label for="DoctorSpecialization">Especialización Médico</label>
-                                                            <select name="Doctorspecialization" class="form-control" onChange="getdoctor(this.value);" required="required">
+                                                            <select name="speciality" class="form-control" onChange="getdoctor(this.value);" required="required">
                                                                 <option value="">Selecionar Especialización</option>
+                                                                <?php
+                                                            // Verificar si se obtuvieron resultados
+                                                            if (!empty($specialities)) {
+                                                            // Recorrer los tipos de licencia y generar las opciones
+                                                                foreach ($specialities as $speciality) {
+                                                                    #idspeciality = $speciality['id']
+                                                                    echo '<option value="' . $speciality['id'] . '">' . $speciality['speciality'] . '</option>';
+                                                                }
+                                                            } else {
+                                                                echo '<option value="">No hay tipos de especialidades disponibles</option>';
+                                                            }
+                                                            ?>
                                                             </select>
                                                         </div>
 
@@ -45,14 +92,25 @@
                                                             <label for="doctor">Médico</label>
                                                             <select name="doctor" class="form-control" id="doctor" onChange="getfee(this.value);" required="required">
                                                                 <option value="">Seleccionar Médico</option>
+                                                                <?php
+                                                            // Verificar si se obtuvieron resultados
+                                                            if (!empty($specialist)) {
+                                                            // Recorrer los tipos de licencia y generar las opciones
+                                                                foreach ($idspeciality as $idspecia) {
+                                                                    echo '<option value="' . $speciality['id'] . '">' . $speciality['speciality'] . '</option>';
+                                                                }
+                                                            } else {
+                                                                echo '<option value="">No hay tipos de especialidades disponibles</option>';
+                                                            }
+                                                            ?>
                                                             </select>
                                                         </div>
 
                                                         <!-- OBRASOCIAL -->
-                                                        <!-- <div class="form-group">
-                                                            <label for="consultancyfees">Consultancy Fees</label>
+                                                        <div class="form-group">
+                                                            <label for="consultancyfees">Obra social</label>
                                                             <select name="fees" class="form-control" id="fees" readonly></select>
-                                                        </div> -->
+                                                        </div>
 
                                                         <div class="form-group">
                                                             <label for="AppointmentDate">fecha</label>
@@ -85,37 +143,8 @@
                 <?php include('../include/setting.php'); ?>
             </div>
         </div>
+        <?php include('../include/script.php'); ?> 
 
-        <script src="/assets/vendor/jquery/jquery.min.js"></script>
-        <script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-        <script src="/assets/vendor/modernizr/modernizr.js"></script>
-        <script src="/assets/vendor/jquery-cookie/jquery.cookie.js"></script>
-        <script src="/assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-        <script src="/assets/vendor/switchery/switchery.min.js"></script>
-        <script src="/assets/vendor/maskedinput/jquery.maskedinput.min.js"></script>
-        <script src="/assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
-        <script src="/assets/vendor/autosize/autosize.min.js"></script>
-        <script src="/assets/vendor/selectFx/classie.js"></script>
-        <script src="/assets/vendor/selectFx/selectFx.js"></script>
-        <script src="/assets/vendor/select2/select2.min.js"></script>
-        <script src="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-        <script src="/assets/vendor/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
-        <script src="assets/js/main.js"></script>
-        <script src="assets/js/form-elements.js"></script>
-
-        <script>
-            jQuery(document).ready(function() {
-                Main.init();
-                FormElements.init();
-            });
-
-            $('.datepicker').datepicker({
-                format: 'yyyy-mm-dd',
-                startDate: '-3d'
-            });
-
-            $('#timepicker1').timepicker();
-        </script>
     </body>
 </html>
 <?php

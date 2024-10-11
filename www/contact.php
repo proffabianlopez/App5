@@ -52,7 +52,7 @@
                         <h2>Contacto</h2>
                         <form name="contactus" method="post">
                             <div>
-                                <span><label>Name</label></span>
+                                <span><label>Nombre</label></span>
                                 <span><input type="text" name="fullname" required></span>
                             </div>
                             <div>
@@ -60,11 +60,11 @@
                                 <span><input type="email" name="emailid" required></span>
                             </div>
                             <div>
-                                <span><label>Mobile No.</label></span>
+                                <span><label>Télefono</label></span>
                                 <span><input type="text" name="mobileno" required></span>
                             </div>
                             <div>
-                                <span><label>Description</label></span>
+                                <span><label>Mensaje</label></span>
                                 <span><textarea name="description" required></textarea></span>
                             </div>
                             <div>

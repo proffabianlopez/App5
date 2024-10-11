@@ -1,23 +1,27 @@
 <?php
-error_reporting(0);
+session_start();
+// error_reporting(0);
 include '../models/connection.php';
 include 'login.php';
-
-if(!isset($_SESSION)){
-    echo '<script type="text/javascript">';
-    echo 'window.location.href="../views/login.php";';
-    echo '</script>';
-    exit();
-}
-else{
-    session_start();
-}
-//var_dump($_SESSION);
-if(empty($_SESSION)){
-    echo '<script type="text/javascript">';
-    echo 'window.location.href="../views/login.php";';
-    echo '</script>';
-    exit();
+if (isset( $_SESSION)) {
+    if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '2') {
+        // var_dump($_SESSION['rol']);
+        // exit;
+        // ob_start();
+        
+            echo '<script type="text/javascript">';
+            echo 'window.location.href="../login.php";';
+            echo '</script>';
+            exit();
+    } 
+    // else {
+    //     $useremail = $_SESSION["email"];
+    // }
+} else {
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="../login.php";';
+        echo '</script>';
+        exit();
 }
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
