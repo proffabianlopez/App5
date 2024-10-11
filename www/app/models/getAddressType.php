@@ -1,11 +1,11 @@
 <?php
 require_once 'connection.php';
 
-function obtenerBarrio(){
-$conecction = conectar();
+function obtenerTiposDeDomicilios() {
+    $conecction = conectar();
     if ($conecction) {
         // Preparar la consulta SQL
-        $query = "SELECT * FROM neighborhood";
+        $query = "SELECT * FROM address_type";
         
         // Preparar la sentencia
         $stmt = $conecction->prepare($query);
@@ -26,3 +26,4 @@ $conecction = conectar();
         return null;
     }
 }
+?>

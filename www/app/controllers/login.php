@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $_SESSION['user'] = $usuario['id'];
         $_SESSION['rol'] = $usuario['id_rol'];
         $_SESSION['person'] = $usuario['id_person'];
+
         $_SESSION['email'] = $usuario['email'];
 
         // logica de ingreso

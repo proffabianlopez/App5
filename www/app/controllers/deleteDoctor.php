@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 echo "Eliminación exitosa del doctor.";
             } else {
-                echo "ID de usuario no válido.";
+                echo "ID de doctor no válido.";
             }
         } catch (PDOException $e) {
             // En caso de error, revertir la transacción y mostrar el error

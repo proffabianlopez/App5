@@ -17,7 +17,7 @@ else{
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Hospital Merlo | Login</title>
+    <title>Clinica | Login</title>
 
     <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet">

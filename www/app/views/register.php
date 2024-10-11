@@ -81,7 +81,7 @@
 
 <?php
 /* Datos extra en el login que luego el usuario deberá agregar para pedir un turno
-<div class="form-group">
+                <div class="form-group">
                     <select name="id_address_type" id="address" required>
                         <option value="">--Seleccione su vivienda-</option>
                             <?php foreach ($casas as $casa): ?>
