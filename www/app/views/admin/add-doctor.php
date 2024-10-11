@@ -1,5 +1,6 @@
 <?php
 include '../../models/getSpecialities.php';
+include '../../models/getLicenseType.php';
 session_start();
 if (isset( $_SESSION)) {
     if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '2') {

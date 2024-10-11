@@ -1,7 +1,7 @@
 <?php
 session_start();
-include '../../models/connection.php';
-include '../../controllers/login.php';
+include '../../models/connection.php'; 
+include '../../models/getSpecialist.php';
 
 if (isset( $_SESSION)) {
     if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '2') {
@@ -23,11 +23,6 @@ if (isset( $_SESSION)) {
 
 $doctores = obtenerEspecialistas();
 //var_dump($doctores);
-foreach($doctores as $doctor){
-    if($doctor['status'] == 0){
-        //codigo para evitar mostrarlo
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -67,7 +62,7 @@ foreach($doctores as $doctor){
                                                 <th class="center">Número</th>
                                                 <th class="center">Departamento</th>
                                                 <th class="center">Piso</th>
-                                                <th class="center">Matricula</th>
+                                                <th class="center">Realiza Constulta online</th>
                                                 <th class="center">Estado</th>
                                                 <th class="center">Acción</th>
                                             </tr>

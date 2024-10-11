@@ -1,9 +1,7 @@
 <?php
 session_start();
-include '../../controllers/login.php';
-session_start();
 if (isset( $_SESSION)) {
-    if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '2') {
+    if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '1') {
         // var_dump($_SESSION['rol']);
         // exit;
         // ob_start();
@@ -59,7 +57,7 @@ if (isset( $_SESSION)) {
                                             </div>
                                             <div class="panel-body">
                                                 <form role="form" name="edit" action="../../controllers/editProfileController.php" method="POST">
-                                                    <input type="hidden" name="id_person" value="<?php echo $_SESSION['user_id']; ?>">
+                                                    <input type="hidden" name="id_person" value="<?php echo $_SESSION['user']; ?>">
                                                     <div class="form-group">
                                                         <label for="street">Calle</label>
                                                         <div class="row">

@@ -1,7 +1,6 @@
 <?php
 session_start();
 include '../../models/connection.php';
-include '../../controllers/login.php';
 require_once '../../models/getContacts.php';
 require_once '../../models/getAddress.php';
 require_once '../../models/getPersons.php';
@@ -149,10 +148,11 @@ $personas= obtenerPersonas();
                     </div>
                 </div>
             </div>
+            <?php include('../include/footer.php'); ?>
+            <?php include('../include/setting.php'); ?>
         </div>
 
-        <?php include('../include/footer.php'); ?>
-        <?php include('../include/setting.php'); ?>
+
         
         <?php include('../include/script.php'); ?> 
         <script src="../../../assets/js/activeUser.js"></script>

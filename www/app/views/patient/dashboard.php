@@ -1,9 +1,7 @@
 <?php
 session_start();
-include '../../controllers/login.php';
-session_start();
 if (isset( $_SESSION)) {
-    if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '2') {
+    if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '1') {
         // var_dump($_SESSION['rol']);
         // exit;
         // ob_start();

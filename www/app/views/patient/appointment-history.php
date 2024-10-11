@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-include '../../controllers/login.php';
 include '../../models/getSpecialities.php';
 include '../../models/getAppointmentDuration.php';
 include '../../models/getServiceDays.php';

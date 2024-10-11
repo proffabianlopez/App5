@@ -1,14 +1,13 @@
 <?php
 session_start();
 
-include '../../controllers/login.php';
 include '../../models/getSpecialities.php';
 include '../../models/getAppointmentDuration.php';
 include '../../models/getServiceDays.php';
 include '../../models/getServiceHours.php';
 include '../../models/getSpecialist.php';
 include '../../models/getSpecialistById.php';
-session_start();
+
 if (isset( $_SESSION)) {
     if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '1') {
         // var_dump($_SESSION['rol']);
