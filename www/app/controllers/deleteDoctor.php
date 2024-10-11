@@ -1,6 +1,26 @@
 <?php
+session_start();
 require_once '../models/connection.php';
-
+if (isset( $_SESSION)) {
+    if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '2') {
+        // var_dump($_SESSION['rol']);
+        // exit;
+        // ob_start();
+        
+            echo '<script type="text/javascript">';
+            echo 'window.location.href="../login.php";';
+            echo '</script>';
+            exit();
+    } 
+    // else {
+    //     $useremail = $_SESSION["email"];
+    // }
+} else {
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="../login.php";';
+        echo '</script>';
+        exit();
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conexion = conectar();

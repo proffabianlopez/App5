@@ -24,14 +24,14 @@
 											<i class="ti-user"></i>
 										</div>
 										<div class="item-inner">
-											<span class="title"> Doctores </span><i class="icon-arrow"></i>
+											<span class="title"> Médicos </span><i class="icon-arrow"></i>
 										</div>
 									</div>
 								</a>
 								<ul class="sub-menu">
 									<li>
 										<a href="doctor-specilization.php">
-											<span class="title"> Especializacion </span>
+											<span class="title"> Especialidades </span>
 										</a>
 									</li>
 									<li>
@@ -65,7 +65,7 @@
 											<i class="ti-user"></i>
 										</div>
 										<div class="item-inner">
-											<span class="title"> Usarios </span><i class="icon-arrow"></i>
+											<span class="title"> Usuarios </span><i class="icon-arrow"></i>
 										</div>
 									</div>
 								</a>

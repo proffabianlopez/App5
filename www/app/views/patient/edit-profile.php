@@ -1,31 +1,29 @@
 <?php
+
+session_start();
+if (isset( $_SESSION)) {
+    if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '1') {
+        // var_dump($_SESSION['rol']);
+        // exit;
+        // ob_start();
+        
+            echo '<script type="text/javascript">';
+            echo 'window.location.href="../login.php";';
+            echo '</script>';
+            exit();
+    } 
+} else {
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="../login.php";';
+        echo '</script>';
+        exit();
+}
 error_reporting(0);
-include '../../controllers/login.php';
+
 include '../../models/getNeighborhood.php';
 include '../../models/getContactsType.php';
 include '../../models/getAddressType.php';
 
-if (!isset($_SESSION)) {
-    echo '<script type="text/javascript">';
-    echo 'window.location.href="../login.php";';
-    echo '</script>';
-    exit();
-} else {
-    session_start();
-}
-
-//var_dump($_SESSION);
-//$_SESSION['user'];
-//$_SESSION['rol'];
-//include('include/config.php');
-//include('include/checklogin.php');
-//check_login();
-
-if (empty($_SESSION)) {
-    echo '<script type="text/javascript">';
-    echo 'window.location.href="../login.php";';
-    echo '</script>';
-    exit();
 }
 
 $barrios = obtenerBarrio();
@@ -33,6 +31,7 @@ $tiposDeContactos = obtenerTiposDeContactos();
 //var_dump($tiposDeContactos);
 $tiposDeDomicilios = obtenerTiposDeDomicilios();
 //var_dump($tiposDeDomicilios);
+  
 ?> 
 
 <!DOCTYPE html>
@@ -73,20 +72,49 @@ $tiposDeDomicilios = obtenerTiposDeDomicilios();
                                             </div>
                                             <div class="panel-body">
                                                 <form role="form" name="edit" action="../../controllers/editProfileController.php" method="POST">
+
+                                                    <input type="hidden" name="id_person" value="<?php echo $_SESSION['user']; ?>">
+
                                                     <div class="form-group">
                                                         <label for="street">Calle</label>
                                                         <div class="row">
                                                             <div class="col-md-8">
+
+                                                                <input type="text" name="street" class="form-control" required="required" placeholder="calle" value="">
+                                                            </div>
+                                                            <div class="col-md-4">
+                                          
                                                                 <input type="text" name="street" class="form-control" required placeholder="Calle">
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <input type="text" name="number" class="form-control" required placeholder="Número">
+
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label for="id_neighborhood">Barrio</label>
+
+                                                        <input type="text" name="id_neighborhood" class="form-control" value="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="floor">Piso</label>
+                                                        <input type="number" name="floor" class="form-control" value="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="apartment">Departamento</label>
+                                                        <input type="number" name="apartment" class="form-control" value="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="contact">Número de Teléfono</label>
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <input type="text" name="id_contact_type" class="form-control" placeholder="Código de área" oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="3">
+                                                            </div>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="contact" class="form-control" placeholder="Número de teléfono" oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="10">
+
                                                         <select name="id_neighborhood" class="form-control">
                                                             <option value="">Seleccione un tipo barrio</option>
                                                             <?php
@@ -150,6 +178,7 @@ $tiposDeDomicilios = obtenerTiposDeDomicilios();
                                                         <div class="row">
                                                             <div class="col-md-9">
                                                                 <input type="text" name="contact" class="form-control" required>
+
                                                             </div>
                                                         </div>
                                                     </div>

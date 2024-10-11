@@ -1,15 +1,25 @@
 <?php
-error_reporting(0);
-include '../../controllers/login.php';
-if(!isset($_SESSION)){
-    echo '<script type="text/javascript">';
-    echo 'window.location.href="../login.php";';
-    echo '</script>';
-    exit();
+session_start();
+if (isset( $_SESSION)) {
+    if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '2') {
+        // var_dump($_SESSION['rol']);
+        // exit;
+        // ob_start();
+        
+            echo '<script type="text/javascript">';
+            echo 'window.location.href="../login.php";';
+            echo '</script>';
+            exit();
+    } 
+} else {
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="../login.php";';
+        echo '</script>';
+        exit();
 }
-else{
-    session_start();
-}
+// else{
+//     session_start();
+// }
 //var_dump($_SESSION);
 //$_SESSION['user'];
 //$_SESSION['rol'];
@@ -22,12 +32,12 @@ if(empty($_SESSION)){
     echo '</script>';
     exit();
 }
-?> 
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <title>Admin | Vista general</title>
-	<?php include ('../include/head.php');?> 
+	<?php include ('../include/head.php');?>
 </head>
 <body>
     <div id="app">
@@ -89,7 +99,7 @@ if(empty($_SESSION)){
                                         <h2 class="StepTitle">Turnos</h2>
                                         <p class="links cl-effect-1">
                                             <a href="book-appointment.php">
-                                                
+
                                             </a>
                                         </p>
                                     </div>
@@ -99,11 +109,11 @@ if(empty($_SESSION)){
                     </div>
                 </div>
             </div>
-			
+
             <?php include('../include/footer.php'); ?>
             <?php include('../include/setting.php'); ?>
         </div>
-		<?php include('../include/script.php'); ?> 
+		<?php include('../include/script.php'); ?>
     </div>
 </body>
 </html>

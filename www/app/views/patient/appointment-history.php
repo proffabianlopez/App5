@@ -1,3 +1,32 @@
+<?php
+session_start();
+
+include '../../models/getSpecialities.php';
+include '../../models/getAppointmentDuration.php';
+include '../../models/getServiceDays.php';
+include '../../models/getServiceHours.php';
+include '../../models/getSpecialist.php';
+include '../../models/getSpecialistById.php';
+
+if (isset( $_SESSION)) {
+    if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '1') {
+        // var_dump($_SESSION['rol']);
+        // exit;
+        // ob_start();
+        
+            echo '<script type="text/javascript">';
+            echo 'window.location.href="../login.php";';
+            echo '</script>';
+            exit();
+    } 
+} else {
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="../login.php";';
+        echo '</script>';
+        exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
