@@ -114,10 +114,10 @@ $doctores = obtenerEspecialistas();
                     </div>
                 </div>
             </div>
+            <?php include('../include/footer.php'); ?>
+            <?php include('../include/setting.php'); ?>
         </div>
 
-        <?php include('../include/footer.php'); ?>
-        <?php include('../include/setting.php'); ?>
         
         <?php include('../include/script.php'); ?> 
         <script src="../../../assets/js/activeDoctor.js"></script>
