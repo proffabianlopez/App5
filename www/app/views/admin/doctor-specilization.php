@@ -1,34 +1,19 @@
 <?php
 include '../../models/getSpecialities.php';
 session_start();
-if (isset( $_SESSION)) {
-    if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '2') {
-        // var_dump($_SESSION['rol']);
-        // exit;
-        // ob_start();
-        
-            echo '<script type="text/javascript">';
-            echo 'window.location.href="../login.php";';
-            echo '</script>';
-            exit();
-    } 
-    // else {
-    //     $useremail = $_SESSION["email"];
-    // }
-} else {
+if (isset($_SESSION)) {
+    if ($_SESSION['rol'] == "" || $_SESSION['rol'] != '2') {
         echo '<script type="text/javascript">';
         echo 'window.location.href="../login.php";';
         echo '</script>';
         exit();
+    }
+} else {
+    echo '<script type="text/javascript">';
+    echo 'window.location.href="../login.php";';
+    echo '</script>';
+    exit();
 }
-
-//error_reporting(0);
-// if(!isset($_SESSION)){
-//     echo '<script type="text/javascript">';
-//     echo 'window.location.href="../login.php";';
-//     echo '</script>';
-//     exit();
-// }
 
 $especialidades = obtenerEspecialidades();
 ?>
@@ -36,8 +21,8 @@ $especialidades = obtenerEspecialidades();
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title> Admin | DoctoresEsp.</title>
-	<?php include ('../include/head.php');?> 
+    <title>Admin | DoctoresEsp.</title>
+    <?php include ('../include/head.php'); ?> 
 </head>
 
 <body>
@@ -73,46 +58,38 @@ $especialidades = obtenerEspecialidades();
                                                 <h5 class="panel-title">Especialización de doctores</h5>
                                             </div>
                                             <div class="panel-body">
-                                                <form role="form"  name="dcotorspcl" method="post" action="../../controllers/doctor-specilization.php">
+                                                <form role="form" name="dcotorspcl" method="post" action="../../controllers/doctor-specilization.php">
                                                     <div class="form-group">
-                                                    <label for="especialidad">Especialización de doctores</label>
-                                                    <input required type="text" name="especialidad" class="form-control" placeholder="Especialidades" pattern="[A-Za-z\s]+"  inputmode="text">
+                                                        <label for="especialidad">Especialización de doctores</label>
+                                                        <input required type="text" name="especialidad" class="form-control" placeholder="Especialidades" pattern="[A-Za-z\s]+" inputmode="text">
                                                     </div>
                                                     <button type="submit" name="submit" class="btn btn-o btn-primary">Agregar</button>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-lg-6 col-md-12">
                                         <div class="panel panel-white">
-                                            <div class="panel-heading">
-                                                <h5 class="panel-title">Especialización de doctores</h5>
-                                            </div>
                                             <div class="panel-body">
-                                                    
-                                            <table class="table table-hover" id="sample-table-1">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="center">Especialidades</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php
-                                                    $especialidad = obtenerEspecialidades();
-                                                    foreach ($especialidad as $row) {
-                                                    ?>
-                                                        <tr class="center">
-
-                                                            <td class="hidden-xs"><?php echo $row['speciality']; ?></td>
-
-                                                               <button type="button" class="btn-activate" data-id="<?php echo $row['id']; ?>">Activar usuario</button>
-
-                                                            </td>
+                                                <table class="table table-hover" id="sample-table-1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="center">Especialidades</th>
                                                         </tr>
-                                                    <?php
-                                                    } ?>
-                                                </tbody>
-                                            </table>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                        $especialidad = obtenerEspecialidades();
+                                                        foreach ($especialidad as $row) {
+                                                        ?>
+                                                            <tr class="center">
+                                                                <td class="hidden-xs"><?php echo $row['speciality']; ?></td>
+                                                            </tr>
+                                                        <?php
+                                                        } ?>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
@@ -131,7 +108,6 @@ $especialidades = obtenerEspecialidades();
         <?php include('../include/footer.php'); ?>
         <?php include('../include/setting.php'); ?>
     </div>
-
     <?php include('../include/script.php'); ?> 
     <script>
         // Función para leer parámetros de la URL
