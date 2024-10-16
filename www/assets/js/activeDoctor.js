@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('messaje').innerText = data;
             })
             .catch(error => {
-                document.getElementById('messaje').innerText = 'Error al activar el doctor.';
+                document.getElementById('messaje').innerText = error;
             });
         });
     });

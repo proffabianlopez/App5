@@ -2,7 +2,7 @@
 session_start();
 // error_reporting(0);
 include '../models/connection.php';
-include 'login.php';
+//include 'login.php';
 if (isset( $_SESSION)) {
     if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '2') {
         // var_dump($_SESSION['rol']);
@@ -24,9 +24,10 @@ if (isset( $_SESSION)) {
         exit();
 }
 
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $duracion = $_POST['duracion'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $duracion = isset($_POST['duracion']) ? intval($_POST['duracion']) : null;
 }
+
 $conexion = conectar();
 if($conexion){
     try{
@@ -37,7 +38,7 @@ if($conexion){
         $stmt -> execute();
         // Confirmar (commit) la transacción
         $conexion->commit();
-        echo "Datos insertados correctamente";
+        echo "Duración de turno agregada correctamente: " . $duracion . " minutos";
         cerrarConexion($conexion);
     }
     catch(Exception $e) {

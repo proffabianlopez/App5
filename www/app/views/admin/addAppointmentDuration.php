@@ -58,13 +58,14 @@ if (isset( $_SESSION)) {
                                                 <h5 class="panel-title">Duración de atención</h5>
                                             </div>
                                             <div class="panel-body">
-                                                <form role="form" name="dcotorspcl" method="POST" action="../../controllers/addAppoinmentDuration.php">
+                                                <form id="appointmentForm" role="form" name="dcotorspcl" method="POST" action="../../controllers/addAppoinmentDuration.php">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Ingrese la duración del turno en minutos</label>
-                                                        <input type="number" name="duracion" class="form-control" required>
+                                                        <input type="number" id="durationInput" name="duracion" class="form-control" required>
                                                     </div>
-                                                    <button type="submit" class="btn btn-o btn-primary">Agregar</button>
+                                                    <button id="submitButton" type="button" class="btn btn-o btn-primary">Agregar</button>
                                                 </form>
+                                                <div id="messaje"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -85,5 +86,6 @@ if (isset( $_SESSION)) {
     </div>
 
     <?php include('../include/script.php'); ?> 
+    <script src="../../../assets/js/addAppointmentDuration.js"></script>
 </body>
 </html>
