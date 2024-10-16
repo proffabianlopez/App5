@@ -36,7 +36,7 @@ else{
                 <h1 class="logo-name">M+</h1>
 
             </div>
-            <h3>Bienvenido al Hospital</h3>
+            <h3>Bienvenido a la Clinica</h3>
             <p>
                 Brindando servicios de salud desde XXXX a la comunidad
             </p>
