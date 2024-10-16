@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../models/connection.php';
-include 'login.php';
+//include 'login.php';
 
 if (isset( $_SESSION)) {
     if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '2') {

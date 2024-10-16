@@ -66,11 +66,11 @@ $personas= obtenerPersonas();
                                                 <th class="center">Nombre</th>
                                                 <th class="center">Apellido</th>
                                                 <th class="center">Contacto</th>
-                                                <th class="center">Calle</th>
+                                                <!-- <th class="center">Calle</th>
                                                 <th class="center">Número</th>
                                                 <th class="center">Departamento</th>
                                                 <th class="center">Piso</th>
-                                                <th class="center">Barrio</th>
+                                                <th class="center">Barrio</th> -->
                                                 <th class="center">D.N.I</th>
                                                 <th class="center">Fecha de Nacimiento</th>
                                                 <th class="center">Estado</th>
@@ -95,7 +95,7 @@ $personas= obtenerPersonas();
                                                         }
                                                     }
                                                     ?></td>
-                                                    <td class="hidden-xs"><?php
+                                                    <!-- <td class="hidden-xs"><?php
                                                         foreach($address as $domicilio){
                                                             if($domicilio['id_person'] == $row['id']){
                                                                 echo $domicilio['street'];
@@ -130,7 +130,7 @@ $personas= obtenerPersonas();
                                                                 echo $barrio['name'];
                                                             }
                                                         }
-                                                    ?></td>
+                                                    ?></td> -->
                                                     <td class="hidden-xs"><?php echo $row['dni']; ?></td>
                                                     <td class="hidden-xs"><?php echo $row['birth_date']; ?></td>
                                                     <td class="hidden-xs">
@@ -144,8 +144,8 @@ $personas= obtenerPersonas();
                                                     ?>
                                                     </td>
                                                     <td class="hidden-xs">
-                                                        <button type="button" class="btn-activate" data-id="<?php echo $row['id']; ?>">Activar usuario</button>
-                                                        <button type="button" class="btn-delete" data-id="<?php echo $row['id']; ?>">Borrar usuario</button>
+                                                        <button type="button" class="btn-activate" data-id="<?php echo $row['id']; ?>">Activar paciente</button>
+                                                        <button type="button" class="btn-delete" data-id="<?php echo $row['id']; ?>">Borrar paciente</button>
                                                     </td>
                                                 </tr>
                                             <?php

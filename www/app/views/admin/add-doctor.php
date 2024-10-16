@@ -1,23 +1,19 @@
 <?php
+session_start();
 include '../../models/getSpecialities.php';
 include '../../models/getLicenseType.php';
-session_start();
 if (isset( $_SESSION)) {
     if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '2') {
-        // var_dump($_SESSION['rol']);
-        // exit;
-        // ob_start();
-        
-            echo '<script type="text/javascript">';
-            echo 'window.location.href="../login.php";';
-            echo '</script>';
-            exit();
-    } 
-} else {
         echo '<script type="text/javascript">';
         echo 'window.location.href="../login.php";';
         echo '</script>';
         exit();
+    } 
+} else {
+    echo '<script type="text/javascript">';
+    echo 'window.location.href="../login.php";';
+    echo '</script>';
+    exit();
 }
 
 $license_types = obtenerTiposDeLicencias();
@@ -29,6 +25,7 @@ $specialities = obtenerEspecialidades();
 <head>
     <title>Admin | Agregar Doctor</title>
     <?php include ('../include/head.php');?>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
     <div id="app">
@@ -57,9 +54,9 @@ $specialities = obtenerEspecialidades();
                                         <div class="panel panel-white">
                                                 <form role="form" action="../../controllers/add-doctor.php" method="POST">
                                                     <div class="form-group">
-                                                        <label for="text">Realza consulta online?</label>
-                                                        <select name="onlineConsultation">
-                                                            <option value="1">Si</option>
+                                                        <label for="text">¿Realiza consulta online?</label>
+                                                        <select name="onlineConsultation" class="form-control">
+                                                            <option value="1">Sí</option>
                                                             <option value="0">No</option>
                                                         </select>
                                                     </div>
@@ -74,15 +71,11 @@ $specialities = obtenerEspecialidades();
                                                         <input type="text" name="surname" class="form-control" placeholder="Apellido" required>
                                                     </div>
 
-
                                                     <div class="form-group" required>
-                                                        <label for="doctorname">Especialidad</label>
-                                                        <select name="speciality" class="form-control">
-                                                            <option value="">Seleccione un tipo de especialidad</option>
+                                                        <label for="doctorname">Especialidades</label>
+                                                        <select name="specialities[]" class="form-control select2-multi" multiple="multiple" placeholder="Seleccione una o más especialidades">
                                                             <?php
-                                                            // Verificar si se obtuvieron resultados
                                                             if (!empty($specialities)) {
-                                                            // Recorrer los tipos de licencia y generar las opciones
                                                                 foreach ($specialities as $speciality) {
                                                                     echo '<option value="' . $speciality['id'] . '">' . $speciality['speciality'] . '</option>';
                                                                 }
@@ -92,7 +85,6 @@ $specialities = obtenerEspecialidades();
                                                             ?>
                                                         </select>
                                                     </div>
-
                                                     <div class="form-group">
                                                         <label for="address">Calle</label>
                                                         <input type="text" name="street" class="form-control" placeholder="Juan XXIII" required>
@@ -150,7 +142,18 @@ $specialities = obtenerEspecialidades();
             <?php include('../include/setting.php'); ?>
         </div>
     </div>
-    <?php include('../include/script.php'); ?> 
+    <?php include('../include/script.php'); ?>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/i18n/es.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.select2-multi').select2({
+            placeholder: "Seleccione una o más especialidades",
+            allowClear: true,
+            language: "es"  // Agrega esta línea para establecer el idioma
+        });
+    });
+    </script>
 </body>
-</html>
-
+</

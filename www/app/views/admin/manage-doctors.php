@@ -18,7 +18,7 @@ if (isset( $_SESSION)) {
         exit();
 }
 
-include '../../controllers/login.php'; // para usar la sesion
+//include '../../controllers/login.php'; // para usar la sesion
 include '../../models/getServiceDays.php';
 require_once '../../models/getSpecialistById.php';
 require_once '../../models/getAppointmentDuration.php';
