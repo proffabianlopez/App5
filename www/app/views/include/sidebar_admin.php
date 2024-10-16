@@ -65,7 +65,7 @@
 											<i class="ti-user"></i>
 										</div>
 										<div class="item-inner">
-											<span class="title"> Usuarios </span><i class="icon-arrow"></i>
+											<span class="title"> Paciente </span><i class="icon-arrow"></i>
 										</div>
 									</div>
 								</a>
@@ -73,7 +73,7 @@
 									
 									<li>
 										<a href="manage-users.php">
-											<span class="title"> Administrador de usuarios </span>
+											<span class="title"> Administrador de paciente </span>
 										</a>
 									</li>
 									
@@ -81,7 +81,7 @@
 								</li>
 								<li>
 <li>
-								<a href="appointment-history.php">
+								<!-- <a href="appointment-history.php">
 									<div class="item-content">
 										<div class="item-media">
 											<i class="ti-file"></i>
@@ -90,7 +90,7 @@
 											<span class="title"> Historial de turnos </span>
 										</div>
 									</div>
-								</a>
+								</a> -->
 							</li>
 						<!-- end: CORE FEATURES -->
 						

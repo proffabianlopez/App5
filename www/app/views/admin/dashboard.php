@@ -80,7 +80,7 @@ if(empty($_SESSION)){
                                             <i class="fa fa-square fa-stack-2x text-primary"></i>
                                             <i class="fa fa-users fa-stack-1x fa-inverse"></i>
                                         </span>
-                                        <h2 class="StepTitle">Administrar Usuarios</h2>
+                                        <h2 class="StepTitle">Administrar paciente</h2>
                                         <p class="cl-effect-1">
                                             <a href="manage-users.php">
                                                 Lista de usuarios
@@ -89,7 +89,7 @@ if(empty($_SESSION)){
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
+                            <!-- <div class="col-sm-4">
                                 <div class="panel panel-white no-radius text-center">
                                     <div class="panel-body">
                                         <span class="fa-stack fa-2x">
@@ -98,13 +98,11 @@ if(empty($_SESSION)){
                                         </span>
                                         <h2 class="StepTitle">Turnos</h2>
                                         <p class="links cl-effect-1">
-                                            <a href="book-appointment.php">
-
-                                            </a>
+                                            <a href="book-appointment.php"></a>
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

@@ -61,7 +61,7 @@ $especialidades = obtenerEspecialidades();
                                                 <form role="form" name="dcotorspcl" method="post" action="../../controllers/doctor-specilization.php">
                                                     <div class="form-group">
                                                         <label for="especialidad">Especialización de doctores</label>
-                                                        <input required type="text" name="especialidad" class="form-control" placeholder="Especialidades" pattern="[A-Za-z\s]+" inputmode="text">
+                                                        <input required type="text" name="especialidad" class="form-control" placeholder="Especialidades" pattern="[A-Za-zÑñÁáÉéÍíÓóÚú\s]+" inputmode="text">
                                                     </div>
                                                     <button type="submit" name="submit" class="btn btn-o btn-primary">Agregar</button>
                                                 </form>

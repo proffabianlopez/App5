@@ -1,53 +1,62 @@
 <?php
 session_start();
 require_once '../models/connection.php';
-require_once 'login.php';
-if (isset( $_SESSION)) {
-    if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '2') {
-        // var_dump($_SESSION['rol']);
-        // exit;
-        // ob_start();
-        
-            echo '<script type="text/javascript">';
-            echo 'window.location.href="../login.php";';
-            echo '</script>';
-            exit();
-    } 
-    // else {
-    //     $useremail = $_SESSION["email"];
-    // }
-} else {
+//require_once 'login.php';
+
+if (isset($_SESSION) && isset($_SESSION['rol'])) {
+    if ($_SESSION['rol'] != '2') {
         echo '<script type="text/javascript">';
-        echo 'window.location.href="../login.php";';
+        echo 'window.location.href="../views/login.php";';
         echo '</script>';
         exit();
+    }
+} else {
+    echo '<script type="text/javascript">';
+    echo 'window.location.href="../views/login.php";';
+    echo '</script>';
+    exit();
 }
-$name = $_POST['name'];
-$surname = $_POST['surname'];
-$onlineConsultation = $_POST['onlineConsultation'];
-$street = $_POST['street'];
-$number = $_POST['number'];
-$apartment = $_POST['apartment'];
-$floor = $_POST['floor'];
-$id_speciality = $_POST['speciality'];
-$id_license_type = $_POST['license_type'];
-$license_number = $_POST['license_number'];
 
-//echo $name, " ", $surname, " ", $onlineConsultation, " ", $street, " ", $apartment, " ", $floor;
+if (isset($_POST['submit'])) {
+    $name = $_POST['name'];
+    $surname = $_POST['surname'];
+    $onlineConsultation = $_POST['onlineConsultation'];
+    $street = $_POST['street'];
+    $number = $_POST['number'];
+    $apartment = $_POST['apartment'];
+    $floor = $_POST['floor'];
+    $id_speciality[] = $_POST['specialities'];
+    $id_license_type = $_POST['license_type'];
+    $license_number = $_POST['license_number'];
+} else {
+    echo "<script>alert('Ingresar datos correctos');</script>";
+    echo 'window.location.href="../views/admin/add-doctor.php";';
+    exit();
+}
+/*
+var_dump($id_speciality);  // Verifica la estructura del array
+
+// Primer nivel del array
+foreach($id_speciality as $specialityGroup) {
+    // Segundo nivel del array
+    foreach($specialityGroup as $speciality) {
+        echo($speciality);  // Aquí verás los valores individuales de las especialidades
+    }
+}*/
+
 
 // Conectamos a la base de datos
 $conexion = conectar();
-    
+
 if ($conexion) {
     try {
         // Iniciamos la transacción
         $conexion->beginTransaction();
-         
+
         // Preparamos la consulta SQL
         $query = "INSERT INTO specialist (name, surname, online_consultation, street, number, apartment, floor) VALUES (:name, :surname, :online_consultation, :street, :number, :apartment, :floor)";
-         
         $stmt = $conexion->prepare($query);
-         
+
         // Vincular los parámetros a las variables de PHP
         $stmt->bindParam(':name', $name, PDO::PARAM_STR);
         $stmt->bindParam(':surname', $surname, PDO::PARAM_STR);
@@ -60,47 +69,65 @@ if ($conexion) {
         // Ejecutamos la consulta
         if ($stmt->execute()) {
             $id_specialist = $conexion->lastInsertId();
-            // Si la consulta fue exitosa, confirmamos la transacción
-            //$conexion->commit();
-            //echo "Datos insertasdos correctamente.";
-            /*header('Location:../views/admin/dashboard.php');
-            exit();*/
-        } else{
+        } else {
             // Si algo falla, revertimos la transacción
             $conexion->rollBack();
             echo "Error al insertar datos.";
+            exit();
         }
 
-        $querySpecialistLicense = "INSERT INTO license_specialist (id_specialist, id_license_type, license_number) 
-        VALUES (:id_specialist, :id_license_type, :license_number)";
+        // Comprobar si ya existe una matrícula
+        $checkQuery = "SELECT COUNT(*) FROM license_specialist WHERE license_number = :license_number";
+        $checkStmt = $conexion->prepare($checkQuery);
+        $checkStmt->bindParam(':license_number', $license_number, PDO::PARAM_STR);
+        $checkStmt->execute();
+        $count = $checkStmt->fetchColumn();
+
+        if ($count > 0) {
+            echo "<script>alert('La matrícula ya existe');</script>";
+            echo "<script>window.location.href ='../views/admin/add-doctor.php'</script>";
+            exit();
+        }
+
+        // Proceder con la inserción si no hay duplicados
+        $querySpecialistLicense = "INSERT INTO license_specialist (id_specialist, id_license_type, license_number) VALUES (:id_specialist, :id_license_type, :license_number)";
         $stmtSpecialistLicense = $conexion->prepare($querySpecialistLicense);
         $stmtSpecialistLicense->bindParam(':id_specialist', $id_specialist, PDO::PARAM_INT);
         $stmtSpecialistLicense->bindParam(':id_license_type', $id_license_type, PDO::PARAM_INT);
         $stmtSpecialistLicense->bindParam(':license_number', $license_number, PDO::PARAM_STR);
-        if($stmtSpecialistLicense->execute()){
+
+        if ($stmtSpecialistLicense->execute()) {
             $id_specialistLicense = $conexion->lastInsertId();
-        } else{
+        } else {
             // Si algo falla, revertimos la transacción
             $conexion->rollBack();
             echo "Error al insertar datos.";
+            exit();
         }
 
-        $querySpecialistSpeciality = "INSERT INTO specialist_license_specialty (id_specialist, id_speciality, id_specialist_license)
-        VALUES (:id_specialist, :id_speciality, :id_specialist_license)";
-        $stmtSpecialistSpecility = $conexion->prepare($querySpecialistSpeciality);
-        $stmtSpecialistSpecility->bindParam(':id_specialist', $id_specialist, PDO::PARAM_INT);
-        $stmtSpecialistSpecility->bindParam(':id_speciality', $id_speciality, PDO::PARAM_INT);
-        $stmtSpecialistSpecility->bindParam(':id_specialist_license', $id_specialistLicense, PDO::PARAM_INT);
-        if($stmtSpecialistSpecility->execute()){
-            // Si la consulta fue exitosa, confirmamos la transacción
-            $conexion->commit();
-            //echo "Datos insertasdos correctamente.";
-            header('Location:../views/admin/doctorsList.php');
-        } else{
-            // Si algo falla, revertimos la transacción
-            $conexion->rollBack();
-            echo "Error al insertar datos.";
+        $querySpecialistSpeciality = "INSERT INTO specialist_license_specialty (id_specialist, id_speciality, id_specialist_license) VALUES (:id_specialist, :id_speciality, :id_specialist_license)";
+        $stmtSpecialistSpeciality = $conexion->prepare($querySpecialistSpeciality);
+        foreach ($id_speciality as $specialityGroup) {
+            foreach($specialityGroup as $speciality){
+                $stmtSpecialistSpeciality->bindValue(':id_specialist', $id_specialist, PDO::PARAM_INT);
+                $stmtSpecialistSpeciality->bindValue(':id_speciality', $speciality, PDO::PARAM_INT);
+                $stmtSpecialistSpeciality->bindValue(':id_specialist_license', $id_specialistLicense, PDO::PARAM_INT);
+                if (!$stmtSpecialistSpeciality->execute()) {
+                    $conexion->rollBack();
+                    echo "Error al insertar especialidades.";
+                    exit();
+                }
+            }
         }
+
+        // Confirmar la transacción
+        $conexion->commit();
+
+        // Redirigir al usuario después de un registro exitoso
+        // echo 'window.location.href="../views/admin/doctorsList.php";';
+
+        header('Location: ../views/admin/doctorsList.php');
+        exit();
 
     } catch (PDOException $e) {
         // En caso de error, se revierte la transacción y mostramos el error
@@ -113,3 +140,4 @@ if ($conexion) {
 } else {
     echo "No se pudo establecer la conexión a la base de datos.";
 }
+?>
