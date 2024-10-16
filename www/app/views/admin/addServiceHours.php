@@ -58,17 +58,18 @@ if (isset( $_SESSION)) {
                                                 <h5 class="panel-title">Horarios de atención</h5>
                                             </div>
                                             <div class="panel-body">
-                                                <form role="form" name="dcotorspcl" method="POST" action="../../controllers/addServiceHours.php">
+                                                <form id="serviceForm" role="form" name="dcotorspcl" method="POST" action="../../controllers/addServiceHours.php">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Inicio de horario de atención</label>
-                                                        <input type="time" name="desde" class="form-control" required>
+                                                        <label for="start time">Inicio de horario de atención</label>
+                                                        <input id="desde" type="time" name="desde" class="form-control" required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">FInal de horario de atención</label>
-                                                        <input type="time" name="hasta" class="form-control" required>
+                                                        <label for="end time">Final de horario de atención</label>
+                                                        <input id="hasta" type="time" name="hasta" class="form-control" required>
                                                     </div>
-                                                    <button type="submit" class="btn btn-o btn-primary">Agregar</button>
+                                                    <button type="button" id="submitButton" class="btn btn-o btn-primary">Agregar</button>
                                                 </form>
+                                                <div id="messaje"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -89,5 +90,6 @@ if (isset( $_SESSION)) {
     </div>
 
     <?php include('../include/script.php'); ?> 
+    <script src="../../../assets/js/addServiceHours.js"></script>
 </body>
 </html>
