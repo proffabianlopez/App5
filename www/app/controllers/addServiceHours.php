@@ -34,8 +34,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         exit();
     }
 
-    $desdeTime = strtotime($desde);
-    $hastaTime = strtotime($hasta);
+    $desdeCompleto = $fechaActual . ' ' . $desde;
+    $hastaCompleto = $fechaActual . ' ' . $hasta;
+
+    
+    $desdeTime = strtotime($desdeCompleto);
+    $hastaTime = strtotime($hastaCompleto);
 
     // Verificar que la hora de inicio sea menor que la final
     if ($desdeTime >= $hastaTime) {
