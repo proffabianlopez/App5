@@ -87,14 +87,47 @@ $tiposDeDomicilios = obtenerTiposDeDomicilios();
                                             <div class="panel-body">
                                                 <form role="form" name="dcotorspcl" method="POST" action="../../controllers/manage-doctors.php">
                                                     <!-- Campo oculto para enviar el ID del doctor -->
-                                                    <input type="hidden" name="id_doctor" value="<?php echo htmlspecialchars($doctorId); ?>">
-                                                    <div class="form-group">Nombre</div>
-                                                    <div class="form-group">Apellido</div>
-                                                    <div class="form-group">Realiza consultas online?</div>
-                                                    <div class="form-group">Calle</div>
-                                                    <div class="form-group">Número</div>
-                                                    <div class="form-group">Departamento</div>
-                                                    <div class="form-group">Piso</div>
+                                                    <input type="hidden" name="id_doctor" value="<?php echo $doctorId; ?>">
+                                                    <div class="form-group">
+                                                        Nombre y Apellido
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <input type="text" name="name" class="form-control" required placeholder="Nombre">
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input type="text" name="surname" class="form-control" required placeholder="Apellido">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        Realiza consultas online?
+                                                        <select name="onlineConsultation" id="onlineConsultation" class="form-group">
+                                                            <option value="1">Si</option>
+                                                            <option value="2">No</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        Calle y Número
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <input type="text" name="street" class="form-control" required placeholder="Calle">
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                            <input type="text" name="number" class="form-control" required placeholder="Número">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        Departamento y Piso
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                            <input type="text" name="apartment" class="form-control" required placeholder="Departamento">
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                            <input type="text" name="floor" class="form-control" required placeholder="Piso">
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <button type="button" class="btn btn-o btn-primary">Modificar</button>
                                                 </form>
                                             </div>
