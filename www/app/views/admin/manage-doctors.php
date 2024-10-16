@@ -152,7 +152,7 @@ foreach ($dias as $dia) {
                                                             ?>
                                                         </select>
                                                     </div>
-                                                    <button type="submit" class="btn btn-o btn-primary">Agregar</button>
+                                                    <button type="button" class="btn btn-o btn-primary">Agregar</button>
                                                 </form>
                                             </div>
                                         </div>

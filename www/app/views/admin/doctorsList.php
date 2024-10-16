@@ -73,6 +73,7 @@ $doctores = obtenerEspecialistas();
                                                 <th class="center">Estado</th>
                                                 <!-- <th class="center">Especialidades</th> -->
                                                 <th class="center">Acción</th>
+                                                <th class="center">Agregar Dias y Fechas de trabajo</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -126,7 +127,11 @@ $doctores = obtenerEspecialistas();
                                                     <td class="hidden-xs">
                                                         <button type="button" class="btn-activate" data-id="<?php echo $row['id']; ?>">Activar doctor</button>
                                                         <button type="button" class="btn-delete" data-id="<?php echo $row['id']; ?>">Borrar doctor</button>
-                                                        <button type="button" class="btn-modificar" onclick="window.location.href='manage-doctors.php?id=<?php echo $row['id']; ?>'">Modificar Doctor</button>
+                                                        <button type="button" class="btn-modificar" onclick="window.location.href='editDoctor.php?id=<?php echo $row['id']; ?>'">Modificar Doctor</button>
+                                                    </td>
+                                                    <td>
+                                                    <button type="button" class="btn-modificar" onclick="window.location.href='manage-doctors.php?id=<?php echo $row['id']; ?>'">Horarios y Dias de trabajo</button>
+                                                    </td>
                                                 </tr>
                                             <?php
                                             } ?>

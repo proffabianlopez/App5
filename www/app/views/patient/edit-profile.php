@@ -24,7 +24,6 @@ include '../../models/getNeighborhood.php';
 include '../../models/getContactsType.php';
 include '../../models/getAddressType.php';
 
-}
 
 $barrios = obtenerBarrio();
 $tiposDeContactos = obtenerTiposDeContactos();
