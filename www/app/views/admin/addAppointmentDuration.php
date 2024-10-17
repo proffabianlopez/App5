@@ -61,10 +61,10 @@ $duracionTurno =obtenerDuracionDelTurno();
                                                 <h5 class="panel-title">Duración de atención</h5>
                                             </div>
                                             <div class="panel-body">
-                                                <form id="appointmentForm" role="form" name="dcotorspcl" method="POST" action="../../controllers/addAppoinmentDuration.php">
+                                                <form id="appointmentForm" role="form" name="dcotorspcl" method="POST" action="../../controllers/addAppointmentDuration.php">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Ingrese la duración del turno en minutos</label>
-                                                        <input type="number" id="durationInput" name="duracion" class="form-control" required>
+                                                        <label for="duration">Ingrese la duración del turno en minutos</label>
+                                                        <input type="number" name="duracion" id="durationInput" class="form-control" required>
                                                     </div>
                                                     <button id="submitButton" type="button" class="btn btn-o btn-primary">Agregar</button>
                                                 </form>
