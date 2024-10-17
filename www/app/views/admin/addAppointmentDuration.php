@@ -74,14 +74,14 @@ $duracionTurno =obtenerDuracionDelTurno();
                                     </div>
                                     <div class="col-lg-6 col-md-12">
                                         <div class="panel panel-white">
-                                            <div class="panel-heading">
+                                            <!-- <div class="panel-heading">
                                                 <h5 class="panel-title">Franja horaria</h5>
-                                            </div>
+                                            </div> -->
                                             <div class="panel-body">
                                             <table class="table table-hover" id="sample-table-1">
                                                     <thead>
                                                         <tr>
-                                                            <th class="center">Franjas horarias cargadas</th>
+                                                            <th class="center">Duración de atención</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
