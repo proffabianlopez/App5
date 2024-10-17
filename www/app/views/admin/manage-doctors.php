@@ -1,54 +1,44 @@
 <?php
 session_start();
-if (isset( $_SESSION)) {
-    if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '2') {
-        // var_dump($_SESSION['rol']);
-        // exit;
-        // ob_start();
-        
-            echo '<script type="text/javascript">';
-            echo 'window.location.href="../login.php";';
-            echo '</script>';
-            exit();
-    } 
-} else {
-        echo '<script type="text/javascript">';
-        echo 'window.location.href="../login.php";';
-        echo '</script>';
-        exit();
-}
-
-//include '../../controllers/login.php'; // para usar la sesion
 include '../../models/getServiceDays.php';
 require_once '../../models/getSpecialistById.php';
 require_once '../../models/getAppointmentDuration.php';
 require_once '../../models/getServiceHours.php';
+require_once '../../models/getAvailabilitySchedules.php';
 
-if(empty($_SESSION)){
+if (isset($_SESSION)) {
+    if ($_SESSION['rol'] == "" || $_SESSION['rol'] != '2') {
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="../login.php";';
+        echo '</script>';
+        exit();
+    } 
+} else {
     echo '<script type="text/javascript">';
     echo 'window.location.href="../login.php";';
     echo '</script>';
     exit();
 }
 
+if (empty($_SESSION)) {
+    echo '<script type="text/javascript">';
+    echo 'window.location.href="../login.php";';
+    echo '</script>';
+    exit();
+}
 
-//aqui ya puedo modificar cada doctor, los valores que yo desee.
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $doctorId = $_GET['id'];
     $doctors = obtenerEspecialistaPorId($doctorId);
-    // ejemplo de como obtener cada campo del doctor con su id
-    // usar mas funciones en caso de querer actualizar más cosas
-    foreach($doctors as $doctor){
+    foreach ($doctors as $doctor) {
         $doctorNombre = $doctor['name'];
     }
 }
 
 $dias = obtenerDias();
-//var_dump($dias);
 $duracion_turnos = obtenerDuracionDelTurno();
-//var_dump($duracion_turnos);
 $horarios_de_servicio = obtenerHorariosDeServicio();
-//var_dump($horarios_de_servicio);
+$hs_disponibilidad = obtenerHorariosyDias($doctorId);
 
 $dias_semana = [
     1 => "Lunes",
@@ -66,15 +56,13 @@ foreach ($dias as $dia) {
         $array_dias[] = $dias_semana[$id];
     }
 }
-
-//print_r($array_dias);
-
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title> Admin | Administración del doctor</title>
-	<?php include ('../include/head.php');?> 
+    <title>Admin | Administración del doctor</title>
+	<?php include('../include/head.php'); ?> 
 </head>
 
 <body>
@@ -99,7 +87,6 @@ foreach ($dias as $dia) {
                             </ol>
                         </div>
                     </section>
-
                     <div class="container-fluid container-fullw bg-white">
                         <div class="row">
                             <div class="col-md-12">
@@ -129,12 +116,11 @@ foreach ($dias as $dia) {
                                                     </div>
                                                     <div class="form-group">
                                                         <select name="dia" value="">
-                                                            <option value="">Seleccione un dia de la semana</option>
+                                                            <option value="">Seleccione un día de la semana</option>
                                                             <?php
-                                                            // Mostrar los días de la semana en un dropdown
-                                                            foreach ($dias_semana as $id => $dia) {
-                                                                echo "<option value='$id'>$dia</option>";
-                                                            }
+                                                                foreach ($dias_semana as $id => $dia) {
+                                                                    echo "<option value='$id'>$dia</option>";
+                                                                }
                                                             ?>
                                                         </select>
                                                     </div>
@@ -152,14 +138,37 @@ foreach ($dias as $dia) {
                                                             ?>
                                                         </select>
                                                     </div>
-                                                    <button type="button" class="btn btn-o btn-primary">Agregar</button>
+                                                    <button type="submit" class="btn btn-o btn-primary">Agregar</button>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Día atención</th>
+                                                    <th>Horario</th>
+                                                    <th>Duración del turno</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                // Recorrer los horarios y días disponibles del doctor
+                                                foreach ($hs_disponibilidad as $horario) {
+                                                    echo "<tr>";
+                                                    echo "<td>" . htmlspecialchars($horario['dia_servicio_nombre']) . "</td>";
+                                                    echo "<td>" . htmlspecialchars($horario['hora_inicio']) . " - " . htmlspecialchars($horario['hora_fin']) . "</td>";
+                                                    echo "<td>" . htmlspecialchars($horario['duracion_turno']) . "</td>";
+                                                    echo "</tr>";
+                                                }
+                                                ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
                                 </div>
                             </div>
-
                             <div class="col-lg-12 col-md-12">
                                 <div class="panel panel-white"></div>
                             </div>
@@ -174,5 +183,8 @@ foreach ($dias as $dia) {
     </div>
 
     <?php include('../include/script.php'); ?> 
+    <script>
+        new DataTable('#example');
+    </script>
 </body>
 </html>

@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="../../../assets/css/raleway.css">
 <link rel="stylesheet" href="../../../assets/css/crete.css">
 <link rel="stylesheet" href="../../../assets/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/dataTables.bootstrap.css">
 <link rel="stylesheet" href="../../../assets/vendor/fontawesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="../../../assets/vendor/themify-icons/themify-icons.min.css">
 <link href="../../../assets/vendor/animate.css/animate.min.css" rel="stylesheet" media="screen">
