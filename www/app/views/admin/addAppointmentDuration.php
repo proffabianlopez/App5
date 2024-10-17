@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once '../../models/getAppointmentDuration.php';
+
 if (isset( $_SESSION)) {
     if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '2') {
         // var_dump($_SESSION['rol']);
@@ -17,6 +19,7 @@ if (isset( $_SESSION)) {
         echo '</script>';
         exit();
 }
+$duracionTurno =obtenerDuracionDelTurno();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -66,6 +69,34 @@ if (isset( $_SESSION)) {
                                                     <button id="submitButton" type="button" class="btn btn-o btn-primary">Agregar</button>
                                                 </form>
                                                 <div id="messaje"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="panel panel-white">
+                                            <div class="panel-heading">
+                                                <h5 class="panel-title">Franja horaria</h5>
+                                            </div>
+                                            <div class="panel-body">
+                                            <table class="table table-hover" id="sample-table-1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="center">Franjas horarias cargadas</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                        $turnoDuracion = obtenerDuracionDelTurno();
+                                                        foreach ($turnoDuracion as $row) {
+                                                        ?>
+                                                            <tr class="center">
+                                                                <td class="hidden-xs"><?php echo $row['appointment_duration']; ?></td>
+                                                            </tr>
+                                                        <?php
+                                                        } ?>
+                                                    </tbody>
+                                            </table>
+                                            <div id="messaje"></div>
                                             </div>
                                         </div>
                                     </div>
