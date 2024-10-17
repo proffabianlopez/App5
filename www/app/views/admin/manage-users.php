@@ -132,7 +132,7 @@ $personas= obtenerPersonas();
                                                         }
                                                     ?></td> -->
                                                     <td class="hidden-xs"><?php echo $row['dni']; ?></td>
-                                                    <td class="hidden-xs"><?php echo $row['birth_date']; ?></td>
+                                                    <td class="hidden-xs"><?php echo date('d/m/Y', strtotime($row['birth_date'])); ?></td>
                                                     <td class="hidden-xs">
                                                     <?php
                                                         if($row['status'] == 1){
@@ -168,5 +168,6 @@ $personas= obtenerPersonas();
         <?php include('../include/script.php'); ?> 
         <script src="../../../assets/js/activeUser.js"></script>
         <script src="../../../assets/js/deleteUser.js"></script>
+        
     </body>
 </html>
