@@ -27,20 +27,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // usar mas funciones en caso de querer actualizar más cosas
     foreach($doctors as $doctor){
         $doctorNombre = $doctor['name'];
+        $doctorApellido = $doctor['surname'];
+        $doctorOnlineConsultation = $doctor['online_consultation'];
+        $doctorCalle = $doctor['street'];
+        $doctorNumero = $doctor['number'];
+        $doctorDepartamento = $doctor['apartment'];
+        $doctorPiso = $doctor['floor'];
     }
 }
 
 
-include '../../models/getNeighborhood.php';
-include '../../models/getContactsType.php';
-include '../../models/getAddressType.php';
-
-
-$barrios = obtenerBarrio();
-$tiposDeContactos = obtenerTiposDeContactos();
-//var_dump($tiposDeContactos);
-$tiposDeDomicilios = obtenerTiposDeDomicilios();
-//var_dump($tiposDeDomicilios);
   
 ?> 
 
@@ -62,14 +58,14 @@ $tiposDeDomicilios = obtenerTiposDeDomicilios();
                     <section id="page-title">
                         <div class="row">
                             <div class="col-sm-8">
-                                <h1 class="mainTitle">Administrador | Administración del doctor</h1>
+                                <h1 class="mainTitle">Administrador | Modificación del doctor</h1>
                             </div>
                             <ol class="breadcrumb">
                                 <li>
                                     <span>Admin</span>
                                 </li>
                                 <li class="active">
-                                    <span>Administración del doctor</span>
+                                    <span>Modificación del doctor</span>
                                 </li>
                             </ol>
                         </div>
@@ -85,23 +81,25 @@ $tiposDeDomicilios = obtenerTiposDeDomicilios();
                                                 <h5 class="panel-title">Información personal de <?php echo $doctorNombre; ?></h5>
                                             </div>
                                             <div class="panel-body">
-                                                <form role="form" name="dcotorspcl" method="POST" action="../../controllers/manage-doctors.php">
+                                                <form id="editDoctorForm" role="form" name="dcotorspcl" method="POST" action="../../controllers/editDoctor.php">
                                                     <!-- Campo oculto para enviar el ID del doctor -->
                                                     <input type="hidden" name="id_doctor" value="<?php echo $doctorId; ?>">
                                                     <div class="form-group">
                                                         Nombre y Apellido
                                                         <div class="row">
                                                             <div class="col-md-4">
-                                                                <input type="text" name="name" class="form-control" required placeholder="Nombre">
+                                                                <input id = "name" type="text" name="name" class="form-control" placeholder="<?php echo $doctorNombre; ?>">
+                                                                <input id = "doctorName" type="hidden" name="doctorName" value="<?php echo $doctorNombre; ?>">
                                                             </div>
                                                             <div class="col-md-4">
-                                                                <input type="text" name="surname" class="form-control" required placeholder="Apellido">
+                                                                <input id = "surname" type="text" name="surname" class="form-control" placeholder="<?php echo $doctorApellido; ?>">
+                                                                <input id = "doctorSurname" type="hidden" name="doctorSurname" value="<?php echo $doctorApellido; ?>">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         Realiza consultas online?
-                                                        <select name="onlineConsultation" id="onlineConsultation" class="form-group">
+                                                        <select id = "onlineConsultation" name="onlineConsultation" id="onlineConsultation">
                                                             <option value="1">Si</option>
                                                             <option value="2">No</option>
                                                         </select>
@@ -110,10 +108,12 @@ $tiposDeDomicilios = obtenerTiposDeDomicilios();
                                                         Calle y Número
                                                         <div class="row">
                                                             <div class="col-md-4">
-                                                                <input type="text" name="street" class="form-control" required placeholder="Calle">
+                                                                <input id = "street" type="text" name="street" class="form-control" placeholder="<?php echo $doctorCalle; ?>">
+                                                                <input id = "doctorStreet" type="hidden" name="doctorStreet" value="<?php echo $doctorCalle; ?>">
                                                             </div>
                                                             <div class="col-md-4">
-                                                            <input type="text" name="number" class="form-control" required placeholder="Número">
+                                                            <input id = "number" type="text" name="number" class="form-control" placeholder="<?php echo $doctorNumero; ?>">
+                                                            <input id = "doctorNumber" type="hidden" name="doctorNumber" value="<?php echo $doctorNumero; ?>">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -121,15 +121,18 @@ $tiposDeDomicilios = obtenerTiposDeDomicilios();
                                                         Departamento y Piso
                                                         <div class="row">
                                                             <div class="col-md-4">
-                                                            <input type="text" name="apartment" class="form-control" required placeholder="Departamento">
+                                                            <input id = "apartment" type="text" name="apartment" class="form-control" placeholder="<?php echo $doctorDepartamento; ?>">
+                                                            <input id = "doctorApartment" type="hidden" name="doctorApartment" value="<?php echo $doctorDepartamento; ?>">
                                                             </div>
                                                             <div class="col-md-4">
-                                                            <input type="text" name="floor" class="form-control" required placeholder="Piso">
+                                                            <input id = "floor" type="text" name="floor" class="form-control" placeholder="<?php echo $doctorPiso; ?>">
+                                                            <input id = "doctorFloor" type="hidden" name="doctorFloor" value="<?php echo $doctorPiso; ?>">
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button type="button" class="btn btn-o btn-primary">Modificar</button>
+                                                    <button id = "button"type="button" class="btn btn-o btn-primary">Modificar</button>
                                                 </form>
+                                                <div id="message"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -150,6 +153,7 @@ $tiposDeDomicilios = obtenerTiposDeDomicilios();
     </div>
 
     <?php include('../include/script.php'); ?> 
+    <script src="../../../assets/js/updateDoctor.js"></script>
 </body>
 
 </html>
