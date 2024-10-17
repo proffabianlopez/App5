@@ -48,7 +48,7 @@ if ($conexion) {
 
             // Confirmar la transacción
             $conexion->commit();
-            echo "Horario de servicio agregado correctamente: start_time " . $start_time . " end$end_time " . $end_time;
+            echo "Horario de servicio agregado correctamente: hora de inicio " . $start_time . " hora de finalización " . $end_time;
         } catch (Exception $e) {
             // Revertir la transacción en caso de error
             $conexion->rollBack();
