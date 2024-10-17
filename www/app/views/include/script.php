@@ -1,4 +1,6 @@
 <script src="../../../assets/vendor/jquery/jquery.min.js"></script>
+<script src="../../../assets/vendor/jquery/jquery-3.7.1.js"></script>
+<script src="../../../assets/vendor/DataTables/dataTables.js"></script>
 <script src="../../../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="../../../assets/vendor/modernizr/modernizr.js"></script>
 <script src="../../../assets/vendor/jquery-cookie/jquery.cookie.js"></script>

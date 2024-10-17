@@ -4,10 +4,13 @@ function obtenerEspecialistaPorId($id) {
     $conecction = conectar();
     if ($conecction) {
         // Preparar la consulta SQL
-        $query = "SELECT * FROM specialist WHERE id = $id";
+        $query = "SELECT * FROM specialist WHERE id = :id";
         
         // Preparar la sentencia
         $stmt = $conecction->prepare($query);
+        
+        // Enlazar el parámetro de manera segura
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         
         // Ejecutar la consulta
         $stmt->execute();
