@@ -6,36 +6,40 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $email = isset($_POST["email"]) ? $_POST["email"] : null;
     $password = isset($_POST["password"]) ? $_POST['password'] : null;
     $resultados = obtenerUsuarioPorEmail($email);
-    //var_dump($resultados);
-    // Mostrar los resultados
+
     if (!empty($resultados)) {
-    foreach ($resultados as $usuario) {
-        $email_sql= $usuario['email'];
-        $pass_sql= $usuario['password'];
-        $_SESSION['user'] = $usuario['id'];
-        $_SESSION['rol'] = $usuario['id_rol'];
-        $_SESSION['person'] = $usuario['id_person'];
+        foreach ($resultados as $usuario) {
+            $email_sql = $usuario['email'];
+            $pass_sql = $usuario['password'];
+            $_SESSION['user'] = $usuario['id'];
+            $_SESSION['rol'] = $usuario['id_rol'];
+            $_SESSION['person'] = $usuario['id_person'];
+            $_SESSION['email'] = $usuario['email'];
 
-        $_SESSION['email'] = $usuario['email'];
+            if($email == $email_sql && password_verify($password, $pass_sql)){
+                $response = ['status' => 'success'];
 
-        // logica de ingreso
-        if($email == $email_sql && password_verify($password, $pass_sql)){
-            //echo("Login exitoso, redirigir al dashboard paciente");
-            if($_SESSION['rol'] == 1){
-                header('Location:../views/patient/dashboard.php');
-            }
-            elseif ($_SESSION['rol'] == 2) {
-                header("Location:../views/admin/dashboard.php");
+                if($_SESSION['rol'] == 1){
+                    // Redirigir al dashboard de paciente
+                    $response['redirect_url'] = "../views/patient/dashboard.php";
+                }
+                elseif ($_SESSION['rol'] == 2) {
+                    // Redirigir al dashboard de admin
+                    $response['redirect_url'] = "../views/admin/dashboard.php";
+                }
+                echo json_encode($response);
+                exit();
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Credenciales incorrectas']);
                 exit();
             }
         }
-        //session_unset();
-    }
     } else {
-        //logica para un msj con ajax para informar que las credenciales son incorrectas
-}
+        echo json_encode(['status' => 'error', 'message' => 'Credenciales incorrectas']);
+        exit();
+    }
 } else {
-    //logica para un msj con ajax de que el metodo POST no funciona
+    echo json_encode(['status' => 'error', 'message' => 'El método POST no está funcionando, hable con el administrador']);
+    exit();
 }
-
 

@@ -1,4 +1,3 @@
-
 <?php
 error_reporting(0);
 if(!isset($_SESSION)){
@@ -41,14 +40,15 @@ else{
                 Brindando servicios de salud desde XXXX a la comunidad
             </p>
             <p>Inicie Sesión para tener acceso a la plataforma.</p>
-            <form class="m-t" role="form" method="POST" action="../controllers/login.php">
+            <div id = "messaje"></div>
+            <form id = "loginForm" class="m-t" role="form" method="POST" action="../controllers/login.php">
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Email" name="email" required>
+                    <input id = "email" type="email" class="form-control" placeholder="Email" name="email" required>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" id="password" name="password" required>
+                    <input id = "pass" type="password" class="form-control" placeholder="Password" id="password" name="password" required>
                 </div>
-                <button type="submit" class="btn btn-primary block full-width m-b"><a href="dashboard.php"></a>Login</button>
+                <button id = "submitButton" type="submit" class="btn btn-primary block full-width m-b"><a href="dashboard.php"></a>Login</button>
 
                 <a href="#"><small>¿Olvidó su contraseña?</small></a>
                 <p class="text-muted text-center"><small>¿No tiene una cuenta?</small></p>
@@ -61,6 +61,7 @@ else{
     <!-- Mainly scripts -->
     <script src="../../assets/js/jquery-3.1.1.min.js"></script>
     <script src="../../assets/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/login.js"></script>
 
 </body>
 
