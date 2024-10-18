@@ -28,11 +28,6 @@
 					</a>
 					<ul class="sub-menu">
 						<li>
-							<a href="doctor-specilization.php">
-								<span class="title"> Especialidades </span>
-							</a>
-						</li>
-						<li>
 							<a href="add-doctor.php">
 								<span class="title"> Agregar Doctor</span>
 							</a>
@@ -87,6 +82,11 @@
 						</div>
 					</a>
 					<ul class="sub-menu">
+						<li>
+							<a href="doctor-specilization.php">
+								<span class="title"> Agregar Especialidades </span>
+							</a>
+						</li>
 						<li>
 							<a href="addServiceHours.php">
 								<span class="title"> Agregar horarios de atención </span>
