@@ -88,11 +88,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                                         Nombre y Apellido
                                                         <div class="row">
                                                             <div class="col-md-4">
-                                                                <input id = "name" type="text" name="name" class="form-control" placeholder="<?php echo $doctorNombre; ?>">
+                                                                <input id = "name" type="text" name="name" class="form-control" value="<?php echo $doctorNombre; ?>">
                                                                 <input id = "doctorName" type="hidden" name="doctorName" value="<?php echo $doctorNombre; ?>">
                                                             </div>
                                                             <div class="col-md-4">
-                                                                <input id = "surname" type="text" name="surname" class="form-control" placeholder="<?php echo $doctorApellido; ?>">
+                                                                <input id = "surname" type="text" name="surname" class="form-control" value="<?php echo $doctorApellido; ?>">
                                                                 <input id = "doctorSurname" type="hidden" name="doctorSurname" value="<?php echo $doctorApellido; ?>">
                                                             </div>
                                                         </div>
@@ -108,11 +108,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                                         Calle y Número
                                                         <div class="row">
                                                             <div class="col-md-4">
-                                                                <input id = "street" type="text" name="street" class="form-control" placeholder="<?php echo $doctorCalle; ?>">
+                                                                <input id = "street" type="text" name="street" class="form-control" value="<?php echo $doctorCalle; ?>">
                                                                 <input id = "doctorStreet" type="hidden" name="doctorStreet" value="<?php echo $doctorCalle; ?>">
                                                             </div>
                                                             <div class="col-md-4">
-                                                            <input id = "number" type="text" name="number" class="form-control" placeholder="<?php echo $doctorNumero; ?>">
+                                                            <input id = "number" type="text" name="number" class="form-control" value="<?php echo $doctorNumero; ?>">
                                                             <input id = "doctorNumber" type="hidden" name="doctorNumber" value="<?php echo $doctorNumero; ?>">
                                                             </div>
                                                         </div>
@@ -121,11 +121,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                                         Departamento y Piso
                                                         <div class="row">
                                                             <div class="col-md-4">
-                                                            <input id = "apartment" type="text" name="apartment" class="form-control" placeholder="<?php echo $doctorDepartamento; ?>">
+                                                            <input id = "apartment" type="text" name="apartment" class="form-control" value="<?php echo $doctorDepartamento; ?>">
                                                             <input id = "doctorApartment" type="hidden" name="doctorApartment" value="<?php echo $doctorDepartamento; ?>">
                                                             </div>
                                                             <div class="col-md-4">
-                                                            <input id = "floor" type="text" name="floor" class="form-control" placeholder="<?php echo $doctorPiso; ?>">
+                                                            <input id = "floor" type="text" name="floor" class="form-control" value="<?php echo $doctorPiso; ?>">
                                                             <input id = "doctorFloor" type="hidden" name="doctorFloor" value="<?php echo $doctorPiso; ?>">
                                                             </div>
                                                         </div>
