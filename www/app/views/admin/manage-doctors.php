@@ -97,7 +97,7 @@ foreach ($dias as $dia) {
                                                 <h5 class="panel-title">Dia laboral de <?php echo $doctorNombre; ?></h5>
                                             </div>
                                             <div class="panel-body">
-                                                <form role="form" name="dcotorspcl" method="POST" action="../../controllers/manage-doctors.php">
+                                                <form id = "form" role="form" name="dcotorspcl" method="POST" action="../../controllers/manage-doctors.php">
                                                     <!-- Campo oculto para enviar el ID del doctor -->
                                                     <input type="hidden" name="id_doctor" value="<?php echo htmlspecialchars($doctorId); ?>">
                                                     <div class="form-group">
@@ -138,8 +138,9 @@ foreach ($dias as $dia) {
                                                             ?>
                                                         </select>
                                                     </div>
-                                                    <button type="submit" class="btn btn-o btn-primary">Agregar</button>
+                                                    <button id = "submitButton" type="submit" class="btn btn-o btn-primary">Agregar</button>
                                                 </form>
+                                                <div id="messaje"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -186,5 +187,6 @@ foreach ($dias as $dia) {
     <script>
         new DataTable('#example');
     </script>
+    <script src="../../../assets/js/manage-doctors.js"></script>
 </body>
 </html>
