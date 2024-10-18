@@ -25,7 +25,11 @@ if (isset( $_SESSION)) {
         exit();
 }
 
-if (isset($_POST['dia'])) {
+$id_dia = "";
+$duracion_del_turno = "";
+$horario_atencion = "";
+
+if (!empty($_POST['dia'])) {
     $id_dia = $_POST['dia'];
 
     // Mapeo de id a día de la semana
@@ -39,10 +43,14 @@ if (isset($_POST['dia'])) {
         7 => "Domingo"
     ];
 
-    //$dia_seleccionado = $dias_semana[$id_dia];
+    $dia_seleccionado = $dias_semana[$id_dia];
     //echo "Has seleccionado el día: $dia_seleccionado con ID: $id_dia";
 }
 
+if(empty($id_dia)){
+    echo "seleccione un dia para poder cargar los datos correctamente.";
+    exit();
+}
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $duracion_del_turno = $_POST['duracion_turno'];
@@ -50,10 +58,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $id_doctor = $_POST['id_doctor'];
 }
 
-if(empty($id_dia && $duracion_del_turno && $horario_atencion)){
-    echo "seleccione una opción de cada campo para poder cargar los datos correctamente.";
-    exit();
-}
 //echo $id_doctor, " ", $duracion_del_turno, " ", $duracion_del_turno, " ", $horario_atencion, " ";
 
 $hs_disponibilidad = obtenerHorariosyDias($id_doctor);
@@ -65,6 +69,10 @@ foreach ($hs_disponibilidad as $horario) {
     }
 }
 
+if(empty($duracion_del_turno && $horario_atencion)){
+    echo "seleccione una opción de cada campo para poder cargar los datos correctamente.";
+    exit();
+}
 
 $conexion = conectar();
 if($conexion){
