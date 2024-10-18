@@ -130,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button id = "button"type="button" class="btn btn-o btn-primary">Modificar</button>
+                                                    <button id = "button" type="button" class="btn btn-o btn-primary">Modificar</button>
                                                 </form>
                                                 <div id="message"></div>
                                             </div>

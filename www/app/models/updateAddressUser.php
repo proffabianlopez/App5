@@ -24,7 +24,7 @@ function UpdateAddress($street, $number, $apartment, $floor, $id_neighborhood, $
             if ($stmtAddress->execute()) {
                 // Si ambas consultas fueron exitosas, confirmamos la transacción
                 $connection->commit();
-                echo "Datos actualizados correctamente del domicilio.";
+                echo "  Datos actualizados correctamente del domicilio.  ";
                 // Redirigir si es necesario
                 // header('Location:../views/admin/dashboard.php');
             } else {

@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../models/connection.php';
-require_once 'login.php';
+//require_once 'login.php';
 if (isset( $_SESSION)) {
     if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '1') {
         // var_dump($_SESSION['rol']);
@@ -45,21 +45,24 @@ $id_address_type = $_POST['id_address_type'];
 //echo $name, " ", $surname, " ", $onlineConsultation, " ", $street, " ", $apartment, " ", $floor;
 
 $userContact = obtenerContactoPorId($_SESSION['person']);
-var_dump($userContact);
+//var_dump($userContact);
 $userAddress = obtenerDomicilioPorId($_SESSION['person']);
-var_dump($userAddress);
+//var_dump($userAddress);
 
 // Conectamos a la base de datos
 $conexion = conectar();
     
 if ($conexion) {
     try {
-        if(!empty($userContact && $userAddress)){
-            updateAddress($street, $number, $apartment, $floor, $id_neighborhood, $id_person);
+        if(!empty($userContact)){
             updateContact($contact, $id_contact_type, $id_person);
         } else{
-            insertAddress($street, $number, $apartment, $floor, $id_neighborhood, $id_person, $id_address_type);
             insertContact($contact, $id_contact_type, $id_person);
+        }
+        if(!empty($userAddress)){
+            updateAddress($street, $number, $apartment, $floor, $id_neighborhood, $id_person);
+        } else{
+            insertAddress($street, $number, $apartment, $floor, $id_neighborhood, $id_person, $id_address_type);;
         }
 
     } catch(PDOException $e){
