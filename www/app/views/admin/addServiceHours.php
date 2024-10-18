@@ -67,7 +67,7 @@ if (isset( $_SESSION)) {
                                                         <label for="end time">Final de horario de atención</label>
                                                         <input id="hasta" type="time" name="hasta" class="form-control" required>
                                                     </div>
-                                                    <button type="button" id="submitButton" class="btn btn-o btn-primary">Agregar</button>
+                                                    <button type="submit" id="submitButton" class="btn btn-o btn-primary">Agregar</button>
                                                 </form>
                                                 <div id="messaje"></div>
                                             </div>

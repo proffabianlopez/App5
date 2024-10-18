@@ -66,7 +66,7 @@ $duracionTurno =obtenerDuracionDelTurno();
                                                         <label for="duration">Ingrese la duración del turno en minutos</label>
                                                         <input type="number" name="duracion" id="durationInput" class="form-control" required>
                                                     </div>
-                                                    <button id="submitButton" type="button" class="btn btn-o btn-primary">Agregar</button>
+                                                    <button id="submitButton" type="submit" class="btn btn-o btn-primary">Agregar</button>
                                                 </form>
                                                 <div id="messaje"></div>
                                             </div>
