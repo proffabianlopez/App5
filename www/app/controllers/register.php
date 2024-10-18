@@ -1,24 +1,37 @@
 <?php
 require_once '../models/connection.php';
-//var_dump($_POST);
+require_once '../models/getUsers.php';
+require_once '../models/getPersonByDni.php';
+
+// Mostrar errores de PHP
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+header('Content-Type: application/json'); // Asegúrate de que la respuesta sea JSON
+
+// Obtener los valores del POST
 $name = $_POST['name'];
 $surname = $_POST['surname'];
 $dni = $_POST['dni'];
 $birth_date = $_POST['birth_date'];
-$emil = $_POST['email'];
+$email = $_POST['email'];
 $password = $_POST['password'];
-//$street = $_POST['street'];
-//$number = $_POST['number'];
-//$apartment = $_POST['apartment'];
-//$floor = $_POST['floor'];
-//$id_neighborhood = $_POST['id_neighborhood'];
 
+$user = obtenerUsuarioPorEmail($email);
+if (!empty($user)) {
+    echo json_encode(['status' => 'error', 'message' => 'Email no válido']);
+    exit();
+}
 
-//echo($name." ".$surname." ".$dni." ".$birth_date." ".$emil." ".$password." ".$street." ".$number." ".$apartment." ".$floor." ".$id_neighborhood);
-
+$persona = obtenerPersonaPorDni($dni);
+if (!empty($persona)) {
+    echo json_encode(['status' => 'error', 'message' => 'DNI no válido']);
+    exit();
+}
 
 try {
-    $conexion=conectar();
+    $conexion = conectar();
     // Iniciar la transacción
     $conexion->beginTransaction();
 
@@ -41,40 +54,19 @@ try {
     $stmt_user->execute([
         ':id_person' => $id_person,
         ':email' => $_POST['email'],
-        ':password' => password_hash($_POST['password'], PASSWORD_BCRYPT)  // Asegúrate de encriptar las contraseñas
-    ]);
-/*
-    // Insertar en la tabla 'address' usando el ID de 'person'
-    $sql_address = "INSERT INTO address (id_person, id_address_type, street, number, apartment, floor, id_neighborhood) VALUES (:id_person, :id_address_type, :street, :number, :apartment, :floor, :id_neighborhood)";
-    $stmt_address = $conexion->prepare($sql_address);
-    $stmt_address->execute([
-        ':id_person' => $id_person,
-        'id_address_type' => $_POST['id_address_type'],
-        ':street' => $_POST['street'],
-        ':number' => $_POST['number'],
-        ':apartment' => $_POST['apartment'],
-        ':floor' => $_POST['floor'],
-        ':id_neighborhood' => $_POST['id_neighborhood']
+        ':password' => password_hash($_POST['password'], PASSWORD_BCRYPT)
     ]);
 
-    // Insertar en la tabla 'contact' usando el ID de 'person'
-    $sql_contact = "INSERT INTO contact (id_person, id_contact_type, contact, status) VALUES (:id_person, :id_contact_type, :contact, 1)";
-    $stmt_contact = $conexion->prepare($sql_contact);
-    $stmt_contact->execute([
-        ':id_person' => $id_person,
-        ':id_contact_type' => $_POST['id_contact_type'],
-        ':contact' => $_POST['contact']
-    ]);
-*/
-    cerrarConexion($conexion);
     // Confirmar (commit) la transacción
     $conexion->commit();
-    //echo "Datos insertados correctamente";
-    header('Location:../views/login.php');
+    cerrarConexion($conexion);
+
+    // Respuesta exitosa con URL de redirección
+    echo json_encode(['status' => 'success', 'redirect_url' => '../views/login.php']);
 
 } catch (Exception $e) {
     // Si ocurre un error, revertir (rollback) la transacción
     $conexion->rollBack();
-    echo "Error al insertar datos: " . $e->getMessage();
+    echo json_encode(['status' => 'error', 'message' => 'Error al insertar datos: ' . $e->getMessage()]);
 }
 ?>

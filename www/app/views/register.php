@@ -1,5 +1,8 @@
 <?php
 //require_once '../models/connection.php';
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 ?>
 
@@ -32,31 +35,31 @@
             </div>
             <h3>Registrese en M+</h3>
             <p>Cree una cuenta para usar la plataforma.</p>
-            <form class="m-t" role="form" action="../controllers/register.php" method="POST">
+            <form id = "registerForm" class="m-t" role="form" action="../controllers/register.php" method="POST">
+                <div id="messaje"></div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Nombre" required name="name">
+                    <input type="text" class="form-control" placeholder="Nombre" required name="name" id="name">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Apellido" required name="surname">
+                    <input type="text" class="form-control" placeholder="Apellido" required name="surname" id="surname">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="DNI" required name="dni">
+                    <input type="text" class="form-control" placeholder="DNI" required name="dni" id="dni">
                 </div>
                 <div class="form-group">
-                    <input type="date" class="form-control" required name="birth_date">
+                    <input type="date" class="form-control" required name="birth_date" id="birth_date">
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Email" required name="email">
+                    <input type="email" class="form-control" placeholder="Email" required name="email" id="email">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" required name="password">
+                    <input type="password" class="form-control" placeholder="Password" required name="password" id="password">
                 </div>
                 
                 <div class="form-group">
                         <div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Acepto los terminos y condiciones </label></div>
                 </div>
-                <button type="submit" class="btn btn-primary block full-width m-b">Registrarme</button>
-
+                <button id = "submitButton" type="submit" class="btn btn-primary block full-width m-b">Registrarme</button>
                 <p class="text-muted text-center"><small>¿Ya tiene una cuenta?</small></p>
                 <a class="btn btn-sm btn-white btn-block" href="login.php">Login</a>
             </form>
@@ -77,6 +80,7 @@
             });
         });
     </script>
+    <script src="../../assets/js/register.js"></script>
 </body>
 
 <?php
