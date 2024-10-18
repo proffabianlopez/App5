@@ -18,12 +18,29 @@ $birth_date = $_POST['birth_date'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 
+// Verificar la edad del usuario (debe ser mayor de 18 años)
+$birthDate = new DateTime($birth_date);  // Convertir la fecha de nacimiento en un objeto DateTime
+$today = new DateTime();  // Obtener la fecha actual
+$age = $today->diff($birthDate)->y;  // Calcular la diferencia de años entre las fechas
+
+if ($age < 18) {
+    echo json_encode(['status' => 'error', 'message' => 'Debe ser mayor de 18 años para registrarse.']);
+    exit();
+}
+
+if ($age > 100) {
+    echo json_encode(['status' => 'error', 'message' => 'Ingrese una edad menor a 100 años.']);
+    exit();
+}
+
+// Verificar si el email ya está en uso
 $user = obtenerUsuarioPorEmail($email);
 if (!empty($user)) {
     echo json_encode(['status' => 'error', 'message' => 'Email no válido']);
     exit();
 }
 
+// Verificar si el DNI ya está en uso
 $persona = obtenerPersonaPorDni($dni);
 if (!empty($persona)) {
     echo json_encode(['status' => 'error', 'message' => 'DNI no válido']);
