@@ -89,11 +89,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <input id = "name" type="text" name="name" class="form-control" value="<?php echo $doctorNombre; ?>">
-                                                                <input id = "doctorName" type="hidden" name="doctorName" value="<?php echo $doctorNombre; ?>">
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <input id = "surname" type="text" name="surname" class="form-control" value="<?php echo $doctorApellido; ?>">
-                                                                <input id = "doctorSurname" type="hidden" name="doctorSurname" value="<?php echo $doctorApellido; ?>">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -109,11 +107,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <input id = "street" type="text" name="street" class="form-control" value="<?php echo $doctorCalle; ?>">
-                                                                <input id = "doctorStreet" type="hidden" name="doctorStreet" value="<?php echo $doctorCalle; ?>">
                                                             </div>
                                                             <div class="col-md-4">
                                                             <input id = "number" type="text" name="number" class="form-control" value="<?php echo $doctorNumero; ?>">
-                                                            <input id = "doctorNumber" type="hidden" name="doctorNumber" value="<?php echo $doctorNumero; ?>">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -122,15 +118,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                             <input id = "apartment" type="text" name="apartment" class="form-control" value="<?php echo $doctorDepartamento; ?>">
-                                                            <input id = "doctorApartment" type="hidden" name="doctorApartment" value="<?php echo $doctorDepartamento; ?>">
                                                             </div>
                                                             <div class="col-md-4">
                                                             <input id = "floor" type="text" name="floor" class="form-control" value="<?php echo $doctorPiso; ?>">
-                                                            <input id = "doctorFloor" type="hidden" name="doctorFloor" value="<?php echo $doctorPiso; ?>">
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button id = "button" type="button" class="btn btn-o btn-primary">Modificar</button>
+                                                    <button id = "button" type="submit" class="btn btn-o btn-primary">Modificar</button>
                                                 </form>
                                                 <div id="message"></div>
                                             </div>

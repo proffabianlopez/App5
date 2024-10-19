@@ -17,14 +17,43 @@ if (isset( $_SESSION)) {
 require_once '../models/updateSpecialist.php';
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    $mnsjNotNuLL = "No se acepta vacio en este campo, ingrese un dato ";
     $doctorId = $_POST['id_doctor'];
-    $doctorNombre = !empty($_POST['name']) ? $_POST['name'] : $_POST['doctorName'];
-    $doctorApellido = !empty($_POST['surname']) ? $_POST['surname'] : $_POST['doctorSurname'];
+    if(!empty($_POST['name'])){
+        $doctorNombre = $_POST['name'];
+    } else{
+        echo $mnsjNotNuLL;
+        exit();
+    }
+    if(!empty($_POST['surname'])){
+        $doctorApellido = $_POST['surname'];
+    } else{
+        echo $mnsjNotNuLL;
+        exit();
+    }
     $doctorOnlineConsultation = $_POST['onlineConsultation'];
-    $doctorCalle = !empty($_POST['street']) ? $_POST['street'] : $_POST['doctorStreet'];
-    $doctorNumero = !empty($_POST['number']) ? $_POST['number'] : $_POST['doctorNumber'];
-    $doctorDepartamento = !empty($_POST['apartment']) ? $_POST['apartment'] : $_POST['doctorApartment'];
-    $doctorPiso = !empty($_POST['floor']) ? $_POST['floor'] : $_POST['doctorFloor'];
+    if(!empty($_POST['street'])){
+        $doctorCalle = $_POST['street'];
+    } else{
+        echo $mnsjNotNuLL;
+        exit();
+    }
+    if(!empty($_POST['number'])){
+        $doctorNumero = $_POST['number'];
+    } else{
+        echo $mnsjNotNuLL;
+        exit();
+    }
+    $doctorDepartamento = $_POST['apartment'];
+    if($doctorDepartamento == "null"){
+        $doctorDepartamento = "";
+    }
+    $doctorPiso = $_POST['floor'];
+    if($doctorPiso == "null"){
+        echo "prueba";
+    }
+
+    //echo $doctorId, $doctorNombre, $doctorApellido, $doctorOnlineConsultation, $doctorCalle, $doctorNumero, $doctorDepartamento, $doctorPiso;
 
     // Llamamos a la función con los parámetros en el orden correcto
     UpdateSpecialist($doctorId, $doctorNombre, $doctorApellido, $doctorOnlineConsultation, $doctorCalle, $doctorNumero, $doctorDepartamento, $doctorPiso);

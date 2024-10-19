@@ -10,15 +10,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Realizamos las validaciones correspondientes
         let id_doctor = formData.get('id_doctor');
-        let name = formData.get('name') || formData.get('doctorName');
-        let surname = formData.get('surname') || formData.get('doctorSurname');
+        let name = formData.get('name');
+        let surname = formData.get('surname');
         let onlineConsultation = formData.get('onlineConsultation');
-        let street = formData.get('street') || formData.get('doctorStreet');
-        let number = formData.get('number') || formData.get('doctorNumber');
-        let apartment = formData.get('apartment') || formData.get('doctorApartment');
-        let floor = formData.get('floor') || formData.get('doctorFloor');
+        let street = formData.get('street');
+        let number = formData.get('number');
+        let apartment = formData.get('apartment');
+        let floor = formData.get('floor');
 
-        // Crear los datos que se enviarán en el body
         let bodyData = new URLSearchParams();
         bodyData.append('id_doctor', id_doctor);
         bodyData.append('name', name);
@@ -29,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
         bodyData.append('apartment', apartment);
         bodyData.append('floor', floor);
 
-        // Petición AJAX usando fetch
         fetch('../../controllers/editDoctor.php', {
             method: 'POST',
             headers: {

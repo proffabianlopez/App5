@@ -26,12 +26,22 @@ function UpdateSpecialist($id_doctor, $name, $surname, $onlineConsultation, $str
             $stmt->bindParam(':surname', $surname, PDO::PARAM_STR);
             $stmt->bindParam(':street', $street, PDO::PARAM_STR);
             $stmt->bindParam(':number', $number, PDO::PARAM_INT);
-            $stmt->bindParam(':apartment', $apartment, PDO::PARAM_STR);
-            $stmt->bindParam(':floor', $floor, PDO::PARAM_STR);
+            if ($apartment !== "null") {
+                $stmt->bindParam(':apartment', $apartment, PDO::PARAM_STR);
+            } else {
+                $stmt->bindValue(':apartment', $apartment, PDO::PARAM_NULL);
+            }
+            if($floor !== "null"){
+                $stmt->bindParam(':floor', $floor, PDO::PARAM_STR);
+            } else{
+                $stmt->bindParam(':floor', $floor, PDO::PARAM_NULL); 
+            }
             $stmt->bindParam(':online_consultation', $onlineConsultation, PDO::PARAM_INT);
             $stmt->bindParam(':id_doctor', $id_doctor, PDO::PARAM_INT);
 
             if ($stmt->execute()) {
+                //$connection->commit();
+                //echo "Datos actualizados correctamente del Doctor.";
                 if ($stmt->rowCount() > 0) {
                     // Si se actualizó alguna fila
                     $connection->commit();
@@ -45,13 +55,13 @@ function UpdateSpecialist($id_doctor, $name, $surname, $onlineConsultation, $str
                 $connection->rollBack();
                 echo "Error al actualizar al Doctor.";
             }
-            
             cerrarConexion($connection);
         } catch (PDOException $e) {
             // En caso de error, deshacemos la transacción y mostramos el error
             $connection->rollBack();
             echo "Error en la consulta: " . $e->getMessage();
         }
+        cerrarConexion($connection);
     }
 }
 ?>
