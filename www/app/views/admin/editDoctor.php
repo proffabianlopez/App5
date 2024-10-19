@@ -85,12 +85,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                                     <!-- Campo oculto para enviar el ID del doctor -->
                                                     <input type="hidden" name="id_doctor" value="<?php echo $doctorId; ?>">
                                                     <div class="form-group">
-                                                        Nombre y Apellido
                                                         <div class="row">
                                                             <div class="col-md-4">
+                                                                <label for="name">Nombre</label>
                                                                 <input id = "name" type="text" name="name" class="form-control" value="<?php echo $doctorNombre; ?>">
                                                             </div>
                                                             <div class="col-md-4">
+                                                                <label for="surname">Apellido</label>
                                                                 <input id = "surname" type="text" name="surname" class="form-control" value="<?php echo $doctorApellido; ?>">
                                                             </div>
                                                         </div>
@@ -103,23 +104,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
-                                                        Calle y Número
                                                         <div class="row">
                                                             <div class="col-md-4">
+                                                                <label for="steet">Calle</label>
                                                                 <input id = "street" type="text" name="street" class="form-control" value="<?php echo $doctorCalle; ?>">
                                                             </div>
                                                             <div class="col-md-4">
+                                                                <label for="number">Número</label>
                                                             <input id = "number" type="text" name="number" class="form-control" value="<?php echo $doctorNumero; ?>">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        Departamento y Piso
                                                         <div class="row">
                                                             <div class="col-md-4">
+                                                                <label for="depto">Departamento</label>
                                                             <input id = "apartment" type="text" name="apartment" class="form-control" value="<?php echo $doctorDepartamento; ?>">
                                                             </div>
                                                             <div class="col-md-4">
+                                                                <label for="floor">Piso</label>
                                                             <input id = "floor" type="text" name="floor" class="form-control" value="<?php echo $doctorPiso; ?>">
                                                             </div>
                                                         </div>
