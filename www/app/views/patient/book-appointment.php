@@ -50,15 +50,47 @@ $specialist= obtenerEspecialistas();
                         <section id="page-title">
                             <div class="row">
                                 <div class="col-sm-8">
-                                    <h1 class="mainTitle">Usuario | Reservar Turno</h1>
+                                    <h1 class="mainTitle">Usuario | Elija una especialidad</h1>
                                 </div>
                                 <ol class="breadcrumb">
                                     <li><span>Usuario</span></li>
                                     <li class="active"><span>Reservar Turno</span></li>
                                 </ol>
                         </section>
+                            <?php
+                            foreach($specialities as $speciality){
+                                ?> <div class="col-sm-4">
+                                <div class="panel panel-white no-radius text-center">
+                                    <div class="panel-body">
+                                        <span class="fa-stack fa-2x">
+                                            <i class="fa fa-square fa-stack-2x text-primary"></i>
+                                            <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                        <h2 class="StepTitle"><?php echo $speciality['speciality'] ;?></h2>
+                                        
+                                        <p class="links cl-effect-1">
+                                            <a href="selectDoctorAppointment.php?id=<?php echo $speciality['id'];?>">
+                                            <?php echo $speciality['speciality'] ;?>
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div> <?php
+                            }
+                            ?>
                         
-                        <div class="container-fluid container-fullw bg-white">
+                    </div>
+                </div>
+            </div>
+            <?php include('../include/footer.php'); ?>
+            <?php include('../include/setting.php'); ?>
+        </div>
+        <?php include('../include/script.php'); ?> 
+
+    </body>
+</html>
+<!--
+<div class="container-fluid container-fullw bg-white">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="row margin-top-30">
@@ -73,7 +105,7 @@ $specialist= obtenerEspecialistas();
                                                             <label for="DoctorSpecialization">Especialización Médico</label>
                                                             <select name="speciality" class="form-control" onChange="getdoctor(this.value);" required="required">
                                                                 <option value="">Selecionar Especialización</option>
-                                                                <?php
+                                                                <php
                                                             // Verificar si se obtuvieron resultados
                                                             if (!empty($specialities)) {
                                                             // Recorrer los tipos de licencia y generar las opciones
@@ -92,7 +124,7 @@ $specialist= obtenerEspecialistas();
                                                             <label for="doctor">Médico</label>
                                                             <select name="doctor" class="form-control" id="doctor" onChange="getfee(this.value);" required="required">
                                                                 <option value="">Seleccionar Médico</option>
-                                                                <?php
+                                                                <php
                                                             // Verificar si se obtuvieron resultados
                                                             if (!empty($specialist)) {
                                                             // Recorrer los tipos de licencia y generar las opciones
@@ -106,7 +138,7 @@ $specialist= obtenerEspecialistas();
                                                             </select>
                                                         </div>
 
-                                                        <!-- OBRASOCIAL -->
+                                                        
                                                         <div class="form-group">
                                                             <label for="consultancyfees">Obra social</label>
                                                             <select name="fees" class="form-control" id="fees" readonly></select>
@@ -117,7 +149,7 @@ $specialist= obtenerEspecialistas();
                                                             <input class="form-control datepicker" name="appdate" required="required" data-date-format="yyyy-mm-dd">
                                                         </div>
 
-                                                        <?php
+                                                        <php
                                                         //AJAX para mostrar los horarios disponibles
                                                         ?>
 
@@ -136,16 +168,4 @@ $specialist= obtenerEspecialistas();
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <?php include('../include/footer.php'); ?>
-            <?php include('../include/setting.php'); ?>
-        </div>
-        <?php include('../include/script.php'); ?> 
-
-    </body>
-</html>
-<?php
-//ajax para
-?>
+-->

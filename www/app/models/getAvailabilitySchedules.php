@@ -1,6 +1,6 @@
 <?php
 // session_start();
-if (isset( $_SESSION)) {
+/*if (isset( $_SESSION)) {
     if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '2') {
         // var_dump($_SESSION['rol']);
         // exit;
@@ -19,7 +19,7 @@ if (isset( $_SESSION)) {
         echo 'window.location.href="../login.php";';
         echo '</script>';
         exit();
-}
+}*/
 
 require_once 'connection.php';
 
