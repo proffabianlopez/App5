@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $doctorSpeciality = $_GET['id'];
     $doctorsBySpeciality = obtenerEspecialistaPorEspecialidad($doctorSpeciality);
 }
-var_dump($_SESSION);
+//var_dump($_SESSION);
 //var_dump($doctorsBySpeciality);
 ?>
 
@@ -53,28 +53,48 @@ var_dump($_SESSION);
                                 </ol>
                         </section>
                             <?php
-                            foreach($doctorsBySpeciality as $speciality){
-                                $doctors = obtenerEspecialistaPorId($speciality['id_specialist']);
-                                foreach($doctors as $doctor){?>
-                                    <div class="col-sm-4">
+                            if(!empty($doctorsBySpeciality)){
+                                foreach($doctorsBySpeciality as $speciality){
+                                    $doctors = obtenerEspecialistaPorId($speciality['id_specialist']);
+                                    foreach($doctors as $doctor){?>
+                                        <div class="col-sm-4">
+                                            <div class="panel panel-white no-radius text-center">
+                                                <div class="panel-body">
+                                                    <span class="fa-stack fa-2x">
+                                                        <i class="fa fa-square fa-stack-2x text-primary"></i>
+                                                        <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i>
+                                                    </span>
+                                                    <h2 class="StepTitle"><?php echo $doctor['name'] ;?></h2>
+                                                    
+                                                    <p class="links cl-effect-1">
+                                                        <a href="selectAppointment.php?id=<?php echo $doctor['id']; ?>&idSpeciality=<?php echo $doctorSpeciality; ?>">
+                                                            <?php echo $doctor['surname'] ;?>
+                                                        </a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php        
+                                    }
+                                }
+                            } else{?>
+                                <div class="col-sm-4">
                                         <div class="panel panel-white no-radius text-center">
                                             <div class="panel-body">
                                                 <span class="fa-stack fa-2x">
                                                     <i class="fa fa-square fa-stack-2x text-primary"></i>
                                                     <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i>
                                                 </span>
-                                                <h2 class="StepTitle"><?php echo $doctor['name'] ;?></h2>
+                                                <h2 class="StepTitle">No hay doctores disponibles para esta especialidad</h2>
                                                 
                                                 <p class="links cl-effect-1">
-                                                    <a href="selectAppointment.php?id=<?php echo $doctor['id'];?>">
-                                                    <?php echo $doctor['surname'] ;?>
-                                                    </a>
+                                                <a href="book-appointment.php?">
+                                                    Elegir otra especialidad
+                                                </a>
                                                 </p>
                                             </div>
                                         </div>
-                                    </div>
-                                    <?php        
-                                }
+                                    </div><?php
                             }
                             ?>
                         
