@@ -3,13 +3,13 @@ session_start();
 
 include '../../models/getSpecialities.php';
 include '../../models/getSpecialistById.php';
-include '../../models/getAppointmentsByUserId.php';
+include '../../models/getAppointments.php';
 include '../../models/getSpecialist.php';
 include '../../models/getHealthInsuranceById.php';
 include '../../models/getPersonByUserId.php';
 
 if (isset( $_SESSION)) {
-    if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '1') {
+    if (( $_SESSION['rol']) == "" or  $_SESSION['rol'] != '2') {
         // var_dump($_SESSION['rol']);
         // exit;
         // ob_start();
@@ -28,18 +28,15 @@ if (isset( $_SESSION)) {
 
 $specialities = obtenerEspecialidades();
 $specialist= obtenerEspecialistas();
-$turnosDelUsario = obtenerTurnosPorUsuario($_SESSION['user']);
-$persons = obtenerPersonasPorIdUsusario($_SESSION['user']);
-foreach($persons as $person){
-    $personaNombre = $person['name'];
-    $personaApellido = $person['surname'];
-}
+$turnosTomados = obtenerTurnos();
+
+
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title><?php echo $personaNombre; ?> | Lista De Turnos</title>
+        <title>Admin | Lista de Turnos</title>
         <?php include('../include/head.php'); ?> 
     </head>
     <body>
@@ -53,10 +50,10 @@ foreach($persons as $person){
                         <section id="page-title">
                             <div class="row">
                                 <div class="col-sm-8">
-                                    <h1 class="mainTitle"><?php echo $personaNombre; ?> | Lista De Turnos</h1>
+                                    <h1 class="mainTitle">Admin | Lista De Turnos</h1>
                                 </div>
                                 <ol class="breadcrumb">
-                                    <li><span><?php echo $personaNombre; ?></span></li>
+                                    <li><span>Admin</span></li>
                                     <li class="active"><span>Lista De Turnos</span></li>
                                 </ol>
                         </section>
@@ -70,6 +67,7 @@ foreach($persons as $person){
                                                 <th class="center">Fecha</th>
                                                 <th class="center">Hora</th>
                                                 <th class="center">Doctor</th>
+                                                <th class="center">Paciente</th>
                                                 <th class="center">Obra Social</th>
                                                 <th class="center">Estado del turno</th>
                                                 <th class="center">Acción</th>
@@ -77,7 +75,7 @@ foreach($persons as $person){
                                         </thead>
                                         <tbody>
                                             <?php
-                                            foreach ($turnosDelUsario as $row) {
+                                            foreach ($turnosTomados as $row) {
                                                 if($row['status'] == 0){
                                                     continue; // evitamos mostrar los doctores borrados
                                                 }
@@ -89,6 +87,12 @@ foreach($persons as $person){
                                                     $doctors = obtenerEspecialistaPorId($row['id_specialist']);
                                                     foreach($doctors as $doctor){
                                                         echo $doctor['name']." ".$doctor['surname'];
+                                                    }
+                                                    ?></td>
+                                                    <td class="hidden-xs"><?php
+                                                    $personas = obtenerPersonasPorIdUsusario($row['id_user']);
+                                                    foreach($personas as $persona){
+                                                        echo $persona['name']." ".$persona['surname'];
                                                     }
                                                     ?></td>
                                                     <td class="hidden-xs"><?php                                                   
@@ -126,6 +130,7 @@ foreach($persons as $person){
             <?php include('../include/setting.php'); ?>
         </div>
         <?php include('../include/script.php'); ?> 
+
         <script src="../../../assets/js/confirmAppointment.js"></script>
         <script src="../../../assets/js/cancelAppointment.js"></script>
     </body>

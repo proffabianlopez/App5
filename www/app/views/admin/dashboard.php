@@ -89,7 +89,7 @@ if(empty($_SESSION)){
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="col-sm-4">
+                            <div class="col-sm-4">
                                 <div class="panel panel-white no-radius text-center">
                                     <div class="panel-body">
                                         <span class="fa-stack fa-2x">
@@ -98,11 +98,13 @@ if(empty($_SESSION)){
                                         </span>
                                         <h2 class="StepTitle">Turnos</h2>
                                         <p class="links cl-effect-1">
-                                            <a href="book-appointment.php"></a>
+                                            <a href="book-appointment.php">
+                                                Lista de turnos
+                                            </a>
                                         </p>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                 </div>
