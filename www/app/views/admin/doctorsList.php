@@ -128,9 +128,27 @@ $datosEspecialistas = obtenerDatosEspecialistas();
                                                     <button type="button" class="btn-modificar" onclick="window.location.href='manage-doctors.php?id=<?php echo $row['id']; ?>'">Horarios y Dias de trabajo</button>
                                                     </td> -->
                                                     <td>
-                                                        <button type="button" class="btn btn-success" title="Ver detalles" data-toggle="modal" data-target="#doctorListModal" data-id="<?php echo $row['specialist_id']; ?>" onclick="showDoctorDetails(<?php echo $row['specialist_id']; ?>)">
+                                                        <!-- <button type="button" class="btn btn-success" title="Ver detalles" data-toggle="modal" data-target="#doctorListModal" data-id="<?php echo $row['specialist_id']; ?>" onclick="showDoctorDetails(<?php echo $row['specialist_id']; ?>)">
+                                                            <i class="ti-eye text-bold" aria-hidden="true"></i>
+                                                        </button> -->
+                                                        <button type="button" 
+                                                                class="btn btn-success" 
+                                                                title="Ver detalles" 
+                                                                data-toggle="modal" 
+                                                                data-target="#doctorListModal" 
+                                                                onclick="showDoctorDetails(
+                                                                    '<?php echo addslashes($name); ?>', 
+                                                                    '<?php echo addslashes($surname); ?>', 
+                                                                    '<?php echo addslashes($street); ?>', 
+                                                                    '<?php echo addslashes($number); ?>', 
+                                                                    '<?php echo addslashes($matricula); ?>', 
+                                                                    <?php echo $onlineConsultation; ?>, 
+                                                                    <?php echo $status; ?>,
+                                                                    '<?php echo addslashes($specialities); ?>'
+                                                                )">
                                                             <i class="ti-eye text-bold" aria-hidden="true"></i>
                                                         </button>
+
                                                         <button type="button" class="btn btn-activate btn-info" title="Activar Doctor" data-id="<?php echo $row['specialist_id']; ?>">
                                                             <i class="ti-check text-bold" aria-hidden="true"></i></button>
                                                         <button type="button" class="btn btn-delete btn-danger" title="Borrar Doctor" data-id="<?php echo $row['specialist_id']; ?>"> 
@@ -229,6 +247,28 @@ $datosEspecialistas = obtenerDatosEspecialistas();
     <script>
         new DataTable('#dataTabledoctorList');
     </script>
+
+
+<script>
+    function showDoctorDetails(name, surname, street, number, matricula, onlineConsultation, status, specialities) {
+    // Actualiza el contenido del modal con los detalles del especialista
+    document.querySelector('#doctorListModal .modal-body').innerHTML = `
+        <p class="hidden-xs"><strong>Nombre: </strong>${name}</p>
+        <p class="hidden-xs"><strong>Apellido: </strong>${surname}</p>
+        <p class="hidden-xs"><strong>Calle: </strong>${street}</p>
+        <p class="hidden-xs"><strong>Número: </strong>${number}</p>
+        <p class="hidden-xs"><strong>Matrícula: </strong>${matricula}</p>
+        <p class="hidden-xs"><strong>Consulta Online: </strong>${onlineConsultation == 1 ? 'Realiza consultas online' : 'No realiza consultas online'}</p>
+        <p class="hidden-xs"><strong>Estado: </strong>${status == 1 ? 'Activo' : 'Inactivo'}</p>
+        <div class="dropdown">
+            <button class="btn btn-info btn-xs dropdown-toggle" type="button" data-toggle="dropdown">Especialidades<span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                ${specialities.split(',').map(speciality => `<li><a href='#'>${speciality}</a></li>`).join('')}
+            </ul>
+        </div>
+    `;
+}
+</script>
 </body>
 
 </html>
