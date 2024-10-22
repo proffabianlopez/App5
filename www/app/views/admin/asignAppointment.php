@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION)) {
-    if ($_SESSION['rol'] == "" || $_SESSION['rol'] != '1') {
+    if ($_SESSION['rol'] == "" || $_SESSION['rol'] != '2') {
         echo '<script type="text/javascript">';
         echo 'window.location.href="../login.php";';
         echo '</script>';
@@ -17,6 +17,7 @@ include '../../models/getAvailabilitySchedules.php';
 include '../../models/getSpecialistById.php';
 include '../../models/getSpecialities.php';
 include '../../models/getHealthInsurance.php';
+include '../../models/getUserAndPersons.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $doctorId = $_GET['id'];
@@ -36,17 +37,19 @@ foreach($doctors as $doctor){
 }
 
 $obras_sociales = obtenerObraSocial();
+$personas = obtenerUsuariosYPersonas();
+//var_dump($personas);
 
 ?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>Usuario | Reservar Turno</title>
+        <title>Admin | Asignar Turno</title>
         <?php include('../include/head.php'); ?> 
     </head>
     <body>
         <div id="app">		
-            <?php include('../include/sidebar_patient.php'); ?>
+            <?php include('../include/sidebar_admin.php'); ?>
             <div class="app-content">
                 <?php include('../include/header.php'); ?>
                 
@@ -55,11 +58,11 @@ $obras_sociales = obtenerObraSocial();
                         <section id="page-title">
                             <div class="row">
                                 <div class="col-sm-8">
-                                    <h1 class="mainTitle">Usuario | Reservar Turno</h1>
+                                    <h1 class="mainTitle">Admin | Asignar Turno</h1>
                                 </div>
                                 <ol class="breadcrumb">
-                                    <li><span>Usuario</span></li>
-                                    <li class="active"><span>Reservar Turno</span></li>
+                                    <li><span>Admin</span></li>
+                                    <li class="active"><span>Asignar Turno</span></li>
                                 </ol>
                         </section>
 
@@ -67,7 +70,7 @@ $obras_sociales = obtenerObraSocial();
                             <div class="col-lg-6 col-md-6">
                                 <div class="panel panel-white">
                                     <div class="panel-body">
-                                        <form id = "appointmentForm" role="form" name="book" method="post" action="../../controllers/insertAppointment.php">
+                                        <form id = "appointmentForm" role="form" name="book" method="post" action="../../controllers/insertAdminAppointment.php">
                                             <div class="form-group">
                                                 <label for="doctor">Médico</label>
                                                 <input type="text" class="form-control" readonly value="<?php echo $doctorName; ?>">
@@ -78,8 +81,23 @@ $obras_sociales = obtenerObraSocial();
                                                 <label for="DoctorSpecialization">Especialización Médico</label>
                                                 <input id = "id_speciality" name="id_speciality" type="hidden" class="form-control" value="<?php echo $id_speciality; ?>">
                                                 <input id = "speciality" name="speciality" type="text" class="form-control" readonly value="<?php echo $doctorSpeciality; ?>">
-                                            </div> 
-
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="consultancyfees">Paciente</label>
+                                                <select name="paciente" class="form-control">
+                                                         <?php
+                                                          if (!empty($personas)) {
+                                                                foreach ($personas as $persona) {
+                                                                    echo '<option value="' . $persona['user_id'] . '">' . $persona['name'] . '</option>';
+                                                                }
+                                                            } else {
+                                                                echo '<option value="">No hay obras sociales cargadas cargados</option>';
+                                                            }
+                                                        ?>
+                                                </select>
+                                             </div>
+                                            
                                             <div class="form-group">
                                                 <label for="consultancyfees">Obra social</label>
                                                 <select name="healthInsaurance" class="form-control">
